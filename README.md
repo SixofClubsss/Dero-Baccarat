@@ -6,7 +6,7 @@ Ui for Dero Testnet Baccarat Smart Contract.
 
 Written in C++/Qt. Used Qt 5.12.8 to build the Ui. This app is made to play Dero Baccarat on **Dero StarGate Testnet**. 
 
-The smart contract is a simple version of Baccarat. It uses a _Dero Testnet token_ called Chips for betting. Users can trade _Testnet Dero_ for Chips, & Chips can also be converted back into _Testnet Dero_. For more info on the game mechanics read the menu when the app starts, you can also refer to the game smart contract. Plese report any issues found, thanks for testing!
+The smart contract is a simple version of the casino game Baccarat. It uses a _Dero Testnet token_ called Chips for betting. Users can trade _Testnet Dero_ for Chips, & Chips can also be converted back into _Testnet Dero_. For more info on the game mechanics read the menu when the app starts, you can also refer to the game smart contract. Plese report any issues found, thanks for testing!
 
 - Dero Baccarat Testnet Contract: [8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d](a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce)
 
@@ -25,11 +25,28 @@ To be able to play you will need to have a synced **Dero Testnet daemon** runnin
 For more info on how to set up Dero Testnet you can read their documentation [here](https://docs.dero.io/rtd_pages/basic_deploysc.html#setting-up-a-testnet-environment)
 
 ## Build
-[Curl](https://curl.se/) is required for the app to work
 
-Download the repo `git clone https://github.com/SixofClubsss/Dero-Testnet-Baccarat.git`
+- ### Linux
 
-`cmake` & `make` used to build.
+**Install dependencies**
+```
+sudo apt update
+sudo apt install build-essential cmake curl libcurl4-openssl-dev
+sudo apt install --no-install-recommends qtbase5-dev qttools5-dev libqt5svg5-dev
+```
 
-First run `cmake CMakeLists.txt` then run `make`
+**Download repo & build**
+```
+git clone https://github.com/SixofClubsss/Dero-Testnet-Baccarat.git
+cd Dero-Testnet-Baccarat/Testnet-Baccarat
+cmake CMakeLists.txt
+make
+```
+
+**Start app**
+```
+./Testnet-Baccarat
+```
+#
+![DeroBaccMenu](https://user-images.githubusercontent.com/84689659/165540180-e7c8e1fb-3e76-484f-847d-1b6e98f68e60.jpg)
 #
