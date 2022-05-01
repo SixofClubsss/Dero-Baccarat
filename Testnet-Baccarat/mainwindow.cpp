@@ -94,6 +94,7 @@ void MainWindow::on_tradeChipButton_clicked()
 
 void MainWindow::on_playerButton_clicked()
 {
+    blankCards();
     ui->textBrowser->setText("Confirm your Bet");
     confirmmenu::whichBet = 1;
     confirmmenu confirmmenu;
@@ -106,10 +107,12 @@ void MainWindow::on_playerButton_clicked()
         confirmmenu::betConfirmed = false;
         delay();
         fetchScData();
+        fetchHandData();
 
     }else {
         confirmmenu::betConfirmed = false;
         ui->textBrowser->setText("Select a option");
+        blankCards();
     }
 
 }
@@ -117,6 +120,7 @@ void MainWindow::on_playerButton_clicked()
 
 void MainWindow::on_bankerButton_clicked()
 {
+    blankCards();
     ui->textBrowser->setText("Confirm your Bet");
     confirmmenu::whichBet = 2;
     confirmmenu confirmmenu;
@@ -129,16 +133,19 @@ void MainWindow::on_bankerButton_clicked()
         confirmmenu::betConfirmed = false;
         delay();
         fetchScData();
+        fetchHandData();
 
     }else {
         confirmmenu::betConfirmed = false;
         ui->textBrowser->setText("Select a option");
+        blankCards();
     }
 }
 
 
 void MainWindow::on_tieButton_clicked()
 {
+    blankCards();
     ui->textBrowser->setText("Confirm your Bet");
     confirmmenu::whichBet = 3;
     confirmmenu confirmmenu;
@@ -151,10 +158,12 @@ void MainWindow::on_tieButton_clicked()
         confirmmenu::betConfirmed = false;
         delay();
         fetchScData();
+        fetchHandData();
 
     }else {
         confirmmenu::betConfirmed = false;
         ui->textBrowser->setText("Select a option");
+        blankCards();
     }
 }
 

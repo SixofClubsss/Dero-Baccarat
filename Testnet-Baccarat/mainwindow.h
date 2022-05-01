@@ -30,6 +30,12 @@ public:
     int playerBet(void);
     int bankerBet(void);
     int tieBet(void);
+    void blankCards();
+    QString displayPlayerCards(int);
+    QString displayBankerCards(int);
+    QString displayDrawPlayerCard(int);
+    QString displayDrawBankerCard(int);
+
 
 
 private slots:

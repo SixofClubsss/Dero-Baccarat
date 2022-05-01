@@ -14,6 +14,7 @@ void MainWindow::loginInfo()   /// Used to store wallet login info for all walle
     rpc::rpcLogin = userStr+passStr;
 }
 
+
 int MainWindow::checkWallet(void)  /// Echo blockchain to confirm wallet is connected
 {
     CURL *curlWalletCheck;      /// Set up cUrl
@@ -80,7 +81,7 @@ int MainWindow::getChips(void)      /// Trade Testnet Dero for Chips token (Only
 {
     CURL *curlGetChips;
     CURLcode res;
-    string getChipsReadBuffer;                                                                                                                                                                                                                                     ///// \"keysstring\":[\"TotalHandsPlayed:\" , \"1-Banker total:\"
+    string getChipsReadBuffer;
 
     static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"scinvoke\",\"params\":{\"scid\":\"8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d\", \"sc_dero_deposit\":50000 , \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"IssueChips\"}] }}";
     char error[CURL_ERROR_SIZE];
@@ -141,7 +142,7 @@ int MainWindow::tradeChips(void)        /// Trade Chips for Testnet Dero
 {
     CURL *curlTradeChips;
     CURLcode res;
-    string tradeChipsReadBuffer;                                                                                                                                                                                                                                     ///// \"keysstring\":[\"TotalHandsPlayed:\" , \"1-Banker total:\"
+    string tradeChipsReadBuffer;
 
     static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\":[{\"scid\":\"a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce\", \"burn\":100000}],\"scid\":\"8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d\", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"ConvertChips\"}] }}";
     char error[CURL_ERROR_SIZE];
@@ -248,6 +249,7 @@ int MainWindow::playerBet(void)     /// Bet 0.1 Chip on player
         if(txid.isString())
         {
             ui->textBrowser->setText("Your Hand TXID: "+txid.toString());
+            ui->textBrowser->append("\nHand results will display in 30 seconds");
             ui->logTextBrowser->append("TXID: "+txid.toString()+"\n");
 
         }else
@@ -309,6 +311,7 @@ int MainWindow::bankerBet(void)     /// Bet 0.1 Chip on banker
       if(txid.isString())
       {
           ui->textBrowser->setText("Your Hand TXID: "+txid.toString());
+          ui->textBrowser->append("\nHand results will display in 30 seconds");
           ui->logTextBrowser->append("TXID: "+txid.toString()+"\n");
 
       }else
@@ -371,6 +374,7 @@ int MainWindow::tieBet(void)            /// Bet 0.1 Chip on tie
         if(txid.isString())
         {
             ui->textBrowser->setText("Your Hand TXID: "+txid.toString());
+            ui->textBrowser->append("\nHand results will display in 30 seconds");
             ui->logTextBrowser->append("TXID: "+txid.toString()+"\n");
 
         }else

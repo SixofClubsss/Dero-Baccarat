@@ -24,17 +24,176 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="15" column="1">
-     <widget class="QLineEdit" name="daemonRPCinput">
+    <item row="0" column="3" colspan="2">
+     <widget class="QPushButton" name="reloadButton">
+      <property name="text">
+       <string>Reload SC Data</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="7">
+     <widget class="QLabel" name="labelPlayerBet">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Bet 0.1 Chip</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1" colspan="2">
+     <widget class="QDoubleSpinBox" name="playerTotalSpinBox">
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="prefix">
+       <string>Player Has: </string>
+      </property>
+      <property name="decimals">
+       <number>0</number>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="0" colspan="2">
+     <widget class="QLineEdit" name="userInput">
       <property name="text">
        <string/>
       </property>
       <property name="placeholderText">
-       <string>Enter Daemon RPC Address</string>
+       <string>User:</string>
       </property>
      </widget>
     </item>
-    <item row="2" column="0" colspan="2">
+    <item row="8" column="8">
+     <widget class="QPushButton" name="bankerButton">
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="text">
+       <string>Banker Bet</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="6">
+     <widget class="QLabel" name="bankerYCardLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>66</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>🂠</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="0">
+     <widget class="QCheckBox" name="walletConnectedBox">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>Connected</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="autoExclusive">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="7">
+     <widget class="QLabel" name="labelBankerBet">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Bet 0.1 Chip</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="0" colspan="2">
+     <widget class="QLineEdit" name="passwordInput">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+      <property name="placeholderText">
+       <string>Password:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="8">
+     <widget class="QLabel" name="label">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Session TXIDs:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="7">
+     <widget class="QLabel" name="bankerZCardLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>66</pointsize>
+       </font>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Panel</enum>
+      </property>
+      <property name="text">
+       <string>🂠</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="1" colspan="2">
+     <widget class="QLineEdit" name="walletRPCinput">
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>Enter Wallet RPC Address</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="3">
      <widget class="QDoubleSpinBox" name="dsbTotalHandsPlayed">
       <property name="enabled">
        <bool>true</bool>
@@ -59,8 +218,27 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="4">
+    <item row="6" column="8">
+     <widget class="QPushButton" name="tradeChipButton">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Trade Chips</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="6" colspan="3">
      <widget class="QLabel" name="label_3">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="font">
        <font>
         <pointsize>12</pointsize>
@@ -72,93 +250,8 @@
       <property name="text">
        <string>Exchange Rate: 1 Dero = 9 Chips</string>
       </property>
-     </widget>
-    </item>
-    <item row="14" column="3">
-     <widget class="QLabel" name="labelPlayerBet">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Bet 0.1 Chip</string>
-      </property>
       <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="3">
-     <widget class="QLabel" name="labelGetChips">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Trade 0.5 DERO for 4.5 Chips</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="13" column="4" rowspan="2">
-     <widget class="QPushButton" name="playerButton">
-      <property name="text">
-       <string>Player Bet</string>
-      </property>
-     </widget>
-    </item>
-    <item row="12" column="0" rowspan="2" colspan="2">
-     <widget class="QLineEdit" name="userInput">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="placeholderText">
-       <string>User:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="3">
-     <widget class="QLabel" name="labelTradeChips">
-      <property name="text">
-       <string>Trade 1 Chip for  0.111 DERO</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item row="14" column="0" colspan="2">
-     <widget class="QLineEdit" name="passwordInput">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="echoMode">
-       <enum>QLineEdit::Password</enum>
-      </property>
-      <property name="placeholderText">
-       <string>Password:</string>
-      </property>
-     </widget>
-    </item>
-    <item row="11" column="3">
-     <widget class="QLabel" name="labelTieBet">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Bet 0.1 Chip</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
@@ -178,112 +271,85 @@
       </property>
      </widget>
     </item>
-    <item row="11" column="4">
-     <widget class="QPushButton" name="tieButton">
-      <property name="text">
-       <string>Tie Bet</string>
-      </property>
-     </widget>
-    </item>
-    <item row="15" column="0">
-     <widget class="QCheckBox" name="daemonConnectedBox">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="text">
-       <string>Connected</string>
-      </property>
-      <property name="checkable">
-       <bool>true</bool>
-      </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="2">
-     <widget class="QPushButton" name="reloadButton">
-      <property name="text">
-       <string>Reload SC Data</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="4">
-     <widget class="QPushButton" name="getChipButton">
-      <property name="text">
-       <string>Get Chips</string>
-      </property>
-     </widget>
-    </item>
-    <item row="12" column="4">
-     <widget class="QPushButton" name="bankerButton">
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="text">
-       <string>Banker Bet</string>
-      </property>
-     </widget>
-    </item>
-    <item row="8" column="4">
-     <widget class="QPushButton" name="tradeChipButton">
+    <item row="3" column="8">
+     <widget class="QTextBrowser" name="logTextBrowser">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>120</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="sizeIncrement">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="4" colspan="2">
+     <widget class="QLabel" name="bankerXCardLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>66</pointsize>
+       </font>
+      </property>
       <property name="text">
-       <string>Trade Chips</string>
+       <string>🂠</string>
       </property>
      </widget>
     </item>
-    <item row="16" column="1">
-     <widget class="QLineEdit" name="walletRPCinput">
-      <property name="text">
-       <string/>
-      </property>
-      <property name="placeholderText">
-       <string>Enter Wallet RPC Address</string>
-      </property>
-     </widget>
-    </item>
-    <item row="16" column="0">
-     <widget class="QCheckBox" name="walletConnectedBox">
-      <property name="enabled">
+    <item row="2" column="6" colspan="2">
+     <widget class="QDoubleSpinBox" name="bankerTotalSpinBox">
+      <property name="readOnly">
        <bool>true</bool>
       </property>
-      <property name="text">
-       <string>Connected</string>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
       </property>
-      <property name="checkable">
-       <bool>true</bool>
+      <property name="prefix">
+       <string>Banker Has: </string>
       </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="16" column="4">
-     <widget class="QPushButton" name="helpButton">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Help</string>
+      <property name="decimals">
+       <number>0</number>
       </property>
      </widget>
     </item>
-    <item row="3" column="0" colspan="5">
+    <item row="9" column="8">
+     <widget class="QPushButton" name="playerButton">
+      <property name="text">
+       <string>Player Bet</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="9">
      <widget class="QTextBrowser" name="textBrowser">
       <property name="sizePolicy">
        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>75</height>
+       </size>
+      </property>
+      <property name="sizeIncrement">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
       </property>
       <property name="font">
        <font>
@@ -304,47 +370,82 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </item>
-    <item row="5" column="0" colspan="2">
-     <widget class="QLabel" name="label">
+    <item row="3" column="1">
+     <widget class="QLabel" name="playerYCardLabel">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>66</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>🂠</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="5" colspan="3">
+     <widget class="QLabel" name="labelGetChips">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
       <property name="text">
-       <string>Session TXIDs:</string>
+       <string>Trade 0.5 DERO for 4.5 Chips</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
       </property>
      </widget>
     </item>
-    <item row="15" column="2">
-     <widget class="QPushButton" name="daemonRPCbutton">
+    <item row="11" column="3">
+     <widget class="QPushButton" name="walletRPCbutton">
       <property name="text">
        <string>Connect</string>
       </property>
      </widget>
     </item>
-    <item row="8" column="0" rowspan="4" colspan="2">
-     <widget class="QTextBrowser" name="logTextBrowser">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>120</verstretch>
-       </sizepolicy>
+    <item row="10" column="1" colspan="2">
+     <widget class="QLineEdit" name="daemonRPCinput">
+      <property name="text">
+       <string/>
       </property>
-      <property name="sizeIncrement">
-       <size>
-        <width>0</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Box</enum>
+      <property name="placeholderText">
+       <string>Enter Daemon RPC Address</string>
       </property>
      </widget>
     </item>
-    <item row="12" column="3">
-     <widget class="QLabel" name="labelBankerBet">
+    <item row="10" column="0">
+     <widget class="QCheckBox" name="daemonConnectedBox">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="text">
+       <string>Connected</string>
+      </property>
+      <property name="checkable">
+       <bool>true</bool>
+      </property>
+      <property name="autoExclusive">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="8">
+     <widget class="QPushButton" name="tieButton">
+      <property name="text">
+       <string>Tie Bet</string>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="7">
+     <widget class="QLabel" name="labelTieBet">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
@@ -359,14 +460,7 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </item>
-    <item row="16" column="2">
-     <widget class="QPushButton" name="walletRPCbutton">
-      <property name="text">
-       <string>Connect</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="4">
+    <item row="0" column="8">
      <widget class="QLabel" name="clubsLabel2">
       <property name="palette">
        <palette>
@@ -418,6 +512,85 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="alignment">
        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="5" colspan="3">
+     <widget class="QLabel" name="labelTradeChips">
+      <property name="text">
+       <string>Trade 1 Chip for  0.111 DERO</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QLabel" name="playerZCardLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>66</pointsize>
+       </font>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Panel</enum>
+      </property>
+      <property name="text">
+       <string>🂠</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="8">
+     <widget class="QPushButton" name="getChipButton">
+      <property name="text">
+       <string>Get Chips</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="8">
+     <widget class="QPushButton" name="helpButton">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Help</string>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="3">
+     <widget class="QPushButton" name="daemonRPCbutton">
+      <property name="text">
+       <string>Connect</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="playerXCardLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>66</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>🂠</string>
       </property>
      </widget>
     </item>
