@@ -12,7 +12,7 @@ The smart contract is a simple version of the casino game Baccarat. It uses a _D
 
 - Chips Token Testnet Contract: [a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce](https://testnetexplorer.derohe.com/tx/a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce)
 
-![TestnetBacc](https://user-images.githubusercontent.com/84689659/165413415-db5de7bd-691d-4f65-877d-c6f0ec41256b.jpg)
+![TestnetBaccMain](https://user-images.githubusercontent.com/84689659/166164595-9abbb129-a9b5-4854-8c21-8c407a99bb47.jpg)
 ### Donations
 - **Dero Address**: dero1qyr8yjnu6cl2c5yqkls0hmxe6rry77kn24nmc5fje6hm9jltyvdd5qq4hn5pn
 
