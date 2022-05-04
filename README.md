@@ -12,7 +12,7 @@ The smart contract is a simple version of the casino game Baccarat. It uses a _D
 
 - Chips Token Testnet Contract: [a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce](https://testnetexplorer.derohe.com/tx/a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce)
 
-![TestnetBaccMain](https://user-images.githubusercontent.com/84689659/166164595-9abbb129-a9b5-4854-8c21-8c407a99bb47.jpg)
+![MainScreen](https://user-images.githubusercontent.com/84689659/166829084-d267d0b3-c010-45a0-a7d9-518d2f6179e4.jpg)
 ### Donations
 - **Dero Address**: dero1qyr8yjnu6cl2c5yqkls0hmxe6rry77kn24nmc5fje6hm9jltyvdd5qq4hn5pn
 
@@ -31,7 +31,7 @@ For more info on how to set up Dero Testnet you can read their documentation [he
 **Install dependencies**
 ```
 sudo apt update
-sudo apt install build-essential cmake curl libcurl4-openssl-dev
+sudo apt install build-essential qt5-qmake curl libcurl4-openssl-dev
 sudo apt install --no-install-recommends qtbase5-dev qttools5-dev libqt5svg5-dev
 ```
 
@@ -39,7 +39,7 @@ sudo apt install --no-install-recommends qtbase5-dev qttools5-dev libqt5svg5-dev
 ```
 git clone https://github.com/SixofClubsss/Dero-Testnet-Baccarat.git
 cd Dero-Testnet-Baccarat/Testnet-Baccarat
-cmake CMakeLists.txt
+qmake
 make
 ```
 
@@ -47,6 +47,7 @@ make
 ```
 ./Testnet-Baccarat
 ```
+
 #
-![DeroBaccMenu](https://user-images.githubusercontent.com/84689659/165540180-e7c8e1fb-3e76-484f-847d-1b6e98f68e60.jpg)
+![menuScreen](https://user-images.githubusercontent.com/84689659/166829264-e1ecb84d-5717-4f68-8c14-efefbdac9481.jpg)
 #
