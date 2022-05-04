@@ -5,14 +5,13 @@
 #include "dialog.h"
 #include "ui_dialog.h"
 #include "QSizePolicy"
-
 #include "QTimer"
 #include "QProgressBar"
 
 using std::string;
-
 int Dialog::whichBet;
 bool Dialog::betConfirmed;
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
