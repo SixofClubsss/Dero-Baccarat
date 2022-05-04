@@ -191,14 +191,14 @@ int MainWindow::fetchHandData(void)
       QJsonValue bankerZ = cbStringKeys.value(handId.toUtf8()+"-Banker z:");
 
       ui->playerTotalSpinBox->setValue(playerTotal.toDouble());
-      ui->playerXCardLabel->setText(displayPlayerCards(playerX.toInt()));
-      ui->playerYCardLabel->setText(displayPlayerCards(playerY.toInt()));
-      ui->playerZCardLabel->setText(displayDrawPlayerCard(playerZ.toInt()));
+      ui->playerXCardLabel->setPixmap(displayPlayerCards(playerX.toInt()));
+      ui->playerYCardLabel->setPixmap(displayPlayerCards(playerY.toInt()));
+      ui->playerZCardLabel->setPixmap(displayDrawPlayerCard(playerZ.toInt()));
 
       ui->bankerTotalSpinBox->setValue(bankerTotal.toDouble());
-      ui->bankerXCardLabel->setText(displayBankerCards(bankerX.toInt()));
-      ui->bankerYCardLabel->setText(displayBankerCards(bankerY.toInt()));
-      ui->bankerZCardLabel->setText(displayDrawBankerCard(bankerZ.toInt()));
+      ui->bankerXCardLabel->setPixmap(displayBankerCards(bankerX.toInt()));
+      ui->bankerYCardLabel->setPixmap(displayBankerCards(bankerY.toInt()));
+      ui->bankerZCardLabel->setPixmap(displayDrawBankerCard(bankerZ.toInt()));
 
       ui->textBrowser->setText("Displaying hand TXID: "+handTXID.toString());
 
@@ -211,104 +211,107 @@ int MainWindow::fetchHandData(void)
 void MainWindow::blankCards()
 {
     ui->playerTotalSpinBox->setValue(0);
-    ui->playerXCardLabel->setText("🂠");
-    ui->playerYCardLabel->setText("🂠");
-    ui->playerZCardLabel->setText("🂠");
+
+    ui->playerXCardLabel->setPixmap(QPixmap(":/CardBack"));
+    ui->playerYCardLabel->setPixmap(QPixmap(":/CardBack"));
+    ui->playerZCardLabel->setPixmap(QPixmap(":/CardBack"));
 
     ui->bankerTotalSpinBox->setValue(0);
-    ui->bankerXCardLabel->setText("🂠");
-    ui->bankerYCardLabel->setText("🂠");
-    ui->bankerZCardLabel->setText("🂠");
+    ui->bankerXCardLabel->setPixmap(QPixmap(":/CardBack"));
+    ui->bankerYCardLabel->setPixmap(QPixmap(":/CardBack"));
+    ui->bankerZCardLabel->setPixmap(QPixmap(":/CardBack"));
 }
 
 
-QString MainWindow::displayPlayerCards(int card) /// To Convert Player int card vlaue to card symbol
+QPixmap MainWindow::displayPlayerCards(int card) /// To Convert Player int card vlaue to card symbol
 {
-    QString pcardEquiv;
+    QPixmap pcardEquiv;
         switch(card){
-        case 0: pcardEquiv = "🂼"; break;
-        case 1: pcardEquiv = "🂱"; break;
-        case 2: pcardEquiv = "🂲"; break;
-        case 3: pcardEquiv ="🂳"; break;
-        case 4: pcardEquiv ="🂴"; break;
-        case 5: pcardEquiv ="🂵"; break;
-        case 6: pcardEquiv ="🂶"; break;
-        case 7: pcardEquiv ="🂷"; break;
-        case 8: pcardEquiv ="🂸"; break;
-        case 9: pcardEquiv ="🂹"; break;
-        case 10: pcardEquiv ="🂼"; break;
-        case 11: pcardEquiv ="🂼"; break;
-        case 12: pcardEquiv = "🂼"; break;
-        case 13: pcardEquiv = "🂼"; break;
+        case 0: pcardEquiv = QPixmap(":/Card0"); break;
+        case 1: pcardEquiv = QPixmap(":/Card1"); break;
+        case 2: pcardEquiv = QPixmap(":/Card2"); break;
+        case 3: pcardEquiv = QPixmap(":/Card3"); break;
+        case 4: pcardEquiv = QPixmap(":/Card4"); break;
+        case 5: pcardEquiv = QPixmap(":/Card5"); break;
+        case 6: pcardEquiv = QPixmap(":/Card6"); break;
+        case 7: pcardEquiv = QPixmap(":/Card7"); break;
+        case 8: pcardEquiv = QPixmap(":/Card8"); break;
+        case 9: pcardEquiv = QPixmap(":/Card9"); break;
+        case 10: pcardEquiv = QPixmap(":/Card0"); break;
+        case 11: pcardEquiv = QPixmap(":/Card0"); break;
+        case 12: pcardEquiv = QPixmap(":/Card0"); break;
+        case 13: pcardEquiv = QPixmap(":/Card0"); break;
+        }
+
+    return pcardEquiv;
+}
+
+QPixmap MainWindow::displayBankerCards(int card) /// To Convert Player int card vlaue to card symbol
+{
+    QPixmap cardEquiv;
+        switch(card){
+        case 0: cardEquiv = QPixmap(":/Card0"); break;
+        case 1: cardEquiv = QPixmap(":/Card1"); break;
+        case 2: cardEquiv = QPixmap(":/Card2"); break;
+        case 3: cardEquiv = QPixmap(":/Card3"); break;
+        case 4: cardEquiv = QPixmap(":/Card4"); break;
+        case 5: cardEquiv = QPixmap(":/Card5"); break;
+        case 6: cardEquiv = QPixmap(":/Card6"); break;
+        case 7: cardEquiv = QPixmap(":/Card7"); break;
+        case 8: cardEquiv = QPixmap(":/Card8"); break;
+        case 9: cardEquiv = QPixmap(":/Card9"); break;
+        case 10: cardEquiv = QPixmap(":/Card0"); break;
+        case 11: cardEquiv = QPixmap(":/Card0"); break;
+        case 12: cardEquiv = QPixmap(":/Card0"); break;
+        case 13: cardEquiv = QPixmap(":/Card0"); break;
+        }
+
+    return cardEquiv;
+}
+
+QPixmap MainWindow::displayDrawPlayerCard(int card) /// To Convert Player int card vlaue to card symbol
+{
+    QPixmap pcardEquiv;
+        switch(card){
+        case 0: pcardEquiv = QPixmap(":/CardBack"); break;
+        case 1: pcardEquiv = QPixmap(":/Card1"); break;
+        case 2: pcardEquiv = QPixmap(":/Card2"); break;
+        case 3: pcardEquiv = QPixmap(":/Card3"); break;
+        case 4: pcardEquiv = QPixmap(":/Card4"); break;
+        case 5: pcardEquiv = QPixmap(":/Card5"); break;
+        case 6: pcardEquiv = QPixmap(":/Card6"); break;
+        case 7: pcardEquiv = QPixmap(":/Card7"); break;
+        case 8: pcardEquiv = QPixmap(":/Card8"); break;
+        case 9: pcardEquiv = QPixmap(":/Card9"); break;
+        case 10: pcardEquiv = QPixmap(":/Card0"); break;
+        case 11: pcardEquiv = QPixmap(":/Card0"); break;
+        case 12: pcardEquiv = QPixmap(":/Card0"); break;
+        case 13: pcardEquiv = QPixmap(":/Card0"); break;
         }
 
     return pcardEquiv;
 }
 
 
-QString MainWindow::displayBankerCards(int card) /// To Convert Banker int card vlaue to card symbol
+QPixmap MainWindow::displayDrawBankerCard(int card) /// To Convert Banker int card vlaue to card symbol
 {
-    QString cardEquiv;
-    switch(card){
-    case 0: cardEquiv = "🃜"; break;
-    case 1: cardEquiv = "🃑"; break;
-    case 2: cardEquiv = "🃒"; break;
-    case 3: cardEquiv = "🃓"; break;
-    case 4: cardEquiv = "🃔"; break;
-    case 5: cardEquiv = "🃕"; break;
-    case 6: cardEquiv = "🃖"; break;
-    case 7: cardEquiv = "🃗"; break;
-    case 8: cardEquiv = "🃘"; break;
-    case 9: cardEquiv = "🃙"; break;
-    case 10: cardEquiv = "🃜"; break;
-    case 11: cardEquiv = "🃜"; break;
-    case 12: cardEquiv = "🃜"; break;
-    case 13: cardEquiv = "🃜"; break;
-    }
+    QPixmap cardEquiv;
+        switch(card){
+        case 0: cardEquiv = QPixmap(":/CardBack"); break;
+        case 1: cardEquiv = QPixmap(":/Card1"); break;
+        case 2: cardEquiv = QPixmap(":/Card2"); break;
+        case 3: cardEquiv = QPixmap(":/Card3"); break;
+        case 4: cardEquiv = QPixmap(":/Card4"); break;
+        case 5: cardEquiv = QPixmap(":/Card5"); break;
+        case 6: cardEquiv = QPixmap(":/Card6"); break;
+        case 7: cardEquiv = QPixmap(":/Card7"); break;
+        case 8: cardEquiv = QPixmap(":/Card8"); break;
+        case 9: cardEquiv = QPixmap(":/Card9"); break;
+        case 10: cardEquiv = QPixmap(":/Card0"); break;
+        case 11: cardEquiv = QPixmap(":/Card0"); break;
+        case 12: cardEquiv = QPixmap(":/Card0"); break;
+        case 13: cardEquiv = QPixmap(":/Card0"); break;
+        }
+
     return cardEquiv;
-}
-
-QString MainWindow::displayDrawPlayerCard(int card) /// To Convert Banker int card vlaue to card symbol
-{
-    QString pdrawCardEquiv;
-    switch(card){
-    case 0: pdrawCardEquiv = "🂠"; break;
-    case 1: pdrawCardEquiv = "🂱"; break;
-    case 2: pdrawCardEquiv = "🂲"; break;
-    case 3: pdrawCardEquiv = "🂳"; break;
-    case 4: pdrawCardEquiv = "🂴"; break;
-    case 5: pdrawCardEquiv = "🂵"; break;
-    case 6: pdrawCardEquiv = "🂶"; break;
-    case 7: pdrawCardEquiv = "🂷"; break;
-    case 8: pdrawCardEquiv = "🂸"; break;
-    case 9: pdrawCardEquiv = "🂹"; break;
-    case 10: pdrawCardEquiv = "🂼"; break;
-    case 11: pdrawCardEquiv = "🂼"; break;
-    case 12: pdrawCardEquiv = "🂼"; break;
-    case 13: pdrawCardEquiv = "🂼"; break;
-    }
-    return pdrawCardEquiv;
-}
-
-
-QString MainWindow::displayDrawBankerCard(int card) /// To Convert Banker int card vlaue to card symbol
-{
-    QString drawCardEquiv;
-    switch(card){
-    case 0: drawCardEquiv = "🂠"; break;
-    case 1: drawCardEquiv = "🃑"; break;
-    case 2: drawCardEquiv = "🃒"; break;
-    case 3: drawCardEquiv = "🃓"; break;
-    case 4: drawCardEquiv = "🃔"; break;
-    case 5: drawCardEquiv = "🃕"; break;
-    case 6: drawCardEquiv = "🃖"; break;
-    case 7: drawCardEquiv = "🃗"; break;
-    case 8: drawCardEquiv = "🃘"; break;
-    case 9: drawCardEquiv = "🃙"; break;
-    case 10: drawCardEquiv = "🃜"; break;
-    case 11: drawCardEquiv = "🃜"; break;
-    case 12: drawCardEquiv = "🃜"; break;
-    case 13: drawCardEquiv = "🃜"; break;
-    }
-    return drawCardEquiv;
 }

@@ -3,10 +3,8 @@
 
 #include "QMainWindow"
 #include "iostream"
-///#include "string"
-///#include "curl/curl.h"
-#include "confirmmenu.h"
-#include "ui_confirmmenu.h"
+#include "dialog.h"
+#include "dialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -31,14 +29,17 @@ public:
     int bankerBet(void);
     int tieBet(void);
     void blankCards();
-    QString displayPlayerCards(int);
-    QString displayBankerCards(int);
-    QString displayDrawPlayerCard(int);
-    QString displayDrawBankerCard(int);
+    QPixmap displayPlayerCards(int);
+    QPixmap displayBankerCards(int);
+    QPixmap displayDrawPlayerCard(int);
+    QPixmap displayDrawBankerCard(int);
+    void readoutConfirm();
 
 
 
 private slots:
+
+    void refresh();
 
     void on_playerButton_clicked();
 
@@ -58,8 +59,8 @@ private slots:
 
     void on_reloadButton_clicked();
 
+
 private:
     Ui::MainWindow *ui;
-
 };
 #endif // MAINWINDOW_H

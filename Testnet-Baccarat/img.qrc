@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="background">images/Back.png</file>
+        <file alias="DeroLogo">images/deroLogo.png</file>
+        <file alias="CardBack">images/BackDero.png</file>
+        <file alias="Card1">images/Dero1.png</file>
+        <file alias="Card2">images/Dero2.png</file>
+        <file alias="Card3">images/Dero3.png</file>
+        <file alias="Card4">images/Dero4.png</file>
+        <file alias="Card5">images/Dero5.png</file>
+        <file alias="Card6">images/Dero6.png</file>
+        <file alias="Card7">images/Dero7.png</file>
+        <file alias="Card8">images/Dero8.png</file>
+        <file alias="Card9">images/Dero9.png</file>
+        <file alias="Card0">images/Dero0.png</file>
+    </qresource>
+</RCC>

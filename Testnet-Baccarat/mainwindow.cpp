@@ -1,22 +1,49 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 #include "rpc.h"
-#include "helpmenu.h"
-#include "confirmmenu.h"
-#include "ui_confirmmenu.h"
+#include "help.h"
+#include "dialog.h"
+#include "ui_dialog.h"
 #include "QSizePolicy"
+
+#include "QTimer"
+#include "QProgressBar"
 
 using std::string;
 
-int confirmmenu::whichBet;
-bool confirmmenu::betConfirmed;
-
+int Dialog::whichBet;
+bool Dialog::betConfirmed;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // create a timer
+    QTimer *timer = new QTimer(this);
+
+    // setup signal and slot
+    connect(timer, SIGNAL(timeout()),
+          this, SLOT(refresh()));
+
+    // msec
+    timer->start(6000);
+
+    QPixmap bkgnd(":/background");
+    bkgnd = bkgnd.scaled(this->size(), Qt::KeepAspectRatio);
+    QPalette palette;
+    palette.setBrush(QPalette::Window, bkgnd);
+    this->setPalette(palette);
+
+    ui->playerXCardLabel->setPixmap(QPixmap(":/CardBack"));
+    ui->playerYCardLabel->setPixmap(QPixmap(":/CardBack"));
+    ui->playerZCardLabel->setPixmap(QPixmap(":/CardBack"));
+
+    ui->bankerXCardLabel->setPixmap(QPixmap(":/CardBack"));
+    ui->bankerYCardLabel->setPixmap(QPixmap(":/CardBack"));
+    ui->bankerZCardLabel->setPixmap(QPixmap(":/CardBack"));
+
     this->ui->daemonConnectedBox->setAttribute(Qt::WA_TransparentForMouseEvents);
     this->ui->daemonConnectedBox->setFocusPolicy(Qt::NoFocus);
     this->ui->walletConnectedBox->setAttribute(Qt::WA_TransparentForMouseEvents);
@@ -24,8 +51,11 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label->setScaledContents(true);
     ui->textBrowser->setText("Welcome, thanks for testing.");
     fetchScData();
-}
 
+
+
+
+}
 
 MainWindow::~MainWindow()
 {
@@ -33,11 +63,17 @@ MainWindow::~MainWindow()
 }
 
 
+void MainWindow::refresh()
+{
+    fetchScData();
+}
+
+
 void MainWindow::on_helpButton_clicked()
 {
-    helpmenu helpmenu;
-    helpmenu.setModal(true);
-    helpmenu.exec();
+    Help H;
+    H.setModal(true);
+    H.exec();
 }
 
 void MainWindow::on_daemonRPCbutton_clicked(bool checked)
@@ -54,19 +90,20 @@ void MainWindow::on_walletRPCbutton_clicked(bool checked)
 
 void MainWindow::on_getChipButton_clicked()
 {
+    readoutConfirm();
     ui->textBrowser->setText("Trading Dero for Chips");   /// Readout to main tesxt display
-    confirmmenu::whichBet = 9;                          /// Which button was clicked
-    confirmmenu confirmmenu;                          /// Pop up confirm bet menu
-    confirmmenu.setModal(true);
-    confirmmenu.exec();
+    Dialog::whichBet = 9;                          /// Which button was clicked
+    Dialog D;                          /// Pop up confirm bet menu
+    D.setModal(true);
+    D.exec();
 
-    if(confirmmenu::betConfirmed == true)
+    if(Dialog::betConfirmed == true)
     {
         getChips();                             /// If confirmed you will place bet
-        confirmmenu::betConfirmed = false;
+        Dialog::betConfirmed = false;
 
     }else {
-        confirmmenu::betConfirmed = false;
+        Dialog::betConfirmed = false;
         ui->textBrowser->setText("Select a option");
     }
 }
@@ -74,19 +111,20 @@ void MainWindow::on_getChipButton_clicked()
 
 void MainWindow::on_tradeChipButton_clicked()
 {
+    readoutConfirm();
     ui->textBrowser->setText("Trading Chips for Dero");
-    confirmmenu::whichBet = 8;
-    confirmmenu confirmmenu;
-    confirmmenu.setModal(true);
-    confirmmenu.exec();
+    Dialog::whichBet = 8;
+    Dialog D;
+    D.setModal(true);
+    D.exec();
 
-    if(confirmmenu::betConfirmed == true)
+    if(Dialog::betConfirmed == true)
     {
         tradeChips();
-        confirmmenu::betConfirmed = false;
+        Dialog::betConfirmed = false;
 
     }else {
-        confirmmenu::betConfirmed = false;
+        Dialog::betConfirmed = false;
         ui->textBrowser->setText("Select a option");
     }
 }
@@ -94,23 +132,24 @@ void MainWindow::on_tradeChipButton_clicked()
 
 void MainWindow::on_playerButton_clicked()
 {
+    readoutConfirm();
     blankCards();
     ui->textBrowser->setText("Confirm your Bet");
-    confirmmenu::whichBet = 1;
-    confirmmenu confirmmenu;
-    confirmmenu.setModal(true);
-    confirmmenu.exec();
+    Dialog::whichBet = 1;
+    Dialog D;
+    D.setModal(true);
+    D.exec();
 
-    if(confirmmenu::betConfirmed == true)
+    if(Dialog::betConfirmed == true)
     {
         playerBet();
-        confirmmenu::betConfirmed = false;
+        Dialog::betConfirmed = false;
         delay();
         fetchScData();
         fetchHandData();
 
     }else {
-        confirmmenu::betConfirmed = false;
+        Dialog::betConfirmed = false;
         ui->textBrowser->setText("Select a option");
         blankCards();
     }
@@ -120,23 +159,24 @@ void MainWindow::on_playerButton_clicked()
 
 void MainWindow::on_bankerButton_clicked()
 {
+    readoutConfirm();
     blankCards();
     ui->textBrowser->setText("Confirm your Bet");
-    confirmmenu::whichBet = 2;
-    confirmmenu confirmmenu;
-    confirmmenu.setModal(true);
-    confirmmenu.exec();
+    Dialog::whichBet = 2;
+    Dialog D;
+    D.setModal(true);
+    D.exec();
 
-    if(confirmmenu::betConfirmed == true)
+    if(Dialog::betConfirmed == true)
     {
         bankerBet();
-        confirmmenu::betConfirmed = false;
+        Dialog::betConfirmed = false;
         delay();
         fetchScData();
         fetchHandData();
 
     }else {
-        confirmmenu::betConfirmed = false;
+        Dialog::betConfirmed = false;
         ui->textBrowser->setText("Select a option");
         blankCards();
     }
@@ -145,23 +185,24 @@ void MainWindow::on_bankerButton_clicked()
 
 void MainWindow::on_tieButton_clicked()
 {
+    readoutConfirm();
     blankCards();
     ui->textBrowser->setText("Confirm your Bet");
-    confirmmenu::whichBet = 3;
-    confirmmenu confirmmenu;
-    confirmmenu.setModal(true);
-    confirmmenu.exec();
+    Dialog::whichBet = 3;
+    Dialog D;
+    D.setModal(true);
+    D.exec();
 
-    if(confirmmenu::betConfirmed == true)
+    if(Dialog::betConfirmed == true)
     {
         tieBet();
-        confirmmenu::betConfirmed = false;
+        Dialog::betConfirmed = false;
         delay();
         fetchScData();
         fetchHandData();
 
     }else {
-        confirmmenu::betConfirmed = false;
+        Dialog::betConfirmed = false;
         ui->textBrowser->setText("Select a option");
         blankCards();
     }

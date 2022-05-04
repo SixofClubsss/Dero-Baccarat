@@ -10,6 +10,7 @@
 #include "QJsonArray"
 #include "QString"
 
+
 static size_t
 WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
 {
@@ -21,9 +22,8 @@ class rpc
 {
 
 public:
-    static std::string rpcLogin;
+    static std::string rpcLogin;;
 
 };
-
 
 #endif // RPC_H

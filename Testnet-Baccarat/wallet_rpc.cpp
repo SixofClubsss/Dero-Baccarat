@@ -1,9 +1,20 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
+#include "dialog.h"
 #include "rpc.h"
 
 using std::string;
 string rpc::rpcLogin;
+QString readout::deroAmount;
+QString readout::chipAmount;
+QString readout::tieAmount;
+QString readout::bankerAmount;
+QString readout::playerAmount;
+QString readout::deroConverted;
+QString readout::chipsConverted;
+
+
+
 
 void MainWindow::loginInfo()   /// Used to store wallet login info for all wallet functions
 {
@@ -14,6 +25,27 @@ void MainWindow::loginInfo()   /// Used to store wallet login info for all walle
     rpc::rpcLogin = userStr+passStr;
 }
 
+void MainWindow::readoutConfirm()   /// Used to store wallet login info for all wallet functions
+{
+    QString deroInfo = QString::number(ui->getChipsAmount->value());
+    QString tradeChipsInfo = QString::number(ui->tradeChipsAmount->value());
+    QString tieChipsInfo = QString::number(ui->tieBetAmount->value());
+    QString bankerChipsInfo = QString::number(ui->bankerBetAmount->value());
+    QString playerChipsInfo = QString::number(ui->playerBetAmount->value());
+    QString convertMultiply = QString::number(ui->getChipsAmount->value()*9);
+    QString convertDivide = QString::number(ui->tradeChipsAmount->value()/9);
+
+
+    readout::deroAmount = deroInfo;
+    readout::chipAmount = tradeChipsInfo;
+    readout::tieAmount = tieChipsInfo;
+    readout::bankerAmount = bankerChipsInfo;
+    readout::playerAmount = playerChipsInfo;
+    readout::deroConverted = convertMultiply;
+    readout::chipsConverted = convertDivide;
+
+}
+
 
 int MainWindow::checkWallet(void)  /// Echo blockchain to confirm wallet is connected
 {
@@ -21,7 +53,7 @@ int MainWindow::checkWallet(void)  /// Echo blockchain to confirm wallet is conn
     CURLcode res;
     string readBuffer;
 
-    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"1\",\"method\":\"Echo\",\"params\":[\"Hello\", \"World\", \"!\"]}";
+    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"1\",\"method\":\"Echo\", \"params\":[\"Hello\", \"World\", \"!\"]}";
     char error[CURL_ERROR_SIZE];
     QString walletAddress =  ui->walletRPCinput->text()+"/json_rpc";
     string pStr = walletAddress.toStdString();
@@ -82,9 +114,13 @@ int MainWindow::getChips(void)      /// Trade Testnet Dero for Chips token (Only
     CURL *curlGetChips;
     CURLcode res;
     string getChipsReadBuffer;
-
-    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"scinvoke\",\"params\":{\"scid\":\"8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d\", \"sc_dero_deposit\":50000 , \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"IssueChips\"}] }}";
     char error[CURL_ERROR_SIZE];
+
+    QString dAmount = QString::number(ui->getChipsAmount->value()*100000);
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"scinvoke\",\"params\":{\"scid\":\"8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d\", \"sc_dero_deposit\":"+dAmount+", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"IssueChips\"}] }}";
+    string addThis = parts.toStdString();
+    const char *postthis = addThis.c_str();
+
     QString playerAddress =  ui->walletRPCinput->text()+"/json_rpc";
     string pStr = playerAddress.toStdString();
     const char *gcCh = pStr.c_str ();
@@ -143,16 +179,19 @@ int MainWindow::tradeChips(void)        /// Trade Chips for Testnet Dero
     CURL *curlTradeChips;
     CURLcode res;
     string tradeChipsReadBuffer;
-
-    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\":[{\"scid\":\"a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce\", \"burn\":100000}],\"scid\":\"8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d\", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"ConvertChips\"}] }}";
     char error[CURL_ERROR_SIZE];
+
+    QString cAmount = QString::number(ui->tradeChipsAmount->value()*100000);
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\":[{\"scid\":\"a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce\", \"burn\":"+cAmount+"}] ,\"scid\":\"8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d\", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"ConvertChips\"}] }}";
+    string addThis = parts.toStdString();
+    const char *postthis = addThis.c_str();
+
     QString playerAddress =  ui->walletRPCinput->text()+"/json_rpc";
     string pStr = playerAddress.toStdString();
     const char *tcCh = pStr.c_str ();
 
     loginInfo();
     const char *loginCh = rpc::rpcLogin.c_str ();
-
 
     curlTradeChips = curl_easy_init();
 
@@ -205,9 +244,13 @@ int MainWindow::playerBet(void)     /// Bet 0.1 Chip on player
     CURL *curlPlayer;
     CURLcode res;
     string pReadBuffer;
-
-    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\"a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce\", \"burn\":10000 }],\"scid\":\"8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"player\" }]}}";
     char error[CURL_ERROR_SIZE];
+
+    QString cAmount = QString::number(ui->playerBetAmount->value()*100000);
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\"a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce\", \"burn\":"+cAmount+"}],\"scid\":\"8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"player\" }]}}";
+    string addThis = parts.toStdString();
+    const char *postthis = addThis.c_str();
+
     QString playerAddress =  ui->walletRPCinput->text()+"/json_rpc";
     string pStr = playerAddress.toStdString();
     const char *pCh = pStr.c_str ();
@@ -266,16 +309,19 @@ int MainWindow::bankerBet(void)     /// Bet 0.1 Chip on banker
     CURL *curlBanker;
     CURLcode res;
     string bReadBuffer;
-
-    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\"a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce\", \"burn\":10000 }],\"scid\":\"8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"banker\" }]}}";
     char error[CURL_ERROR_SIZE];
+
+    QString cAmount = QString::number(ui->bankerBetAmount->value()*100000);
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\"a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce\", \"burn\":"+cAmount+"}],\"scid\":\"8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"banker\" }]}}";
+    string addThis = parts.toStdString();
+    const char *postthis = addThis.c_str();
+
     QString playerAddress =  ui->walletRPCinput->text()+"/json_rpc";
     string pStr = playerAddress.toStdString();
     const char *pCh = pStr.c_str ();
 
     loginInfo();
     const char *loginCh = rpc::rpcLogin.c_str ();
-
 
     curlBanker = curl_easy_init();
 
@@ -328,17 +374,20 @@ int MainWindow::tieBet(void)            /// Bet 0.1 Chip on tie
     CURL *curlTie;
     CURLcode res;
     string tReadBuffer;
-
-    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\"a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce\", \"burn\":10000 }],\"scid\":\"8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"tie\" }]}}";
     char error[CURL_ERROR_SIZE];
+
+    QString cAmount = QString::number(ui->tieBetAmount->value()*100000);
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\"a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce\", \"burn\":"+cAmount+"}],\"scid\":\"8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"tie\" }]}}";
+    string addThis = parts.toStdString();
+    const char *postthis = addThis.c_str();
+
+
     QString playerAddress =  ui->walletRPCinput->text()+"/json_rpc";
     string pStr = playerAddress.toStdString();
     const char *tCh = pStr.c_str ();
 
     loginInfo();
     const char *loginCh = rpc::rpcLogin.c_str ();
-
-
 
     curlTie = curl_easy_init();
 
