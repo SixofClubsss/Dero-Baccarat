@@ -11,11 +11,11 @@ Dialog::Dialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QPixmap bkgnd(":/background");
+   /* QPixmap bkgnd(":/background");
     bkgnd = bkgnd.scaled(this->size(), Qt::KeepAspectRatio);
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
-    this->setPalette(palette);
+    this->setPalette(palette);*/
 
     if(Dialog::whichBet == 1)
     {

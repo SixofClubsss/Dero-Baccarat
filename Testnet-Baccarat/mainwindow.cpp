@@ -19,21 +19,15 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // create a timer
     QTimer *timer = new QTimer(this);
-
-    // setup signal and slot
-    connect(timer, SIGNAL(timeout()),
-          this, SLOT(refresh()));
-
-    // msec
+    connect(timer, SIGNAL(timeout()),this, SLOT(refresh()));
     timer->start(6000);
 
-    QPixmap bkgnd(":/background");
+    /*QPixmap bkgnd(":/background");
     bkgnd = bkgnd.scaled(this->size(), Qt::KeepAspectRatio);
     QPalette palette;
     palette.setBrush(QPalette::Window, bkgnd);
-    this->setPalette(palette);
+    this->setPalette(palette);*/
 
     ui->playerXCardLabel->setPixmap(QPixmap(":/CardBack"));
     ui->playerYCardLabel->setPixmap(QPixmap(":/CardBack"));
