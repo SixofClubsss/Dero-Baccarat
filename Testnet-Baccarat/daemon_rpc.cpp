@@ -6,7 +6,7 @@
 using std::string;
 
 
-void MainWindow::delay()            /// Delay in to help with data read out
+void MainWindow::delay()            /// Delay to help with data read out
 {
     QTime dieTime= QTime::currentTime().addSecs(30);
     while (QTime::currentTime() < dieTime)
@@ -16,7 +16,7 @@ void MainWindow::delay()            /// Delay in to help with data read out
 
 int MainWindow::fetchScData(void)       /// Get SC variables
 {
-    CURL *curlFetch;        /// Set up cUrl
+    CURL *curlFetch;                /// Set up cUrl
     CURLcode res;
     string fetchReadBuffer;
 

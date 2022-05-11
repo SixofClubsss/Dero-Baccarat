@@ -14,8 +14,6 @@ QString readout::deroConverted;
 QString readout::chipsConverted;
 
 
-
-
 void MainWindow::loginInfo()   /// Used to store wallet login info for all wallet functions
 {
     QString userInfo = ui->userInput->text()+":";
@@ -25,7 +23,7 @@ void MainWindow::loginInfo()   /// Used to store wallet login info for all walle
     rpc::rpcLogin = userStr+passStr;
 }
 
-void MainWindow::readoutConfirm()   /// Used to store wallet login info for all wallet functions
+void MainWindow::readoutConfirm()   /// Used to confirm bet
 {
     QString deroInfo = QString::number(ui->getChipsAmount->value());
     QString tradeChipsInfo = QString::number(ui->tradeChipsAmount->value());
@@ -34,7 +32,6 @@ void MainWindow::readoutConfirm()   /// Used to store wallet login info for all 
     QString playerChipsInfo = QString::number(ui->playerBetAmount->value());
     QString convertMultiply = QString::number(ui->getChipsAmount->value()*9);
     QString convertDivide = QString::number(ui->tradeChipsAmount->value()/9);
-
 
     readout::deroAmount = deroInfo;
     readout::chipAmount = tradeChipsInfo;

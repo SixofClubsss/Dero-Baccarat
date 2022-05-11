@@ -23,9 +23,6 @@ public:
     static int whichBet;
     static bool betConfirmed;
 
-
-
-
 private slots:
     void on_buttonBox_accepted();
 

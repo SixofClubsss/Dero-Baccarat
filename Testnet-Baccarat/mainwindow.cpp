@@ -23,12 +23,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer, SIGNAL(timeout()),this, SLOT(refresh()));
     timer->start(6000);
 
-    /*QPixmap bkgnd(":/background");
-    bkgnd = bkgnd.scaled(this->size(), Qt::KeepAspectRatio);
-    QPalette palette;
-    palette.setBrush(QPalette::Window, bkgnd);
-    this->setPalette(palette);*/
-
     ui->playerXCardLabel->setPixmap(QPixmap(":/CardBack"));
     ui->playerYCardLabel->setPixmap(QPixmap(":/CardBack"));
     ui->playerZCardLabel->setPixmap(QPixmap(":/CardBack"));
@@ -44,11 +38,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label->setScaledContents(true);
     ui->textBrowser->setText("Welcome, thanks for testing.");
     fetchScData();
-
-
-
-
 }
+
 
 MainWindow::~MainWindow()
 {
@@ -84,9 +75,9 @@ void MainWindow::on_walletRPCbutton_clicked(bool checked)
 void MainWindow::on_getChipButton_clicked()
 {
     readoutConfirm();
-    ui->textBrowser->setText("Trading Dero for Chips");   /// Readout to main tesxt display
-    Dialog::whichBet = 9;                          /// Which button was clicked
-    Dialog D;                          /// Pop up confirm bet menu
+    ui->textBrowser->setText("Trading Dero for Chips");   /// Readout to main text display
+    Dialog::whichBet = 9;                               /// Which button was clicked
+    Dialog D;                                         /// Pop up confirm bet menu
     D.setModal(true);
     D.exec();
 
