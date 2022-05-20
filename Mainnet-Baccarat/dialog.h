@@ -41,7 +41,6 @@ public:
     static QString playerAmount;
     static QString deroConverted;
     static QString chipsConverted;
-
 };
 
 #endif // DIALOG_H

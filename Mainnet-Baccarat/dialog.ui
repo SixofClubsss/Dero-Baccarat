@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Testnet Confirm</string>
+   <string>Confirm</string>
   </property>
   <property name="windowIcon">
    <iconset resource="img.qrc">

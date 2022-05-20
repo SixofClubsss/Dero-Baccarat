@@ -19,6 +19,8 @@ public:
     ~MainWindow();
     void loginInfo();
     void delay();
+    int sitDown(void);
+    int leaveTable(void);
     int fetchScData(void);
     int fetchHandData(void);
     int searchHandData(void);

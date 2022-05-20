@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Testnet Dero Baccarat</string>
+   <string>Dero Baccarat</string>
   </property>
   <property name="windowIcon">
    <iconset resource="img.qrc">
@@ -340,6 +340,187 @@ background-color: rgba(140, 140, 140, 222);</string>
       </property>
      </widget>
     </item>
+    <item row="0" column="2">
+     <widget class="QSpinBox" name="tWinsSpinBox">
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 12pt &quot;Uroob&quot;;
+border-color: rgb(79, 159, 239);
+background-color: rgba(140, 140, 140, 222);</string>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="prefix">
+       <string>Total Ties: </string>
+      </property>
+      <property name="maximum">
+       <number>999999999</number>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="3">
+     <widget class="QPushButton" name="reloadButton">
+      <property name="minimumSize">
+       <size>
+        <width>84</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="Button">
+          <brush brushstyle="SolidPattern">
+           <color alpha="180">
+            <red>85</red>
+            <green>88</green>
+            <blue>93</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Light">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>71</red>
+            <green>71</green>
+            <blue>71</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="180">
+            <red>85</red>
+            <green>88</green>
+            <blue>93</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Window">
+          <brush brushstyle="SolidPattern">
+           <color alpha="180">
+            <red>85</red>
+            <green>88</green>
+            <blue>93</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="Button">
+          <brush brushstyle="SolidPattern">
+           <color alpha="180">
+            <red>85</red>
+            <green>88</green>
+            <blue>93</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Light">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>71</red>
+            <green>71</green>
+            <blue>71</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="180">
+            <red>85</red>
+            <green>88</green>
+            <blue>93</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Window">
+          <brush brushstyle="SolidPattern">
+           <color alpha="180">
+            <red>85</red>
+            <green>88</green>
+            <blue>93</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="Button">
+          <brush brushstyle="SolidPattern">
+           <color alpha="180">
+            <red>85</red>
+            <green>88</green>
+            <blue>93</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Light">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>71</red>
+            <green>71</green>
+            <blue>71</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="180">
+            <red>85</red>
+            <green>88</green>
+            <blue>93</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Window">
+          <brush brushstyle="SolidPattern">
+           <color alpha="180">
+            <red>85</red>
+            <green>88</green>
+            <blue>93</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="font">
+       <font>
+        <family>Ubuntu</family>
+        <pointsize>10</pointsize>
+        <weight>50</weight>
+        <italic>true</italic>
+        <bold>false</bold>
+       </font>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+    background-color: rgb(85, 88, 93, 180);
+    border: 2px solid #8f8f91;
+    border-radius: 6px;
+    min-width: 80px;
+}
+
+QPushButton:hover {
+		background-color: rgb(0, 158, 0, 120);
+}
+
+QPushButton:pressed {
+	background-color: rgb(56, 47, 165);
+}</string>
+      </property>
+      <property name="text">
+       <string>Refresh</string>
+      </property>
+     </widget>
+    </item>
     <item row="0" column="5">
      <widget class="QLabel" name="explorerLabel">
       <property name="sizePolicy">
@@ -476,7 +657,7 @@ background-color: rgba(140, 140, 140, 222);</string>
        <string notr="true">background-color: rgb(28, 31, 43, 0);</string>
       </property>
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;View results on &lt;a href=&quot;https://testnetexplorer.derohe.com/tx/8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;explorer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;View results on &lt;a href=&quot;https://explorer.dero.io/tx/da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;explorer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
       </property>
       <property name="openExternalLinks">
        <bool>true</bool>
@@ -875,6 +1056,28 @@ p, li { white-space: pre-wrap; }
       </property>
      </widget>
     </item>
+    <item row="2" column="2">
+     <widget class="QSpinBox" name="pWinsSpinBox">
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 12pt &quot;Uroob&quot;;
+border-color: rgb(79, 159, 239);
+background-color: rgba(140, 140, 140, 222);</string>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="prefix">
+       <string>Total Wins: </string>
+      </property>
+      <property name="maximum">
+       <number>999999999</number>
+      </property>
+     </widget>
+    </item>
     <item row="2" column="4">
      <widget class="QDoubleSpinBox" name="bankerTotalSpinBox">
       <property name="maximumSize">
@@ -1025,6 +1228,34 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="decimals">
        <number>0</number>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="6">
+     <widget class="QSpinBox" name="bWinsSpinBox">
+      <property name="maximumSize">
+       <size>
+        <width>165</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);
+font: 12pt &quot;Uroob&quot;;
+border-color: rgb(79, 159, 239);
+background-color: rgba(140, 140, 140, 222);</string>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="prefix">
+       <string>Total Wins: </string>
+      </property>
+      <property name="maximum">
+       <number>999999999</number>
       </property>
      </widget>
     </item>
@@ -2705,16 +2936,10 @@ QSpinBox:!enabled
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
       </property>
       <property name="minimum">
-       <number>1</number>
+       <number>10</number>
       </property>
       <property name="maximum">
-       <number>25</number>
-      </property>
-      <property name="value">
-       <number>1</number>
-      </property>
-      <property name="displayIntegerBase">
-       <number>10</number>
+       <number>150</number>
       </property>
      </widget>
     </item>
@@ -2859,7 +3084,7 @@ QSpinBox:!enabled
       </property>
       <property name="text">
        <string>Exchange Rate: 
-1 Dero = 9 Chips</string>
+1 Dero = 333 dChips</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -3181,13 +3406,10 @@ QSpinBox:!enabled
 }</string>
       </property>
       <property name="minimum">
-       <number>1</number>
+       <number>10</number>
       </property>
       <property name="maximum">
-       <number>25</number>
-      </property>
-      <property name="value">
-       <number>1</number>
+       <number>150</number>
       </property>
      </widget>
     </item>
@@ -3212,9 +3434,9 @@ QLabel:!enabled
 }</string>
       </property>
       <property name="text">
-       <string>Min Bet is 1 Chips
+       <string>Min Bet is 10 dChips
 
-Max Bet is 25 Chips</string>
+Max Bet is 150 dChips</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -3539,7 +3761,7 @@ QPushButton:!enabled
 }</string>
       </property>
       <property name="text">
-       <string>Get Chips</string>
+       <string>Get dChips</string>
       </property>
      </widget>
     </item>
@@ -3855,13 +4077,10 @@ QSpinBox:!enabled
 }</string>
       </property>
       <property name="minimum">
-       <number>1</number>
+       <number>10</number>
       </property>
       <property name="maximum">
-       <number>25</number>
-      </property>
-      <property name="value">
-       <number>1</number>
+       <number>150</number>
       </property>
      </widget>
     </item>
@@ -3942,10 +4161,10 @@ QSpinBox:!enabled
        <string>Chips: </string>
       </property>
       <property name="minimum">
-       <number>1</number>
+       <number>10</number>
       </property>
       <property name="maximum">
-       <number>1200</number>
+       <number>21000</number>
       </property>
      </widget>
     </item>
@@ -4219,7 +4438,7 @@ QPushButton:!enabled
 }</string>
       </property>
       <property name="text">
-       <string>Trade Chips</string>
+       <string>Trade dChips</string>
       </property>
      </widget>
     </item>
@@ -4259,7 +4478,6 @@ background-color: rgb(28, 31, 43, 12);</string>
       </property>
       <property name="styleSheet">
        <string notr="true">QGroupBox{
-	color: rgb(0, 0, 0, 120);
 	background-color: rgb(28, 31, 43);
     border-style: outset;
     border-width: 2px;
@@ -4268,7 +4486,7 @@ background-color: rgb(28, 31, 43, 12);</string>
 }</string>
       </property>
       <property name="title">
-       <string> Testnet</string>
+       <string/>
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
@@ -5710,8 +5928,7 @@ QPushButton:pressed {
 color: rgb(255, 255, 255, 30);</string>
       </property>
       <property name="text">
-       <string>Testnet 
-Table #1  v1.0
+       <string>Table #1  v1.0
 ♣♣♣♣♣♣</string>
       </property>
       <property name="alignment">
@@ -5878,162 +6095,33 @@ QPushButton:pressed {
       </property>
      </widget>
     </item>
-    <item row="0" column="2">
-     <widget class="QPushButton" name="reloadButton">
-      <property name="minimumSize">
-       <size>
-        <width>84</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="palette">
-       <palette>
-        <active>
-         <colorrole role="Button">
-          <brush brushstyle="SolidPattern">
-           <color alpha="180">
-            <red>85</red>
-            <green>88</green>
-            <blue>93</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Light">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>71</red>
-            <green>71</green>
-            <blue>71</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Base">
-          <brush brushstyle="SolidPattern">
-           <color alpha="180">
-            <red>85</red>
-            <green>88</green>
-            <blue>93</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Window">
-          <brush brushstyle="SolidPattern">
-           <color alpha="180">
-            <red>85</red>
-            <green>88</green>
-            <blue>93</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </active>
-        <inactive>
-         <colorrole role="Button">
-          <brush brushstyle="SolidPattern">
-           <color alpha="180">
-            <red>85</red>
-            <green>88</green>
-            <blue>93</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Light">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>71</red>
-            <green>71</green>
-            <blue>71</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Base">
-          <brush brushstyle="SolidPattern">
-           <color alpha="180">
-            <red>85</red>
-            <green>88</green>
-            <blue>93</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Window">
-          <brush brushstyle="SolidPattern">
-           <color alpha="180">
-            <red>85</red>
-            <green>88</green>
-            <blue>93</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </inactive>
-        <disabled>
-         <colorrole role="Button">
-          <brush brushstyle="SolidPattern">
-           <color alpha="180">
-            <red>85</red>
-            <green>88</green>
-            <blue>93</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Light">
-          <brush brushstyle="SolidPattern">
-           <color alpha="255">
-            <red>71</red>
-            <green>71</green>
-            <blue>71</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Base">
-          <brush brushstyle="SolidPattern">
-           <color alpha="180">
-            <red>85</red>
-            <green>88</green>
-            <blue>93</blue>
-           </color>
-          </brush>
-         </colorrole>
-         <colorrole role="Window">
-          <brush brushstyle="SolidPattern">
-           <color alpha="180">
-            <red>85</red>
-            <green>88</green>
-            <blue>93</blue>
-           </color>
-          </brush>
-         </colorrole>
-        </disabled>
-       </palette>
-      </property>
-      <property name="font">
-       <font>
-        <family>Ubuntu</family>
-        <pointsize>10</pointsize>
-        <weight>50</weight>
-        <italic>true</italic>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
-      </property>
+    <item row="9" column="6">
+     <widget class="QSpinBox" name="atTableSpinBox">
       <property name="styleSheet">
-       <string notr="true">QPushButton{
-    background-color: rgb(85, 88, 93, 180);
-    border: 2px solid #8f8f91;
-    border-radius: 6px;
-    min-width: 80px;
-}
-
-QPushButton:hover {
-		background-color: rgb(0, 158, 0, 120);
-}
-
-QPushButton:pressed {
-	background-color: rgb(56, 47, 165);
+       <string notr="true">QSpinBox{
+   color: rgb(0, 0, 0);
+   font: 12pt &quot;Uroob&quot;;
+   border-color: rgb(79, 159, 239);
+   background-color: rgba(140, 140, 140, 222);
 }</string>
       </property>
-      <property name="text">
-       <string>Refresh</string>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="buttonSymbols">
+       <enum>QAbstractSpinBox::NoButtons</enum>
+      </property>
+      <property name="suffix">
+       <string/>
+      </property>
+      <property name="prefix">
+       <string>Players at Table: </string>
+      </property>
+      <property name="maximum">
+       <number>20000</number>
       </property>
      </widget>
     </item>

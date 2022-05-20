@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    rpc::connected = false;
     QTimer *timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()),this, SLOT(refresh()));
     timer->start(9000);
@@ -43,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->getChipsAmount->setEnabled(false);
     ui->tradeChipsAmount->setEnabled(false);
     ui->minMaxLabel->setEnabled(false);
-    ui->textBrowser->setText("Welcome to the Testnet Table\n\nConnect Your Daemon & Wallet");
+    ui->textBrowser->setText("Welcome to the Table\n\nConnect Your Daemon & Wallet");
     fetchScData();
     blankCards();
 }
@@ -51,6 +52,11 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    if(rpc::connected == true)
+    {
+    leaveTable();
+    }
+
     delete ui;
 }
 

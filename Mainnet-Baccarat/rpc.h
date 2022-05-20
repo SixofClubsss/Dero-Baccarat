@@ -23,8 +23,10 @@ class rpc
 
 public:
     static std::string rpcLogin;
+    static QString firstSigner;
     static QString txidCheck;
     static int thisHand;
+    static bool connected;
     static bool foundHand;
 
 };

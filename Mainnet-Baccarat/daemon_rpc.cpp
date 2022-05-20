@@ -5,7 +5,7 @@
 using std::string;
 
 
-void MainWindow::delay()            /// Delay to help with data read out
+void MainWindow::delay()            /// Delay for block time
 {
     QTime dieTime= QTime::currentTime().addSecs(30);
     while (QTime::currentTime() < dieTime)
@@ -19,7 +19,7 @@ int MainWindow::fetchScData(void)       /// Get SC variables
     CURLcode res;
     string fetchReadBuffer;
 
-    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d\" , \"ringsize\":2 , \"code\":false , \"variables\":true}}";
+    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b\" , \"ringsize\":2 , \"code\":false , \"variables\":true}}";
     char error[CURL_ERROR_SIZE];
     QString daemonAddress =  ui->daemonRPCinput->text()+"/json_rpc";
     string dStr = daemonAddress.toStdString();
@@ -65,6 +65,11 @@ int MainWindow::fetchScData(void)       /// Get SC variables
       QJsonValue playing = cbStringKeys.value("At Table:");
 
       ui->dsbTotalHandsPlayed->setValue(totalHands.toDouble()); /// Updates total hands played display
+      ui->pWinsSpinBox->setValue(playerWins.toInt());
+      ui->bWinsSpinBox->setValue(bankerWins.toInt());
+      ui->tWinsSpinBox->setValue(totalTies.toInt());
+      ui->atTableSpinBox->setValue(playing.toInt());
+
     }
     return 0;
 }
@@ -76,7 +81,7 @@ int MainWindow::checkDaemon(void)       /// Check connection to daemon
     CURLcode res;
     string readBuffer;
 
-    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d\" , \"ringsize\":2 , \"code\":false , \"variables\":false}}";
+    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b\" , \"ringsize\":2 , \"code\":false , \"variables\":false}}";
     char error[CURL_ERROR_SIZE];
     QString daemonAddress =  ui->daemonRPCinput->text()+"/json_rpc";
     string dStr = daemonAddress.toStdString();
@@ -139,7 +144,7 @@ int MainWindow::fetchHandData(void)
     CURLcode res;
     string readBuffer;
 
-    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d\" , \"ringsize\":2 , \"code\":false , \"variables\":true}}";
+    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b\" , \"ringsize\":2 , \"code\":false , \"variables\":true}}";
     char error[CURL_ERROR_SIZE];
     QString daemonAddress =  ui->daemonRPCinput->text()+"/json_rpc";
     string dStr = daemonAddress.toStdString();
@@ -147,6 +152,7 @@ int MainWindow::fetchHandData(void)
 
     loginInfo();
     const char *loginCh = rpc::rpcLogin.c_str ();
+
 
     curlHandData = curl_easy_init();
     if(curlHandData) {
@@ -239,7 +245,7 @@ int MainWindow::searchHandData(void)   /// Search hands stored on SC
     CURLcode res;
     string readBuffer;
 
-    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"8817f03755a562cc1f34c6e90389ef9cc416a32d6084c0ebb4b245bc76da5c9d\" , \"ringsize\":2 , \"code\":false , \"variables\":true}}";
+    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b\" , \"ringsize\":2 , \"code\":false , \"variables\":true}}";
     char error[CURL_ERROR_SIZE];
     QString daemonAddress =  ui->daemonRPCinput->text()+"/json_rpc";
     string dStr = daemonAddress.toStdString();
