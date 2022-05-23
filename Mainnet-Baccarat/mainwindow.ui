@@ -82,6 +82,12 @@ QDoubleSpinBox::down-button {
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="2" column="2">
      <widget class="QSpinBox" name="pWinsSpinBox">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>21</height>
+       </size>
+      </property>
       <property name="styleSheet">
        <string notr="true">color: rgb(0, 0, 0);
 font: 12pt &quot;Uroob&quot;;
@@ -260,6 +266,12 @@ background-color: rgba(140, 140, 140, 222);</string>
     </item>
     <item row="9" column="6">
      <widget class="QSpinBox" name="atTableSpinBox">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>21</height>
+       </size>
+      </property>
       <property name="styleSheet">
        <string notr="true">QSpinBox{
    color: rgb(0, 0, 0);
@@ -290,6 +302,12 @@ background-color: rgba(140, 140, 140, 222);</string>
     </item>
     <item row="6" column="1">
      <widget class="QSpinBox" name="tieBetAmount">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>20</height>
+       </size>
+      </property>
       <property name="maximumSize">
        <size>
         <width>114</width>
@@ -661,7 +679,7 @@ QSpinBox:!enabled
       <property name="minimumSize">
        <size>
         <width>84</width>
-        <height>0</height>
+        <height>20</height>
        </size>
       </property>
       <property name="palette">
@@ -951,6 +969,12 @@ QPushButton:pressed {
     </item>
     <item row="6" column="6">
      <widget class="QSpinBox" name="tradeChipsAmount">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>20</height>
+       </size>
+      </property>
       <property name="styleSheet">
        <string notr="true">QDoubleSpinBox{
 	background-color: rgb(24, 24, 24,180);
@@ -1189,6 +1213,12 @@ QSpinBox:!enabled
     </item>
     <item row="0" column="7">
      <widget class="QPushButton" name="searchButton">
+      <property name="minimumSize">
+       <size>
+        <width>84</width>
+        <height>20</height>
+       </size>
+      </property>
       <property name="font">
        <font>
         <italic>true</italic>
@@ -1217,6 +1247,12 @@ QPushButton:pressed {
     </item>
     <item row="4" column="1" alignment="Qt::AlignBottom">
      <widget class="QSpinBox" name="playerBetAmount">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>20</height>
+       </size>
+      </property>
       <property name="maximumSize">
        <size>
         <width>114</width>
@@ -1271,6 +1307,12 @@ QSpinBox:!enabled
     </item>
     <item row="5" column="1">
      <widget class="QSpinBox" name="bankerBetAmount">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>20</height>
+       </size>
+      </property>
       <property name="maximumSize">
        <size>
         <width>114</width>
@@ -1322,6 +1364,12 @@ QSpinBox:!enabled
     </item>
     <item row="4" column="0" alignment="Qt::AlignBottom">
      <widget class="QPushButton" name="playerButton">
+      <property name="minimumSize">
+       <size>
+        <width>84</width>
+        <height>20</height>
+       </size>
+      </property>
       <property name="palette">
        <palette>
         <active>
@@ -1744,6 +1792,12 @@ QPushButton:!enabled
     </item>
     <item row="6" column="0">
      <widget class="QPushButton" name="tieButton">
+      <property name="minimumSize">
+       <size>
+        <width>84</width>
+        <height>20</height>
+       </size>
+      </property>
       <property name="palette">
        <palette>
         <active>
@@ -2012,6 +2066,12 @@ QPushButton:!enabled
     </item>
     <item row="5" column="6">
      <widget class="QDoubleSpinBox" name="getChipsAmount">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>20</height>
+       </size>
+      </property>
       <property name="styleSheet">
        <string notr="true">QDoubleSpinBox{
 	background-color: rgb(24, 24, 24,180);
@@ -2071,6 +2131,12 @@ QDoubleSpinBox:!enabled
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>84</width>
+        <height>20</height>
+       </size>
       </property>
       <property name="palette">
        <palette>
@@ -2340,6 +2406,12 @@ QPushButton:!enabled
     </item>
     <item row="0" column="2">
      <widget class="QSpinBox" name="tWinsSpinBox">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>21</height>
+       </size>
+      </property>
       <property name="styleSheet">
        <string notr="true">color: rgb(0, 0, 0);
 font: 12pt &quot;Uroob&quot;;
@@ -2362,6 +2434,12 @@ background-color: rgba(140, 140, 140, 222);</string>
     </item>
     <item row="5" column="0">
      <widget class="QPushButton" name="bankerButton">
+      <property name="minimumSize">
+       <size>
+        <width>84</width>
+        <height>20</height>
+       </size>
+      </property>
       <property name="palette">
        <palette>
         <active>
@@ -2638,6 +2716,12 @@ QPushButton:!enabled
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>84</width>
+        <height>20</height>
+       </size>
       </property>
       <property name="palette">
        <palette>
@@ -3540,6 +3624,12 @@ p, li { white-space: pre-wrap; }
     </item>
     <item row="5" column="7">
      <widget class="QPushButton" name="getChipButton">
+      <property name="minimumSize">
+       <size>
+        <width>84</width>
+        <height>20</height>
+       </size>
+      </property>
       <property name="palette">
        <palette>
         <active>
@@ -3810,6 +3900,12 @@ QPushButton:!enabled
      <widget class="QDoubleSpinBox" name="dsbTotalHandsPlayed">
       <property name="enabled">
        <bool>true</bool>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>22</height>
+       </size>
       </property>
       <property name="palette">
        <palette>
@@ -4670,7 +4766,7 @@ background-color: rgba(140, 140, 140, 222);</string>
       </property>
       <property name="text">
        <string>Exchange Rate: 
-1 Dero = 333 dChips</string>
+1 Dero = 333 dReams</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -4930,6 +5026,12 @@ QDoubleSpinBox::down-button {
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
         <widget class="QLineEdit" name="userInput">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>150</width>
@@ -5072,6 +5174,12 @@ QDoubleSpinBox::down-button {
         <widget class="QCheckBox" name="daemonConnectedBox">
          <property name="enabled">
           <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
          </property>
          <property name="maximumSize">
           <size>
@@ -5227,7 +5335,7 @@ QDoubleSpinBox::down-button {
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>0</height>
+           <height>20</height>
           </size>
          </property>
          <property name="maximumSize">
@@ -5367,6 +5475,12 @@ QDoubleSpinBox::down-button {
        </item>
        <item row="0" column="3">
         <widget class="QPushButton" name="daemonRPCbutton">
+         <property name="minimumSize">
+          <size>
+           <width>84</width>
+           <height>20</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>150</width>
@@ -5526,6 +5640,12 @@ QPushButton:pressed {
        </item>
        <item row="1" column="0">
         <widget class="QLineEdit" name="passwordInput">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>150</width>
@@ -5671,6 +5791,12 @@ QPushButton:pressed {
         <widget class="QCheckBox" name="walletConnectedBox">
          <property name="enabled">
           <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>20</height>
+          </size>
          </property>
          <property name="maximumSize">
           <size>
@@ -5826,7 +5952,7 @@ QPushButton:pressed {
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>0</height>
+           <height>20</height>
           </size>
          </property>
          <property name="maximumSize">
@@ -5966,6 +6092,12 @@ QPushButton:pressed {
        </item>
        <item row="1" column="3">
         <widget class="QPushButton" name="walletRPCbutton">
+         <property name="minimumSize">
+          <size>
+           <width>84</width>
+           <height>20</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>150</width>
