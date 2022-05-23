@@ -6,13 +6,13 @@ Ui for Dero Baccarat Smart Contracts.
 
 Written in C++/Qt. Used Qt 5.12.8 to build the Ui. This app is made to play Dero Baccarat on **Dero Stargate**. 
 
-The smart contract is a simple version of the casino game Baccarat. It uses a _Dero token_ called dChips for betting. Users can trade _Dero_ for dChips, & dChips can also be converted back into _Dero_. For more info on the game mechanics read the menu when the app starts, you can also refer to the game smart contracts.
+The first dReams Tables game. This smart contract is a simple version of the casino game Baccarat. It uses a private _Dero token_ called dReams for betting. Users can trade _Dero_ for dReams, & dReams can also be converted back into _Dero_. For more info on the game mechanics read the menu when the app starts, you can also refer to the game smart contracts.
 
 ### Mainnet
 
-- Dero Baccarat Contract: [da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b](https://explorer.dero.io/tx/da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b)
+- Dero Baccarat Contract: [eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88](https://explorer.dero.io/tx/eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88)
 
-- dChips Token Contract: [d7080132cec93aed603667bb65063960b294e9873eb38468ace81a03bbd07faf](https://explorer.dero.io/tx/d7080132cec93aed603667bb65063960b294e9873eb38468ace81a03bbd07faf)
+- dChips Token Contract: [dbfa9257e8cdaeacd35797402fd44e180c4c31c085989294c542c990706973d7](https://explorer.dero.io/tx/dbfa9257e8cdaeacd35797402fd44e180c4c31c085989294c542c990706973d7)
 
 ### Testnet
 
