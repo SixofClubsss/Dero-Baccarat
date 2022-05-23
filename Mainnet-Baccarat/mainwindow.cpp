@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->getChipsAmount->setEnabled(false);
     ui->tradeChipsAmount->setEnabled(false);
     ui->minMaxLabel->setEnabled(false);
-    ui->textBrowser->setText("Welcome to the Table\n\nConnect Your Daemon & Wallet");
+    ui->textBrowser->setText("Welcome to dReam Tables\n\nConnect Your Daemon & Wallet");
     fetchScData();
     blankCards();
 }

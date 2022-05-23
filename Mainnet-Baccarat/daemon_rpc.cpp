@@ -19,7 +19,7 @@ int MainWindow::fetchScData(void)       /// Get SC variables
     CURLcode res;
     string fetchReadBuffer;
 
-    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b\" , \"ringsize\":2 , \"code\":false , \"variables\":true}}";
+    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\" , \"ringsize\":2 , \"code\":false , \"variables\":true}}";
     char error[CURL_ERROR_SIZE];
     QString daemonAddress =  ui->daemonRPCinput->text()+"/json_rpc";
     string dStr = daemonAddress.toStdString();
@@ -81,7 +81,7 @@ int MainWindow::checkDaemon(void)       /// Check connection to daemon
     CURLcode res;
     string readBuffer;
 
-    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b\" , \"ringsize\":2 , \"code\":false , \"variables\":false}}";
+    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\" , \"ringsize\":2 , \"code\":false , \"variables\":false}}";
     char error[CURL_ERROR_SIZE];
     QString daemonAddress =  ui->daemonRPCinput->text()+"/json_rpc";
     string dStr = daemonAddress.toStdString();
@@ -144,7 +144,7 @@ int MainWindow::fetchHandData(void)
     CURLcode res;
     string readBuffer;
 
-    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b\" , \"ringsize\":2 , \"code\":false , \"variables\":true}}";
+    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\" , \"ringsize\":2 , \"code\":false , \"variables\":true}}";
     char error[CURL_ERROR_SIZE];
     QString daemonAddress =  ui->daemonRPCinput->text()+"/json_rpc";
     string dStr = daemonAddress.toStdString();
@@ -245,7 +245,7 @@ int MainWindow::searchHandData(void)   /// Search hands stored on SC
     CURLcode res;
     string readBuffer;
 
-    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b\" , \"ringsize\":2 , \"code\":false , \"variables\":true}}";
+    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\" , \"ringsize\":2 , \"code\":false , \"variables\":true}}";
     char error[CURL_ERROR_SIZE];
     QString daemonAddress =  ui->daemonRPCinput->text()+"/json_rpc";
     string dStr = daemonAddress.toStdString();

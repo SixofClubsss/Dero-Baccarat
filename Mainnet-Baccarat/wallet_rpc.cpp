@@ -57,7 +57,7 @@ int MainWindow::sitDown(void)      /// When player connects wallet
     string sitDownReadBuffer;
     char error[CURL_ERROR_SIZE];
 
-    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"scinvoke\",\"params\":{\"scid\":\"da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b\", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"SitDown\"}] }}";
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"scinvoke\",\"params\":{\"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"SitDown\"}] }}";
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
@@ -103,7 +103,7 @@ int MainWindow::leaveTable(void)      /// When player leaves
     string leaveReadBuffer;
     char error[CURL_ERROR_SIZE];
 
-    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"scinvoke\",\"params\":{\"scid\":\"da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b\", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"Leave\"}] }}";
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"scinvoke\",\"params\":{\"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"Leave\"}] }}";
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
@@ -253,7 +253,7 @@ int MainWindow::getChips(void)      /// Trade Dero for Chips token (Only dChips 
     char error[CURL_ERROR_SIZE];
 
     QString dAmount = QString::number(ui->getChipsAmount->value()*100000);
-    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"scinvoke\",\"params\":{\"scid\":\"da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b\", \"sc_dero_deposit\":"+dAmount+", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"IssueChips\"}] }}";
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"scinvoke\",\"params\":{\"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\", \"sc_dero_deposit\":"+dAmount+", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"IssueChips\"}] }}";
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
@@ -316,7 +316,7 @@ int MainWindow::tradeChips(void)        /// Trade dChips for Dero
     char error[CURL_ERROR_SIZE];
 
     QString cAmount = QString::number(ui->tradeChipsAmount->value()*100000);
-    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\":[{\"scid\":\"d7080132cec93aed603667bb65063960b294e9873eb38468ace81a03bbd07faf\", \"burn\":"+cAmount+"}] ,\"scid\":\"da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b\", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"ConvertChips\"}] }}";
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\":[{\"scid\":\"dbfa9257e8cdaeacd35797402fd44e180c4c31c085989294c542c990706973d7\", \"burn\":"+cAmount+"}] ,\"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"ConvertChips\"}] }}";
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
@@ -379,7 +379,7 @@ int MainWindow::playerBet(void)     /// Bet on player
     char error[CURL_ERROR_SIZE];
 
     QString cAmount = QString::number(ui->playerBetAmount->value()*100000);
-    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\"d7080132cec93aed603667bb65063960b294e9873eb38468ace81a03bbd07faf\", \"burn\":"+cAmount+"}],\"scid\":\"da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"player\" }]}}";
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\"dbfa9257e8cdaeacd35797402fd44e180c4c31c085989294c542c990706973d7\", \"burn\":"+cAmount+"}],\"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"player\" }]}}";
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
@@ -446,7 +446,7 @@ int MainWindow::bankerBet(void)     /// Bet on banker
     char error[CURL_ERROR_SIZE];
 
     QString cAmount = QString::number(ui->bankerBetAmount->value()*100000);
-    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\"d7080132cec93aed603667bb65063960b294e9873eb38468ace81a03bbd07faf\", \"burn\":"+cAmount+"}],\"scid\":\"da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"banker\" }]}}";
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\"dbfa9257e8cdaeacd35797402fd44e180c4c31c085989294c542c990706973d7\", \"burn\":"+cAmount+"}],\"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"banker\" }]}}";
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
@@ -511,7 +511,7 @@ int MainWindow::tieBet(void)            /// Bet on tie
     char error[CURL_ERROR_SIZE];
 
     QString cAmount = QString::number(ui->tieBetAmount->value()*100000);
-    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\"d7080132cec93aed603667bb65063960b294e9873eb38468ace81a03bbd07faf\", \"burn\":"+cAmount+"}],\"scid\":\"da78f97e1aec885b8a3f75b1af2892dcd0a13342b645320e46cf0edf8c17478b\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"tie\" }]}}";
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\"dbfa9257e8cdaeacd35797402fd44e180c4c31c085989294c542c990706973d7\", \"burn\":"+cAmount+"}],\"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"tie\" }]}}";
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 

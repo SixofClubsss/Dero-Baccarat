@@ -46,27 +46,27 @@ void Dialog::on_buttonBox_accepted()
 
 void Dialog::playerConfirmText()   /// Read out for each bet
 {
-    ui->confirmTextBrowser->setText("You are about to bet "+readout::playerAmount+" dChips on Player\n\nPayout is 1:1\n\nClick Ok to confirm this bet");
+    ui->confirmTextBrowser->setText("You are about to bet "+readout::playerAmount+" dReams on Player\n\nPayout is 1:1\n\nClick Ok to confirm this bet");
 }
 
 void Dialog::bankerConfirmText()
 {
-    ui->confirmTextBrowser->setText("You are about to bet "+readout::bankerAmount+" dChips on Banker\n\nPayout is 0.95:1\n(House takes 5% commission)\n\nClick Ok to confirm this bet");
+    ui->confirmTextBrowser->setText("You are about to bet "+readout::bankerAmount+" dReams on Banker\n\nPayout is 0.95:1\n(House takes 5% commission)\n\nClick Ok to confirm this bet");
 }
 
 void Dialog::tieConfirmText()
 {
-    ui->confirmTextBrowser->setText("You are about to bet "+readout::tieAmount+" dChips on Tie\n\nPayout is 8:1\n\nClick Ok to confirm this bet");
+    ui->confirmTextBrowser->setText("You are about to bet "+readout::tieAmount+" dReams on Tie\n\nPayout is 8:1\n\nClick Ok to confirm this bet");
 }
 
 
 void Dialog::getConfirmText()
 {
-    ui->confirmTextBrowser->setText("You are about to trade "+readout::deroAmount+" Dero for "+readout::deroConverted+" dChips\n\nClick Ok to confirm this bet");
+    ui->confirmTextBrowser->setText("You are about to trade "+readout::deroAmount+" Dero for "+readout::deroConverted+" dReams\n\nClick Ok to confirm this bet");
 }
 
 
 void Dialog::tradeConfirmText()
 {
-    ui->confirmTextBrowser->setText("You are about to trade "+readout::chipAmount+" dChips for "+readout::chipsConverted+" Dero\n\nClick Ok to confirm this bet");
+    ui->confirmTextBrowser->setText("You are about to trade "+readout::chipAmount+" dReams for "+readout::chipsConverted+" Dero\n\nClick Ok to confirm this bet");
 }
