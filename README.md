@@ -12,7 +12,7 @@ The first dReams Tables game. This smart contract is a simple version of the cas
 
 - Dero Baccarat Contract: [eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88](https://explorer.dero.io/tx/eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88)
 
-- dChips Token Contract: [dbfa9257e8cdaeacd35797402fd44e180c4c31c085989294c542c990706973d7](https://explorer.dero.io/tx/dbfa9257e8cdaeacd35797402fd44e180c4c31c085989294c542c990706973d7)
+- dReams Token Contract: [dbfa9257e8cdaeacd35797402fd44e180c4c31c085989294c542c990706973d7](https://explorer.dero.io/tx/dbfa9257e8cdaeacd35797402fd44e180c4c31c085989294c542c990706973d7)
 
 ### Testnet
 
@@ -20,7 +20,7 @@ The first dReams Tables game. This smart contract is a simple version of the cas
 
 - Chips Token Testnet Contract: [a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce](https://testnetexplorer.derohe.com/tx/a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce)
 
-![mainScreen](https://user-images.githubusercontent.com/84689659/169574046-d885c44a-98e4-445f-bfe0-53828dddb8fd.png)
+![mainScreen](https://user-images.githubusercontent.com/84689659/169942785-1b07fc8c-4ae3-465a-96d2-2d7cb2b56633.png)
 ### Donations
 - **Dero Address**: dero1qyr8yjnu6cl2c5yqkls0hmxe6rry77kn24nmc5fje6hm9jltyvdd5qq4hn5pn
 
