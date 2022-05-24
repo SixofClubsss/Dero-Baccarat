@@ -245,7 +245,7 @@ int MainWindow::checkWallet(void)  /// Echo blockchain to confirm wallet is conn
 }
 
 
-int MainWindow::getChips(void)      /// Trade Dero for Chips token (Only dChips are accepted for bets)
+int MainWindow::getChips(void)      /// Trade Dero for dReams token (Only dReams are accepted for bets)
 {
     CURL *curlGetChips;
     CURLcode res;
@@ -295,12 +295,12 @@ int MainWindow::getChips(void)      /// Trade Dero for Chips token (Only dChips 
 
       if(getChipsTxid.isString())
       {
-          ui->textBrowser->setText("Get Chips TXID: "+getChipsTxid.toString());  /// Displays TXID and adds TXID to session log
+          ui->textBrowser->setText("Get dReams TXID: "+getChipsTxid.toString());  /// Displays TXID and adds TXID to session log
           ui->logTextBrowser->append("TXID: "+getChipsTxid.toString()+"\n");
 
       }else
        {
-          ui->textBrowser->setText("Error No Get Chips TXID");      /// No TXID was recieved
+          ui->textBrowser->setText("Error No Get dReams TXID");      /// No TXID was recieved
        }
 
     }
@@ -308,7 +308,7 @@ int MainWindow::getChips(void)      /// Trade Dero for Chips token (Only dChips 
 }
 
 
-int MainWindow::tradeChips(void)        /// Trade dChips for Dero
+int MainWindow::tradeChips(void)        /// Trade dReams for Dero
 {
     CURL *curlTradeChips;
     CURLcode res;
@@ -358,12 +358,12 @@ int MainWindow::tradeChips(void)        /// Trade dChips for Dero
 
       if(tradeChipsTxid.isString())
       {
-          ui->textBrowser->setText("Trade Chips TXID: "+tradeChipsTxid.toString());
+          ui->textBrowser->setText("Trade dReams TXID: "+tradeChipsTxid.toString());
           ui->logTextBrowser->append("TXID: "+tradeChipsTxid.toString()+"\n");
 
       }else
        {
-          ui->textBrowser->setText("Error No Trade Chips TXID");
+          ui->textBrowser->setText("Error No Trade dReams TXID");
        }
 
     }

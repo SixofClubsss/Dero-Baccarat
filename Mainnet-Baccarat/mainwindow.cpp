@@ -89,7 +89,7 @@ void MainWindow::on_walletRPCbutton_clicked(bool checked)
 void MainWindow::on_getChipButton_clicked()
 {
     readoutConfirm();
-    ui->textBrowser->setText("Trading Dero for Chips");   /// Readout to main text display
+    ui->textBrowser->setText("Trading Dero for dReams");   /// Readout to main text display
     Dialog::whichBet = 9;                               /// Which button was clicked
     Dialog D;                                         /// Pop up confirm bet menu
     D.setModal(true);
@@ -110,7 +110,7 @@ void MainWindow::on_getChipButton_clicked()
 void MainWindow::on_tradeChipButton_clicked()
 {
     readoutConfirm();
-    ui->textBrowser->setText("Trading Chips for Dero");
+    ui->textBrowser->setText("Trading dReams for Dero");
     Dialog::whichBet = 8;
     Dialog D;
     D.setModal(true);
