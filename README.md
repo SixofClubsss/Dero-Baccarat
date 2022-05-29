@@ -1,9 +1,7 @@
 ---
 # Dero-Baccarat
 Ui for Dero Baccarat Smart Contracts.
-
-![logo_optimized](https://user-images.githubusercontent.com/84689659/165416164-7e63fc07-e2ef-4391-9e6b-ed8eeaa6d2af.png)
-
+![dReamTablesFooter](https://user-images.githubusercontent.com/84689659/170848696-9e9a58bf-65cb-4a21-85d7-7f90a319142d.png)
 Written in C++/Qt. Used Qt 5.12.8 to build the Ui. This app is made to play Dero Baccarat on **Dero Stargate**. 
 
 The first dReams Tables game. This smart contract is a simple version of the casino game Baccarat. It uses a private _Dero token_ called dReams for betting. Users can trade _Dero_ for dReams, & dReams can also be converted back into _Dero_. For more info on the game mechanics read the menu when the app starts, you can also refer to the game smart contracts.
