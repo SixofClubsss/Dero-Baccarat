@@ -188,7 +188,8 @@ font: 10pt &quot;Gugi&quot;;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(28, 31, 43, 240);</string>
+      <string notr="true">background-color: rgb(28, 31, 43, 240);
+color: rgb(255, 255, 255);</string>
      </property>
      <property name="html">
       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -208,6 +209,7 @@ p, li { white-space: pre-wrap; }
      </property>
      <property name="styleSheet">
       <string notr="true">QPushButton{
+	color: rgb(255, 255, 255);
     background-color: rgb(85, 88, 93, 180);
     border: 2px solid #8f8f91;
     border-radius: 6px;
