@@ -188,8 +188,15 @@ font: 10pt &quot;Gugi&quot;;</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(28, 31, 43, 240);
-color: rgb(255, 255, 255);</string>
+      <string notr="true">QTextBrowser{
+    border-color: rgb(128, 128, 128);
+    border-style: outset;
+    border-width: 2px;
+    border-radius: 6px;
+    padding: 3px;
+    background-color: rgb(28, 31, 43,  240);
+    color: rgb(255, 255, 255);
+}</string>
      </property>
      <property name="html">
       <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;

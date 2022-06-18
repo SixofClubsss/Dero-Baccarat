@@ -14,5 +14,7 @@
         <file alias="CardBack">images/DeroBack.png</file>
         <file alias="DeroLogo">images/deroLogo.png</file>
         <file alias="Icon">images/Icon.png</file>
+        <file>images/dReamTablesDero.png</file>
+        <file>images/dReamTablesTitle.png</file>
     </qresource>
 </RCC>

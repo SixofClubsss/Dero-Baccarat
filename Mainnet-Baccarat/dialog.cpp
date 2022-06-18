@@ -62,11 +62,11 @@ void Dialog::tieConfirmText()
 
 void Dialog::getConfirmText()
 {
-    ui->confirmTextBrowser->setText("You are about to trade "+readout::deroAmount+" Dero for "+readout::deroConverted+" dReams\n\nClick Ok to confirm this bet");
+    ui->confirmTextBrowser->setText("You are about to trade "+readout::deroAmount+" Dero for "+readout::deroConverted+" dReams\n\nClick Ok to confirm this action");
 }
 
 
 void Dialog::tradeConfirmText()
 {
-    ui->confirmTextBrowser->setText("You are about to trade "+readout::chipAmount+" dReams for "+readout::chipsConverted+" Dero\n\nClick Ok to confirm this bet");
+    ui->confirmTextBrowser->setText("You are about to trade "+readout::chipAmount+" dReams for "+readout::chipsConverted+" Dero\n\nClick Ok to confirm this action");
 }
