@@ -123,6 +123,8 @@ Move `curl-7.84.0_3-win64-mingw\libcurl-x64.dll` file to same folder as `Dero-Fi
 
 For issues with SSL remove comments from `curl_easy_setopt(curlDaemonCheck, CURLOPT_SSL_VERIFYPEER, 0);` in .cpp files.
 
+Build preformed on Windows 10 system.
+
 ---
 
 - ### Using [Qt Creator](https://www.qt.io/)
@@ -133,9 +135,6 @@ Alternatively you can also build on any system using Qt Creator.
 - Download repo and click on `Dero-Baccarat.pro` to open project in Qt.
 - Click configure project then click build.
 
+---
+
 ![baccMenu-v1 1 2](https://user-images.githubusercontent.com/84689659/177011509-c7636172-fbb6-4388-acd1-aa3ba4055ca5.png)
-
-
-
-
-
