@@ -18,7 +18,8 @@ The first dReams Tables game. This smart contract is a simple version of the cas
 
 - Chips Token Testnet Contract: [a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce](https://testnetexplorer.derohe.com/tx/a30c6602a791fae5464b974ca268e3720c2bae870d20804a8694b0f0917b8bce)
 
-![mainScreen](https://user-images.githubusercontent.com/84689659/169942785-1b07fc8c-4ae3-465a-96d2-2d7cb2b56633.png)
+![baccMain-v1 1 2](https://user-images.githubusercontent.com/84689659/177011486-cee96afb-0173-4c89-88f2-a01b0197866b.png)
+
 ### Donations
 - **Dero Address**: dero1qyr8yjnu6cl2c5yqkls0hmxe6rry77kn24nmc5fje6hm9jltyvdd5qq4hn5pn
 
@@ -131,3 +132,10 @@ Alternatively you can also build on any system using Qt Creator.
 - Download and install Qt for your system. 
 - Download repo and click on `Dero-Baccarat.pro` to open project in Qt.
 - Click configure project then click build.
+
+![baccMenu-v1 1 2](https://user-images.githubusercontent.com/84689659/177011509-c7636172-fbb6-4388-acd1-aa3ba4055ca5.png)
+
+
+
+
+
