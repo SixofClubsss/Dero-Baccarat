@@ -37,7 +37,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QLabel" name="clubsLabel">
+    <widget class="QLabel" name="dReamsLabel">
      <property name="palette">
       <palette>
        <active>
@@ -166,8 +166,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255, 30);
-font: 10pt &quot;Gugi&quot;;</string>
+      <string notr="true">color: rgb(255, 255, 255, 30);</string>
      </property>
      <property name="text">
       <string>dReam Tables</string>
@@ -194,7 +193,7 @@ font: 10pt &quot;Gugi&quot;;</string>
     border-width: 2px;
     border-radius: 6px;
     padding: 3px;
-    background-color: rgb(28, 31, 43,  240);
+    background-color: rgba(28, 31, 43,  240);
     color: rgb(255, 255, 255);
 }</string>
      </property>
@@ -217,14 +216,14 @@ p, li { white-space: pre-wrap; }
      <property name="styleSheet">
       <string notr="true">QPushButton{
 	color: rgb(255, 255, 255);
-    background-color: rgb(85, 88, 93, 180);
+    background-color: rgba(85, 88, 93, 180);
     border: 2px solid #8f8f91;
     border-radius: 6px;
     min-width: 80px;
 }
 
 QPushButton:hover {
-	background-color: rgb(0, 158, 0, 120);
+	background-color: rgba(0, 158, 0, 120);
 }
 
 QPushButton:pressed {

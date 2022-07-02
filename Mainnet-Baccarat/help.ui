@@ -35,14 +35,14 @@
     background-position: left;
 }
 QPushButton{
-    background-color: rgb(85, 88, 93, 180);
+    background-color: rgba(85, 88, 93, 180);
     border: 2px solid #8f8f91;
     border-radius: 6px;
     min-width: 80px;
 }
 
 QPushButton:hover {
-	background-color: rgb(0, 158, 0, 120);
+	background-color: rgba(0, 158, 0, 120);
 }
 
 QPushButton:pressed {
@@ -51,7 +51,7 @@ QPushButton:pressed {
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QLabel" name="clubsLabel">
+    <widget class="QLabel" name="dReamsLabel">
      <property name="palette">
       <palette>
        <active>
@@ -180,8 +180,8 @@ QPushButton:pressed {
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255, 45);
-font: 10pt &quot;Gugi&quot;;</string>
+      <string notr="true">color: rgba(255, 255, 255, 45);
+</string>
      </property>
      <property name="text">
       <string>dReam Tables</string>
@@ -200,7 +200,7 @@ font: 10pt &quot;Gugi&quot;;</string>
     border-width: 2px;
     border-radius: 6px;
     padding: 3px;
-    background-color: rgb(28, 31, 43,  240);
+    background-color: rgba(28, 31, 43,  240);
     color: rgb(255, 255, 255);
 }</string>
      </property>
@@ -209,7 +209,7 @@ font: 10pt &quot;Gugi&quot;;</string>
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; background-color:transparent;&quot;&gt;Welcome to &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; background-color:transparent;&quot;&gt;Dero&lt;/span&gt;&lt;span style=&quot; font-size:12pt; background-color:transparent;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; background-color:transparent;&quot;&gt;Baccarat!&lt;/span&gt;&lt;span style=&quot; font-size:12pt; background-color:transparent;&quot;&gt; &lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12pt; background-color:transparent;&quot;&gt;Welcome to &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; background-color:transparent;&quot;&gt;dReam Tables&lt;/span&gt;&lt;span style=&quot; font-size:12pt; background-color:transparent;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; background-color:transparent;&quot;&gt;Baccarat! &lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;img src=&quot;:/DeroLogo&quot; /&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600; background-color:transparent;&quot;&gt;***&lt;/span&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; background-color:transparent;&quot;&gt;DISCLAIMER&lt;/span&gt;&lt;span style=&quot; font-weight:600; background-color:transparent;&quot;&gt;***&lt;/span&gt;&lt;/p&gt;
@@ -222,7 +222,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; background-color:transparent;&quot;&gt;Cards Ace(1) to Nine(9) hold their face value.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; background-color:transparent;&quot;&gt;Cards Ten(10), Jack(11), Queen(12), King(13) are a 0 value.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; background-color:transparent;&quot;&gt;Added values of 10 or above you lose the the first digit.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; background-color:transparent;&quot;&gt;Added values of 10 or above you loose the the first digit.&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; background-color:transparent;&quot;&gt;Card values of 10 and above will be indicated by this 0 value card:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; background-color:transparent;&quot;&gt; &lt;/span&gt;&lt;img src=&quot;:/Card0&quot; /&gt;&lt;/p&gt;

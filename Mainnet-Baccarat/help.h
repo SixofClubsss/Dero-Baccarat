@@ -3,6 +3,7 @@
 
 #include "QDialog"
 
+
 namespace Ui {
 class Help;
 }
@@ -14,6 +15,7 @@ class Help : public QDialog
 public:
     explicit Help(QWidget *parent = nullptr);
     ~Help();
+    void setFonts();
 
 private:
     Ui::Help *ui;

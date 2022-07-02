@@ -16,5 +16,8 @@
         <file alias="Icon">images/Icon.png</file>
         <file>images/dReamTablesDero.png</file>
         <file>images/dReamTablesTitle.png</file>
+        <file>fonts/Macondo-Regular.ttf</file>
+        <file>fonts/Ubuntu-R.ttf</file>
+        <file>images/dReamTablesIcon.png</file>
     </qresource>
 </RCC>

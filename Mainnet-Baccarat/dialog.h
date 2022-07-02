@@ -3,6 +3,7 @@
 
 #include "QDialog"
 
+
 namespace Ui {
 class Dialog;
 }
@@ -14,7 +15,7 @@ class Dialog : public QDialog
 public:
     explicit Dialog(QWidget *parent = nullptr);
     ~Dialog();
-
+    void setFonts();
     void playerConfirmText();
     void bankerConfirmText();
     void tieConfirmText();

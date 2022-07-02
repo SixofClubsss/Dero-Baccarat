@@ -2,7 +2,7 @@
 #include "ui_dialog.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "rpc.h"
+#include "rpc/rpc.h"
 
 
 Dialog::Dialog(QWidget *parent) :
@@ -10,25 +10,21 @@ Dialog::Dialog(QWidget *parent) :
     ui(new Ui::Dialog)
 {
     ui->setupUi(this);
+    setFonts();
 
-    if(Dialog::whichBet == 1)
-    {
+    if(Dialog::whichBet == 1){
          playerConfirmText();
 
-    }else if(Dialog::whichBet == 2)
-    {
+    }else if(Dialog::whichBet == 2){
         bankerConfirmText();                /// Confirm menu will look at which button was clicked
 
-    }else if(Dialog::whichBet == 3)
-    {
+    }else if(Dialog::whichBet == 3){
         tieConfirmText();
 
-    }else if(Dialog::whichBet == 8)
-    {
+    }else if(Dialog::whichBet == 8){
         tradeConfirmText();
 
-    }else if(Dialog::whichBet == 9)
-    {
+    }else if(Dialog::whichBet == 9){
         getConfirmText();
     }
 }
@@ -36,6 +32,24 @@ Dialog::Dialog(QWidget *parent) :
 Dialog::~Dialog()
 {
     delete ui;
+}
+
+void Dialog::setFonts()
+{
+    int fontId = QFontDatabase::addApplicationFont(":/fonts/Macondo-Regular.ttf");
+    QString fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
+    QFont macondoRegular12(fontFamily);
+    macondoRegular12.setPointSize(11);
+    macondoRegular12.setBold(true);
+    ui->dReamsLabel->setFont(macondoRegular12);
+    ui->confirmTextBrowser->setFont(macondoRegular12);
+    ui->confirmTextBrowser->setFontPointSize(14);
+
+    int fontId2 = QFontDatabase::addApplicationFont(":/fonts/Ubuntu-R.ttf");
+    QString fontFamily2 = QFontDatabase::applicationFontFamilies(fontId2).at(0);
+    QFont ubuntuRegular(fontFamily2);
+    ubuntuRegular.setPointSize(10);
+    ui->buttonBox->setFont(ubuntuRegular);
 }
 
 

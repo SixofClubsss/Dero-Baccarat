@@ -2,9 +2,14 @@
 #define MAINWINDOW_H
 
 #include "QMainWindow"
+#include "QSizePolicy"
+#include "QTimer"
+#include "QFont"
+#include "QFontDatabase"
 #include "iostream"
 #include "dialog.h"
 #include "dialog.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,21 +22,20 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    bool startUp;
+    void offset();
+    void setFonts();
     void loginInfo();
-    void delay();
-    int sitDown(void);
-    int leaveTable(void);
-    int fetchScData(void);
-    int fetchHandData(void);
-    int searchHandData(void);
-    int checkDaemon(void);
-    int checkWallet(void);
-    int getChips(void);
-    int tradeChips(void);
-    int playerBet(void);
-    int bankerBet(void);
-    int tieBet(void);
-    void findMyHand();
+    int sitDown();
+    int leaveTable();
+    int searchHandData();
+    int checkDaemon();
+    int checkWallet();
+    int getChips();
+    int tradeChips();
+    int playerBet();
+    int bankerBet();
+    int tieBet();
     void blankCards();
     void readoutConfirm();
     QPixmap displayPlayerCards(int);
@@ -58,9 +62,6 @@ private slots:
     void on_tieButton_clicked();
 
     void on_helpButton_clicked();
-
-    void on_reloadButton_clicked();
-
 
     void on_searchButton_clicked();
 

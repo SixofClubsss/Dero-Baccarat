@@ -6,6 +6,10 @@ CONFIG += c++11
 
 LIBS += -lcurl
 
+
+# CONFIG += c++11 static for windows
+# LIBS += -llibcurl for windows
+
 # CONFIG += link_pkgconfig
 # PKGCONFIG += curl
 
@@ -21,18 +25,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    daemon_rpc.cpp \
     dialog.cpp \
     help.cpp \
     main.cpp \
     mainwindow.cpp \
-    wallet_rpc.cpp
+    rpc/daemon_rpc.cpp \
+    rpc/wallet_rpc.cpp
 
 HEADERS += \
     dialog.h \
     help.h \
     mainwindow.h \
-    rpc.h
+    rpc/rpc.h
 
 FORMS += \
     dialog.ui \
