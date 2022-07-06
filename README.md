@@ -27,9 +27,15 @@ The first dReams Tables game. This smart contract is a simple version of the cas
 
 
 ## Requirements to play
-To be able to play you will need to have a synced **Dero daemon** running and a registered **Dero wallet**.
+To be able to play you will need to have connection to a synced **Dero Node** and a registered **Dero wallet**. While you can play using a remote node, it is recommended that you run your own node.
 
-For more info on how to set up Dero daemon and wallet you can refer to the Dero documentation [here](https://docs.dero.io/)
+For more info on how to set up Dero node and wallet you can refer to the Dero documentation [here](https://docs.dero.io/)
+
+To play download the latest [release](https://github.com/SixofClubsss/Dero-Baccarat/releases) or build the app from source.
+- Qt is a required dependency for the app.
+  - Linux - `sudo apt install qtbase5-dev`
+  - MacOs - `brew install qt@5`
+  - Windows - [msys2](https://www.msys2.org/) and `pacman -S mingw-w64-x86_64-qt5-static`
 
 ## Build
 
@@ -69,6 +75,14 @@ For testnet build use ```cd Dero-Baccarat/Testnet-Baccarat``` & ```./Testnet-Bac
 brew install qt@5
 ```
 
+**Add path to system**
+```
+export PATH="/usr/local/opt/qt@5/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/qt@5/lib"
+export CPPFLAGS="-I/usr/local/opt/qt@5/include"
+~/.zshrc
+```
+
 **Download repo & build**
 ```
 git clone https://github.com/SixofClubsss/Dero-Baccarat.git
@@ -95,7 +109,7 @@ pacman -S mingw-w64-x86_64-qt5-base mingw-w64-x86_64-qt5-tools
 pacman -S mingw-w64-x86_64-qt5-static
 ```
 
-**App path to system**
+**Add path to system**
 
 In `control panel`, go to `system` then `advanced system settings`. In the advanced tab click `environment variables`, find `Path` in the system variables section and edit to add `C:\msys64\mingw64\bin`, `C:\msys64\usr\bin` and `C:\Program Files\Git\cmd` to path.
 
