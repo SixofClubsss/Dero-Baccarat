@@ -9,8 +9,8 @@ using std::string;
 int Dialog::whichBet;
 bool Dialog::betConfirmed;
 QString rpc::daemonAddress;
-bool rpc::foundHand;
 QString rpc::foundHandTXID;
+bool rpc::foundHand;
 double rpc::totalHands;
 double rpc::foundPlayerTotal;
 double rpc::foundBankerTotal;
@@ -33,6 +33,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     startUp = true;
     rpc::connected = false;
+    rpc::contractAddress = "8289c6109f41cbe1f6d5f27a419db537bf3bf30a25eff285241a36e1ae3e48a4";
+    rpc::tokenAddress = "ad2e7b37c380cc1aed3a6b27224ddfc92a2d15962ca1f4d35e530dba0f9575a9";
     ui->playerXCardLabel->setPixmap(QPixmap(":/CardBack"));
     ui->playerYCardLabel->setPixmap(QPixmap(":/CardBack"));
     ui->playerZCardLabel->setPixmap(QPixmap(":/CardBack"));
@@ -61,9 +63,6 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    if(rpc::connected == true){
-    leaveTable();
-    }
     Worker::workThread.quit();
     delete ui;
 }
@@ -111,8 +110,7 @@ void MainWindow::setFonts()
     ui->bankerBetAmount->setFont(ubuntuRegular);
     ui->tieBetAmount->setFont(ubuntuRegular);
     ui->playerGroupBox->setFont(ubuntuRegular);
-    ui->userInput->setFont(ubuntuRegular);
-    ui->passwordInput->setFont(ubuntuRegular);
+    ui->userpassInput->setFont(ubuntuRegular);
     ui->walletRPCinput->setFont(ubuntuRegular);
     ui->walletRPCbutton->setFont(ubuntuRegular);
     ui->daemonRPCinput->setFont(ubuntuRegular);
@@ -176,6 +174,7 @@ void MainWindow::refresh()      /// Updates Ui display
             ui->playerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: rgb(56, 47, 165, 210); background-color: rgb(28, 31, 43, 0); };");
             ui->bankerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: rgb(56, 47, 165, 210); background-color: rgb(28, 31, 43, 0); };");
        }
+       ui->searchButton->setEnabled(true);
     }
 }
 
@@ -186,6 +185,7 @@ void MainWindow::on_helpButton_clicked()
     H.setModal(true);
     H.exec();
 }
+
 
 void MainWindow::on_daemonRPCbutton_clicked(bool checked)
 {

@@ -26,8 +26,6 @@ public:
     void offset();
     void setFonts();
     void loginInfo();
-    int sitDown();
-    int leaveTable();
     int searchHandData();
     int checkDaemon();
     int checkWallet();
@@ -42,6 +40,7 @@ public:
     QPixmap displayBankerCards(int);
     QPixmap displayDrawPlayerCard(int);
     QPixmap displayDrawBankerCard(int);
+
 
 private slots:
 

@@ -166,7 +166,7 @@
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255, 30);</string>
+      <string notr="true">color: rgba(255, 255, 255, 30);</string>
      </property>
      <property name="text">
       <string>dReam Tables</string>

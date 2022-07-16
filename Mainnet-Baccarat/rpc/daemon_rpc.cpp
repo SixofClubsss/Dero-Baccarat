@@ -2,9 +2,8 @@
 #include "./ui_mainwindow.h"
 #include "rpc.h"
 
+
 using std::string;
-
-
 
 
 int rpc::getHeight()  /// Gets current block height
@@ -58,10 +57,12 @@ int rpc::fetchScData()       /// Get SC variables
     CURL *curlFetch;                /// Set up cUrl
     CURLcode res;
     string fetchReadBuffer;
-
-    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\" , \"ringsize\":2 , \"code\":false , \"variables\":true}}";
     char error[CURL_ERROR_SIZE];
-    ///QString daemonAddress = rpc::daemonAddress;
+
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\""+rpc::contractAddress+"\" , \"ringsize\":2 , \"code\":false , \"variables\":true}}";
+    string addThis = parts.toStdString();
+    const char *postthis = addThis.c_str();
+
     string dStr = rpc::daemonAddress.toStdString();
     const char *dCh = dStr.c_str ();
 
@@ -151,9 +152,12 @@ int MainWindow::checkDaemon()       /// Check connection to daemon
     CURL *curlDaemonCheck;
     CURLcode res;
     string readBuffer;
-
-    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\" , \"ringsize\":2 , \"code\":false , \"variables\":false}}";
     char error[CURL_ERROR_SIZE];
+
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\""+rpc::contractAddress+"\" , \"ringsize\":2 , \"code\":false , \"variables\":false}}";
+    string addThis = parts.toStdString();
+    const char *postthis = addThis.c_str();
+
     QString daemonAddress =  ui->daemonRPCinput->text()+"/json_rpc";
     string dStr = daemonAddress.toStdString();
     const char *dCh = dStr.c_str ();
@@ -210,9 +214,12 @@ int MainWindow::searchHandData()   /// Search hands stored on SC
     CURL *curlSearchHandData;
     CURLcode res;
     string readBuffer;
-
-    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\" , \"ringsize\":2 , \"code\":false , \"variables\":true}}";
     char error[CURL_ERROR_SIZE];
+
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"getsc\",\"params\":{ \"scid\":\""+rpc::contractAddress+"\" , \"ringsize\":2 , \"code\":false , \"variables\":true}}";
+    string addThis = parts.toStdString();
+    const char *postthis = addThis.c_str();
+
     QString daemonAddress =  ui->daemonRPCinput->text()+"/json_rpc";
     string dStr = daemonAddress.toStdString();
     const char *dCh = dStr.c_str ();

@@ -58,15 +58,18 @@ void Dialog::on_buttonBox_accepted()
     Dialog::betConfirmed = true;       /// To confirm and place bet
 }
 
+
 void Dialog::playerConfirmText()   /// Read out for each bet
 {
     ui->confirmTextBrowser->setText("You are about to bet "+readout::playerAmount+" dReams on Player\n\nPayout is 1:1\n\nClick Ok to confirm this bet");
 }
 
+
 void Dialog::bankerConfirmText()
 {
     ui->confirmTextBrowser->setText("You are about to bet "+readout::bankerAmount+" dReams on Banker\n\nPayout is 0.95:1\n(House takes 5% commission)\n\nClick Ok to confirm this bet");
 }
+
 
 void Dialog::tieConfirmText()
 {

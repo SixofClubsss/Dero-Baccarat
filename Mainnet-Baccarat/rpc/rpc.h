@@ -25,8 +25,9 @@ class rpc
 
 public:
     static std::string rpcLogin;
+    static QString contractAddress;
+    static QString tokenAddress;
     static QString daemonAddress;
-    static QString firstSigner;
     static QString txidCheck;
     static QString foundHandTXID;
     static bool connected;

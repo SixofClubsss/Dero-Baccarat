@@ -12,7 +12,8 @@ QString readout::bankerAmount;
 QString readout::playerAmount;
 QString readout::deroConverted;
 QString readout::chipsConverted;
-QString rpc::firstSigner;
+QString rpc::contractAddress;
+QString rpc::tokenAddress;
 QString rpc::txidCheck;
 int rpc::thisHand;
 bool rpc::connected;
@@ -20,12 +21,11 @@ bool rpc::connected;
 
 void MainWindow::loginInfo()   /// Used to store wallet login info for all wallet functions
 {
-    QString userInfo = ui->userInput->text()+":";
-    QString passInfo = ui->passwordInput->text();
-    string userStr = userInfo.toStdString();
-    string passStr = passInfo.toStdString();
-    rpc::rpcLogin = userStr+passStr;
+    QString userpassInfo = ui->userpassInput->text();
+    string userpassStr = userpassInfo.toStdString();
+    rpc::rpcLogin = userpassStr;
 }
+
 
 void MainWindow::readoutConfirm()   /// Used to confirm bet
 {
@@ -50,99 +50,6 @@ void MainWindow::readoutConfirm()   /// Used to confirm bet
 }
 
 
-int MainWindow::sitDown()      /// When player connects wallet
-{
-    CURL *curlSitDown;
-    CURLcode res;
-    string sitDownReadBuffer;
-    char error[CURL_ERROR_SIZE];
-
-    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"scinvoke\",\"params\":{\"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"SitDown\"}] }}";
-    string addThis = parts.toStdString();
-    const char *postthis = addThis.c_str();
-
-    QString playerAddress =  ui->walletRPCinput->text()+"/json_rpc";
-    string pStr = playerAddress.toStdString();
-    const char *gcCh = pStr.c_str ();
-
-    loginInfo();
-    const char *loginCh = rpc::rpcLogin.c_str ();
-
-    curlSitDown = curl_easy_init();
-
-    if(curlSitDown) {
-      struct curl_slist *headers = NULL;
-
-      /// Add request headers
-      headers = curl_slist_append(headers, "Accept: application/json");
-      headers = curl_slist_append(headers, "Content-Type: application/json");
-      headers = curl_slist_append(headers, "charset: utf-8");
-      /// cUrl options
-      curl_easy_setopt(curlSitDown, CURLOPT_HTTPHEADER, headers);
-      curl_easy_setopt(curlSitDown, CURLOPT_URL, gcCh);
-      curl_easy_setopt(curlSitDown, CURLOPT_VERBOSE, 1L);
-      curl_easy_setopt(curlSitDown, CURLOPT_ERRORBUFFER, error);
-      curl_easy_setopt(curlSitDown, CURLOPT_USERPWD, loginCh);
-      curl_easy_setopt(curlSitDown, CURLOPT_POSTFIELDS, postthis);
-      curl_easy_setopt(curlSitDown, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
-      curl_easy_setopt(curlSitDown, CURLOPT_WRITEFUNCTION, WriteCallback);
-      curl_easy_setopt(curlSitDown, CURLOPT_WRITEDATA, &sitDownReadBuffer);
-
-      res = curl_easy_perform(curlSitDown);
-      curl_easy_cleanup(curlSitDown);
-
-    }
-    return 0;
-}
-
-
-int MainWindow::leaveTable(void)      /// When player leaves
-{
-    CURL *curlLeave;
-    CURLcode res;
-    string leaveReadBuffer;
-    char error[CURL_ERROR_SIZE];
-
-    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"scinvoke\",\"params\":{\"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"Leave\"}] }}";
-    string addThis = parts.toStdString();
-    const char *postthis = addThis.c_str();
-
-    QString playerAddress = ui->walletRPCinput->text()+"/json_rpc";
-    string pStr = rpc::firstSigner.toStdString();
-    const char *gcCh = pStr.c_str ();
-
-    loginInfo();
-    const char *loginCh = rpc::rpcLogin.c_str ();
-
-    curlLeave = curl_easy_init();
-
-    if(curlLeave) {
-      struct curl_slist *headers = NULL;
-
-      /// Add request headers
-      headers = curl_slist_append(headers, "Accept: application/json");
-      headers = curl_slist_append(headers, "Content-Type: application/json");
-      headers = curl_slist_append(headers, "charset: utf-8");
-      /// cUrl options
-      curl_easy_setopt(curlLeave, CURLOPT_HTTPHEADER, headers);
-      curl_easy_setopt(curlLeave, CURLOPT_URL, gcCh);
-      curl_easy_setopt(curlLeave, CURLOPT_VERBOSE, 1L);
-      curl_easy_setopt(curlLeave, CURLOPT_ERRORBUFFER, error);
-      curl_easy_setopt(curlLeave, CURLOPT_USERPWD, loginCh);
-      curl_easy_setopt(curlLeave, CURLOPT_POSTFIELDS, postthis);
-      curl_easy_setopt(curlLeave, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
-      curl_easy_setopt(curlLeave, CURLOPT_WRITEFUNCTION, WriteCallback);
-      curl_easy_setopt(curlLeave, CURLOPT_WRITEDATA, &leaveReadBuffer);
-
-      res = curl_easy_perform(curlLeave);
-      curl_easy_cleanup(curlLeave);
-
-    }
-    return 0;
-
-}
-
-
 int MainWindow::checkWallet()  /// Echo blockchain to confirm wallet is connected
 {
     CURL *curlWalletCheck;      /// Set up cUrl
@@ -152,10 +59,6 @@ int MainWindow::checkWallet()  /// Echo blockchain to confirm wallet is connecte
     static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"1\",\"method\":\"Echo\", \"params\":[\"Hello\", \"World\", \"!\"]}";
     char error[CURL_ERROR_SIZE];
     QString walletAddress =  ui->walletRPCinput->text()+"/json_rpc";
-
-    if(rpc::connected == false){
-    rpc::firstSigner = walletAddress;
-    }
 
     string pStr = walletAddress.toStdString();
     const char *pCh = pStr.c_str ();
@@ -192,9 +95,6 @@ int MainWindow::checkWallet()  /// Echo blockchain to confirm wallet is connecte
       std::cout << readBuffer << std::endl;
 
       if(okCheck == "WALLET Hello World !"){
-          if(rpc::connected == false){
-              sitDown();
-          }
 
           ui->walletConnectedBox->setChecked(true);      /// Wallet connected
           ui->textBrowser->setText("Wallet Connected");
@@ -219,7 +119,6 @@ int MainWindow::checkWallet()  /// Echo blockchain to confirm wallet is connecte
           std::cout << "Wallet Not Connected" << std::endl;      /// Wallet NOT connected
 
           if(rpc::connected == true){
-              leaveTable();
               rpc::connected = false;
               ui->playerButton->setEnabled(false);
               ui->bankerButton->setEnabled(false);
@@ -248,7 +147,7 @@ int MainWindow::getChips()      /// Trade Dero for dReams token (Only dReams are
     char error[CURL_ERROR_SIZE];
 
     QString dAmount = QString::number(ui->getChipsAmount->value()*100000);
-    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"scinvoke\",\"params\":{\"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\", \"sc_dero_deposit\":"+dAmount+", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"IssueChips\"}] }}";
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"scinvoke\",\"params\":{\"scid\":\""+rpc::contractAddress+"\", \"sc_dero_deposit\":"+dAmount+", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"IssueChips\"}] }}";
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
@@ -309,7 +208,7 @@ int MainWindow::tradeChips()        /// Trade dReams for Dero
     char error[CURL_ERROR_SIZE];
 
     QString cAmount = QString::number(ui->tradeChipsAmount->value()*100000);
-    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\":[{\"scid\":\"dbfa9257e8cdaeacd35797402fd44e180c4c31c085989294c542c990706973d7\", \"burn\":"+cAmount+"}] ,\"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"ConvertChips\"}] }}";
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\":[{\"scid\":\""+rpc::tokenAddress+"\", \"burn\":"+cAmount+"}] ,\"scid\":\""+rpc::contractAddress+"\", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"ConvertChips\"}] }}";
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
@@ -370,7 +269,7 @@ int MainWindow::playerBet()     /// Bet on player
     char error[CURL_ERROR_SIZE];
 
     QString cAmount = QString::number(ui->playerBetAmount->value()*100000);
-    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\"dbfa9257e8cdaeacd35797402fd44e180c4c31c085989294c542c990706973d7\", \"burn\":"+cAmount+"}],\"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"player\" }]}}";
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\""+rpc::tokenAddress+"\", \"burn\":"+cAmount+"}],\"scid\":\""+rpc::contractAddress+"\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"player\" }]}}";
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
@@ -433,7 +332,7 @@ int MainWindow::bankerBet()     /// Bet on banker
     char error[CURL_ERROR_SIZE];
 
     QString cAmount = QString::number(ui->bankerBetAmount->value()*100000);
-    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\"dbfa9257e8cdaeacd35797402fd44e180c4c31c085989294c542c990706973d7\", \"burn\":"+cAmount+"}],\"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"banker\" }]}}";
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\""+rpc::tokenAddress+"\", \"burn\":"+cAmount+"}],\"scid\":\""+rpc::contractAddress+"\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"banker\" }]}}";
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
@@ -496,7 +395,7 @@ int MainWindow::tieBet()            /// Bet on tie
     char error[CURL_ERROR_SIZE];
 
     QString cAmount = QString::number(ui->tieBetAmount->value()*100000);
-    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\"dbfa9257e8cdaeacd35797402fd44e180c4c31c085989294c542c990706973d7\", \"burn\":"+cAmount+"}],\"scid\":\"eb0bfd7205a8753282ebf62a103451cdb30f161db301db742b50dc1b9f2a5c88\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"tie\" }]}}";
+    QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"transfer\",\"params\":{\"transfers\": [{\"scid\":\""+rpc::tokenAddress+"\", \"burn\":"+cAmount+"}],\"scid\":\""+rpc::contractAddress+"\",\"ringsize\":2, \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"PlayBaccarat\"},{\"name\":\"betOn\",\"datatype\":\"S\",\"value\":\"tie\" }]}}";
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
