@@ -8,9 +8,12 @@
 using std::string;
 int Dialog::whichBet;
 bool Dialog::betConfirmed;
+QString rpc::walletAddress;
 QString rpc::daemonAddress;
 QString rpc::foundHandTXID;
 bool rpc::foundHand;
+double rpc::deroBalance;
+double rpc::dReamBalance;
 double rpc::totalHands;
 double rpc::foundPlayerTotal;
 double rpc::foundBankerTotal;
@@ -32,7 +35,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     startUp = true;
-    rpc::connected = false;
+    rpc::walletConnected = false;
+    rpc::daemonConnected = false;
     rpc::contractAddress = "8289c6109f41cbe1f6d5f27a419db537bf3bf30a25eff285241a36e1ae3e48a4";
     rpc::tokenAddress = "ad2e7b37c380cc1aed3a6b27224ddfc92a2d15962ca1f4d35e530dba0f9575a9";
     ui->playerXCardLabel->setPixmap(QPixmap(":/CardBack"));
@@ -45,6 +49,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->daemonConnectedBox->setFocusPolicy(Qt::NoFocus);
     ui->walletConnectedBox->setAttribute(Qt::WA_TransparentForMouseEvents);
     ui->walletConnectedBox->setFocusPolicy(Qt::NoFocus);
+    ui->deroBalanceDoubleSpinBox->setEnabled(false);
+    ui->dReamBalanceDoubleSpinBox->setEnabled(false);
     ui->playerButton->setEnabled(false);
     ui->bankerButton->setEnabled(false);
     ui->tieButton->setEnabled(false);
@@ -58,6 +64,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->minMaxLabel->setEnabled(false);
     setFonts();
     blankCards();
+
+    connect(ui->daemonRPCinput, SIGNAL(textChanged(QString)),
+          this, SLOT(daemonToggle()));
+
+    connect(ui->walletRPCinput, SIGNAL(textChanged(QString)),
+          this, SLOT(walletToggle()));
 }
 
 
@@ -126,6 +138,47 @@ void MainWindow::setFonts()
 
 }
 
+void MainWindow::buttonControl(bool b)
+{
+    ui->deroBalanceDoubleSpinBox->setEnabled(b);
+    ui->dReamBalanceDoubleSpinBox->setEnabled(b);
+    ui->playerButton->setEnabled(b);
+    ui->bankerButton->setEnabled(b);
+    ui->tieButton->setEnabled(b);
+    ui->getChipButton->setEnabled(b);
+    ui->tradeChipButton->setEnabled(b);
+    ui->playerBetAmount->setEnabled(b);
+    ui->bankerBetAmount->setEnabled(b);
+    ui->tieBetAmount->setEnabled(b);
+    ui->getChipsAmount->setEnabled(b);
+    ui->tradeChipsAmount->setEnabled(b);
+    ui->minMaxLabel->setEnabled(b);
+}
+
+
+void MainWindow::daemonToggle()     /// On daemon info change
+{
+    rpc::daemonAddress =  ui->daemonRPCinput->text();
+    rpc::daemonConnected = false;
+    ui->daemonConnectedBox->setChecked(false);
+    ui->textBrowser->setText("Daemon Not Connected");
+}
+
+
+void MainWindow::walletToggle()     /// On wallet info change
+{
+    rpc::walletAddress = ui->walletRPCinput->text();
+    rpc::rpcLogin = "null:null";
+    ui->deroBalanceDoubleSpinBox->setValue(0);
+    ui->dReamBalanceDoubleSpinBox->setValue(0);
+    rpc::deroBalance = 0;
+    rpc::dReamBalance = 0;
+    rpc::walletConnected = false;
+    buttonControl(false);
+    ui->walletConnectedBox->setChecked(false);
+    ui->textBrowser->setText("Wallet Not Connected");
+}
+
 
 void MainWindow::offset()       /// Offset timer
 {
@@ -145,6 +198,8 @@ void MainWindow::refresh()      /// Updates Ui display
     ui->tWinsSpinBox->setValue(rpc::totalTies);
     ui->searchDoubleSpinBox->setMinimum(rpc::totalHands-20);
     ui->searchDoubleSpinBox->setMaximum(rpc::totalHands);
+    ui->deroBalanceDoubleSpinBox->setValue(rpc::deroBalance/100000);
+    ui->dReamBalanceDoubleSpinBox->setValue(rpc::dReamBalance/100000);
 
     if(rpc::foundHand == true  && startUp == false){
        ui->textBrowser->setText("Displaying hand TXID: "+rpc::foundHandTXID);
@@ -190,7 +245,6 @@ void MainWindow::on_helpButton_clicked()
 void MainWindow::on_daemonRPCbutton_clicked(bool checked)
 {
     checkDaemon();
-    rpc::daemonAddress =  ui->daemonRPCinput->text()+"/json_rpc";
 }
 
 

@@ -25,13 +25,17 @@ class rpc
 
 public:
     static std::string rpcLogin;
+    static QString walletAddress;
     static QString contractAddress;
     static QString tokenAddress;
     static QString daemonAddress;
     static QString txidCheck;
     static QString foundHandTXID;
-    static bool connected;
+    static bool walletConnected;
+    static bool daemonConnected;
     static bool foundHand;
+    static double deroBalance;
+    static double dReamBalance;
     static double totalHands;
     static double foundPlayerTotal;
     static double foundBankerTotal;
@@ -47,6 +51,8 @@ public:
     static int foundBankerZ;
     static int blockHeight;
 
+    int getDeroBalance();
+    int getdReamBalance();
     int getHeight();
     int fetchScData();
 };
@@ -63,8 +69,15 @@ private slots:
     void onTimeout()
     {
         rpc rpcData;
-        rpcData.getHeight();
-        rpcData.fetchScData();
+        if(rpc::walletConnected == true){
+        rpcData.getDeroBalance();
+        rpcData.getdReamBalance();
+        }
+        if(rpc::daemonConnected == true){
+            rpcData.getHeight();
+            rpcData.fetchScData();
+        }
+
     }
 
 };

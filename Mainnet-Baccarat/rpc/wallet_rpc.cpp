@@ -16,7 +16,8 @@ QString rpc::contractAddress;
 QString rpc::tokenAddress;
 QString rpc::txidCheck;
 int rpc::thisHand;
-bool rpc::connected;
+bool rpc::daemonConnected;
+bool rpc::walletConnected;
 
 
 void MainWindow::loginInfo()   /// Used to store wallet login info for all wallet functions
@@ -58,13 +59,13 @@ int MainWindow::checkWallet()  /// Echo blockchain to confirm wallet is connecte
 
     static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\":\"1\",\"method\":\"Echo\", \"params\":[\"Hello\", \"World\", \"!\"]}";
     char error[CURL_ERROR_SIZE];
-    QString walletAddress =  ui->walletRPCinput->text()+"/json_rpc";
+    rpc::walletAddress = ui->walletRPCinput->text()+"/json_rpc";
 
-    string pStr = walletAddress.toStdString();
+    string pStr = rpc::walletAddress.toStdString();
     const char *pCh = pStr.c_str ();
 
     loginInfo();            /// Get login info
-    const char *loginCh = rpc::rpcLogin.c_str ();
+    const char *loginCh = rpc::rpcLogin.c_str();
 
     curlWalletCheck = curl_easy_init();
 
@@ -79,6 +80,7 @@ int MainWindow::checkWallet()  /// Echo blockchain to confirm wallet is connecte
       curl_easy_setopt(curlWalletCheck, CURLOPT_URL, pCh);
       curl_easy_setopt(curlWalletCheck, CURLOPT_VERBOSE, 1L);
       curl_easy_setopt(curlWalletCheck, CURLOPT_ERRORBUFFER, error);
+      curl_easy_setopt(curlWalletCheck, CURLOPT_CONNECTTIMEOUT, 9L);
       curl_easy_setopt(curlWalletCheck, CURLOPT_USERPWD, loginCh);
       curl_easy_setopt(curlWalletCheck, CURLOPT_POSTFIELDS, postthis);
       curl_easy_setopt(curlWalletCheck, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
@@ -99,39 +101,21 @@ int MainWindow::checkWallet()  /// Echo blockchain to confirm wallet is connecte
           ui->walletConnectedBox->setChecked(true);      /// Wallet connected
           ui->textBrowser->setText("Wallet Connected");
           std::cout << "Wallet Connected" << std::endl;
-          rpc::connected = true;
-          ui->playerButton->setEnabled(true);
-          ui->bankerButton->setEnabled(true);
-          ui->tieButton->setEnabled(true);
-          ui->getChipButton->setEnabled(true);
-          ui->tradeChipButton->setEnabled(true);
-          ui->playerBetAmount->setEnabled(true);
-          ui->bankerBetAmount->setEnabled(true);
-          ui->tieBetAmount->setEnabled(true);
-          ui->getChipsAmount->setEnabled(true);
-          ui->tradeChipsAmount->setEnabled(true);
-          ui->minMaxLabel->setEnabled(true);
+          rpc::walletConnected = true;
+          buttonControl(true);
 
       }else {
 
           ui->walletConnectedBox->setChecked(false);
           ui->textBrowser->setText("Wallet Not Connected");
           std::cout << "Wallet Not Connected" << std::endl;      /// Wallet NOT connected
+          rpc::walletAddress = "null";
 
-          if(rpc::connected == true){
-              rpc::connected = false;
-              ui->playerButton->setEnabled(false);
-              ui->bankerButton->setEnabled(false);
-              ui->tieButton->setEnabled(false);
-              ui->getChipButton->setEnabled(false);
-              ui->tradeChipButton->setEnabled(false);
-              ui->playerBetAmount->setEnabled(false);
-              ui->bankerBetAmount->setEnabled(false);
-              ui->tieBetAmount->setEnabled(false);
-              ui->getChipsAmount->setEnabled(false);
-              ui->tradeChipsAmount->setEnabled(false);
-              ui->minMaxLabel->setEnabled(false);
+          if(rpc::walletConnected == true){
+              rpc::walletConnected = false;
+              buttonControl(false);
           }
+
        }
 
     }
@@ -151,12 +135,10 @@ int MainWindow::getChips()      /// Trade Dero for dReams token (Only dReams are
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
-    QString playerAddress =  ui->walletRPCinput->text()+"/json_rpc";
-    string pStr = playerAddress.toStdString();
+    string pStr = rpc::walletAddress.toStdString();
     const char *gcCh = pStr.c_str ();
 
-    loginInfo();
-    const char *loginCh = rpc::rpcLogin.c_str ();
+    const char *loginCh = rpc::rpcLogin.c_str();
 
     curlGetChips = curl_easy_init();
 
@@ -172,6 +154,7 @@ int MainWindow::getChips()      /// Trade Dero for dReams token (Only dReams are
       curl_easy_setopt(curlGetChips, CURLOPT_URL, gcCh);
       curl_easy_setopt(curlGetChips, CURLOPT_VERBOSE, 1L);
       curl_easy_setopt(curlGetChips, CURLOPT_ERRORBUFFER, error);
+      curl_easy_setopt(curlGetChips, CURLOPT_CONNECTTIMEOUT, 9L);
       curl_easy_setopt(curlGetChips, CURLOPT_USERPWD, loginCh);
       curl_easy_setopt(curlGetChips, CURLOPT_POSTFIELDS, postthis);
       curl_easy_setopt(curlGetChips, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
@@ -193,7 +176,7 @@ int MainWindow::getChips()      /// Trade Dero for dReams token (Only dReams are
 
       }else {
           ui->textBrowser->setText("Error No Get dReams TXID");      /// No TXID was recieved
-       }
+      }
 
     }
     return 0;
@@ -212,11 +195,9 @@ int MainWindow::tradeChips()        /// Trade dReams for Dero
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
-    QString playerAddress =  ui->walletRPCinput->text()+"/json_rpc";
-    string pStr = playerAddress.toStdString();
+    string pStr = rpc::walletAddress.toStdString();
     const char *tcCh = pStr.c_str ();
 
-    loginInfo();
     const char *loginCh = rpc::rpcLogin.c_str ();
 
     curlTradeChips = curl_easy_init();
@@ -233,6 +214,7 @@ int MainWindow::tradeChips()        /// Trade dReams for Dero
       curl_easy_setopt(curlTradeChips, CURLOPT_URL, tcCh);
       curl_easy_setopt(curlTradeChips, CURLOPT_VERBOSE, 1L);
       curl_easy_setopt(curlTradeChips, CURLOPT_ERRORBUFFER, error);
+      curl_easy_setopt(curlTradeChips, CURLOPT_CONNECTTIMEOUT, 9L);
       curl_easy_setopt(curlTradeChips, CURLOPT_USERPWD, loginCh);
       curl_easy_setopt(curlTradeChips, CURLOPT_POSTFIELDS, postthis);
       curl_easy_setopt(curlTradeChips, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
@@ -254,7 +236,7 @@ int MainWindow::tradeChips()        /// Trade dReams for Dero
 
       }else {
           ui->textBrowser->setText("Error No Trade dReams TXID");
-       }
+      }
 
     }
     return 0;
@@ -273,11 +255,9 @@ int MainWindow::playerBet()     /// Bet on player
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
-    QString playerAddress =  ui->walletRPCinput->text()+"/json_rpc";
-    string pStr = playerAddress.toStdString();
+    string pStr = rpc::walletAddress.toStdString();
     const char *pCh = pStr.c_str ();
 
-    loginInfo();
     const char *loginCh = rpc::rpcLogin.c_str ();
 
     curlPlayer = curl_easy_init();
@@ -294,6 +274,7 @@ int MainWindow::playerBet()     /// Bet on player
       curl_easy_setopt(curlPlayer, CURLOPT_URL, pCh);
       curl_easy_setopt(curlPlayer, CURLOPT_VERBOSE, 1L);
       curl_easy_setopt(curlPlayer, CURLOPT_ERRORBUFFER, error);
+      curl_easy_setopt(curlPlayer, CURLOPT_CONNECTTIMEOUT, 9L);
       curl_easy_setopt(curlPlayer, CURLOPT_USERPWD, loginCh);
       curl_easy_setopt(curlPlayer, CURLOPT_POSTFIELDS, postthis);
       curl_easy_setopt(curlPlayer, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
@@ -318,7 +299,8 @@ int MainWindow::playerBet()     /// Bet on player
 
         }else {
             ui->textBrowser->setText("Error No Hand TXID");
-         }
+        }
+
     }
     return 0;
 }
@@ -336,11 +318,9 @@ int MainWindow::bankerBet()     /// Bet on banker
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
-    QString playerAddress =  ui->walletRPCinput->text()+"/json_rpc";
-    string pStr = playerAddress.toStdString();
+    string pStr = rpc::walletAddress.toStdString();
     const char *pCh = pStr.c_str ();
 
-    loginInfo();
     const char *loginCh = rpc::rpcLogin.c_str ();
 
     curlBanker = curl_easy_init();
@@ -357,6 +337,7 @@ int MainWindow::bankerBet()     /// Bet on banker
       curl_easy_setopt(curlBanker, CURLOPT_URL, pCh);
       curl_easy_setopt(curlBanker, CURLOPT_VERBOSE, 1L);
       curl_easy_setopt(curlBanker, CURLOPT_ERRORBUFFER, error);
+      curl_easy_setopt(curlBanker, CURLOPT_CONNECTTIMEOUT, 9L);
       curl_easy_setopt(curlBanker, CURLOPT_USERPWD, loginCh);
       curl_easy_setopt(curlBanker, CURLOPT_POSTFIELDS, postthis);
       curl_easy_setopt(curlBanker, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
@@ -381,7 +362,8 @@ int MainWindow::bankerBet()     /// Bet on banker
 
       }else {
           ui->textBrowser->setText("Error No Hand TXID");
-       }
+      }
+
     }
     return 0;
 }
@@ -399,11 +381,9 @@ int MainWindow::tieBet()            /// Bet on tie
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
-    QString playerAddress =  ui->walletRPCinput->text()+"/json_rpc";
-    string pStr = playerAddress.toStdString();
+    string pStr = rpc::walletAddress.toStdString();
     const char *tCh = pStr.c_str ();
 
-    loginInfo();
     const char *loginCh = rpc::rpcLogin.c_str ();
 
     curlTie = curl_easy_init();
@@ -420,6 +400,7 @@ int MainWindow::tieBet()            /// Bet on tie
       curl_easy_setopt(curlTie, CURLOPT_URL, tCh);
       curl_easy_setopt(curlTie, CURLOPT_VERBOSE, 1L);
       curl_easy_setopt(curlTie, CURLOPT_ERRORBUFFER, error);
+      curl_easy_setopt(curlTie, CURLOPT_CONNECTTIMEOUT, 9L);
       curl_easy_setopt(curlTie, CURLOPT_USERPWD, loginCh);
       curl_easy_setopt(curlTie, CURLOPT_POSTFIELDS, postthis);
       curl_easy_setopt(curlTie, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
@@ -444,7 +425,8 @@ int MainWindow::tieBet()            /// Bet on tie
 
         }else {
             ui->textBrowser->setText("Error No Hand TXID");
-         }
+        }
+
     }
     return 0;
 }

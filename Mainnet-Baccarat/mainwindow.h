@@ -44,6 +44,12 @@ public:
 
 private slots:
 
+    void buttonControl(bool);
+
+    void daemonToggle();
+
+    void walletToggle();
+
     void refresh();
 
     void on_playerButton_clicked();

@@ -6,6 +6,103 @@
 using std::string;
 
 
+int rpc::getDeroBalance()  /// Gets players dero balance
+{
+    CURL *curlBalanceCheck;
+    CURLcode res;
+    string balanceReadBuffer;
+    char error[CURL_ERROR_SIZE];
+
+    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\": \"1\",\"method\": \"GetBalance\"}";
+
+    string pStr = rpc::walletAddress.toStdString();
+    const char *pCh = pStr.c_str();
+
+    const char *loginCh = rpc::rpcLogin.c_str();
+
+    curlBalanceCheck = curl_easy_init();
+
+    if(curlBalanceCheck) {
+      struct curl_slist *headers = NULL;
+      /// Add request headers
+      headers = curl_slist_append(headers, "Accept: application/json");
+      headers = curl_slist_append(headers, "Content-Type: application/json");
+      headers = curl_slist_append(headers, "charset: utf-8");
+      /// cUrl options
+      curl_easy_setopt(curlBalanceCheck, CURLOPT_HTTPHEADER, headers);
+      curl_easy_setopt(curlBalanceCheck, CURLOPT_URL, pCh);
+      curl_easy_setopt(curlBalanceCheck, CURLOPT_VERBOSE, 1L);
+      curl_easy_setopt(curlBalanceCheck, CURLOPT_ERRORBUFFER, error);
+      curl_easy_setopt(curlBalanceCheck, CURLOPT_USERPWD, loginCh);
+      curl_easy_setopt(curlBalanceCheck, CURLOPT_POSTFIELDS, postthis);
+      curl_easy_setopt(curlBalanceCheck, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
+      curl_easy_setopt(curlBalanceCheck, CURLOPT_WRITEFUNCTION, WriteCallback);
+      curl_easy_setopt(curlBalanceCheck, CURLOPT_WRITEDATA, &balanceReadBuffer);
+      res = curl_easy_perform(curlBalanceCheck);
+      curl_easy_cleanup(curlBalanceCheck);
+
+      QByteArray br = balanceReadBuffer.c_str();
+      QJsonDocument cbDoc = QJsonDocument::fromJson(br);
+      QJsonObject cbObj = cbDoc.object();
+      QJsonObject cbResults = cbObj["result"].toObject();
+      QJsonValue Balance_jv = cbResults.value("balance");
+
+      rpc::deroBalance = Balance_jv.toDouble();
+
+    }
+    return 0;
+}
+
+
+int rpc::getdReamBalance()  /// Gets players dReam balance
+{
+    CURL *curldReamBalanceCheck;
+    CURLcode res;
+    string balanceReadBuffer;
+    char error[CURL_ERROR_SIZE];
+
+    static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\": \"1\",\"method\": \"GetBalance\", \"params\": {\"scid\": \"ad2e7b37c380cc1aed3a6b27224ddfc92a2d15962ca1f4d35e530dba0f9575a9\"}}";
+
+    string pStr = rpc::walletAddress.toStdString();
+    const char *pCh = pStr.c_str();
+
+    const char *loginCh = rpc::rpcLogin.c_str();
+
+    curldReamBalanceCheck = curl_easy_init();
+
+    if(curldReamBalanceCheck) {
+      struct curl_slist *headers = NULL;
+      /// Add request headers
+      headers = curl_slist_append(headers, "Accept: application/json");
+      headers = curl_slist_append(headers, "Content-Type: application/json");
+      headers = curl_slist_append(headers, "charset: utf-8");
+      /// cUrl options
+      curl_easy_setopt(curldReamBalanceCheck, CURLOPT_HTTPHEADER, headers);
+      curl_easy_setopt(curldReamBalanceCheck, CURLOPT_URL, pCh);
+      curl_easy_setopt(curldReamBalanceCheck, CURLOPT_VERBOSE, 1L);
+      curl_easy_setopt(curldReamBalanceCheck, CURLOPT_ERRORBUFFER, error);
+      curl_easy_setopt(curldReamBalanceCheck, CURLOPT_CONNECTTIMEOUT, 9L);
+      curl_easy_setopt(curldReamBalanceCheck, CURLOPT_USERPWD, loginCh);
+      curl_easy_setopt(curldReamBalanceCheck, CURLOPT_POSTFIELDS, postthis);
+      curl_easy_setopt(curldReamBalanceCheck, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
+      curl_easy_setopt(curldReamBalanceCheck, CURLOPT_WRITEFUNCTION, WriteCallback);
+      curl_easy_setopt(curldReamBalanceCheck, CURLOPT_WRITEDATA, &balanceReadBuffer);
+      res = curl_easy_perform(curldReamBalanceCheck);
+      curl_easy_cleanup(curldReamBalanceCheck);
+
+      QByteArray dbr = balanceReadBuffer.c_str();
+      QJsonDocument cbdDoc = QJsonDocument::fromJson(dbr);
+      QJsonObject cbdObj = cbdDoc.object();
+      QJsonObject cbdResults = cbdObj["result"].toObject();
+      QJsonValue dBalance_jv = cbdResults.value("balance");
+
+      rpc::dReamBalance = dBalance_jv.toDouble();
+
+    }
+    return 0;
+}
+
+
 int rpc::getHeight()  /// Gets current block height
 {
     CURL *curlHeightCheck;
@@ -16,7 +113,7 @@ int rpc::getHeight()  /// Gets current block height
     static const char *postthis = "{\"jsonrpc\":\"2.0\",\"id\": \"1\",\"method\": \"DERO.GetHeight\"}";
 
     string dStr = rpc::daemonAddress.toStdString();
-    const char *fhCh = dStr.c_str ();
+    const char *fhCh = dStr.c_str();
 
     curlHeightCheck = curl_easy_init();
 
@@ -31,6 +128,7 @@ int rpc::getHeight()  /// Gets current block height
       curl_easy_setopt(curlHeightCheck, CURLOPT_URL, fhCh);
       curl_easy_setopt(curlHeightCheck, CURLOPT_VERBOSE, 1L);
       curl_easy_setopt(curlHeightCheck, CURLOPT_ERRORBUFFER, error);
+      curl_easy_setopt(curlHeightCheck, CURLOPT_CONNECTTIMEOUT, 9L);
       /// curl_easy_setopt(curlHeightCheck, CURLOPT_SSL_VERIFYPEER, 0);   *Remove comment for windows SSL disable*
       curl_easy_setopt(curlHeightCheck, CURLOPT_POSTFIELDS, postthis);
       curl_easy_setopt(curlHeightCheck, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
@@ -64,7 +162,7 @@ int rpc::fetchScData()       /// Get SC variables
     const char *postthis = addThis.c_str();
 
     string dStr = rpc::daemonAddress.toStdString();
-    const char *dCh = dStr.c_str ();
+    const char *dCh = dStr.c_str();
 
     curlFetch = curl_easy_init();
 
@@ -80,6 +178,7 @@ int rpc::fetchScData()       /// Get SC variables
       curl_easy_setopt(curlFetch, CURLOPT_URL, dCh);
       curl_easy_setopt(curlFetch, CURLOPT_VERBOSE, 1L);
       curl_easy_setopt(curlFetch, CURLOPT_ERRORBUFFER, error);
+      curl_easy_setopt(curlFetch, CURLOPT_CONNECTTIMEOUT, 9L);
       /// curl_easy_setopt(curlFetch, CURLOPT_SSL_VERIFYPEER, 0);   *Remove comment for widnows SSL disable*
       curl_easy_setopt(curlFetch, CURLOPT_POSTFIELDS, postthis);
       curl_easy_setopt(curlFetch, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
@@ -158,9 +257,9 @@ int MainWindow::checkDaemon()       /// Check connection to daemon
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
-    QString daemonAddress =  ui->daemonRPCinput->text()+"/json_rpc";
-    string dStr = daemonAddress.toStdString();
-    const char *dCh = dStr.c_str ();
+    rpc::daemonAddress =  ui->daemonRPCinput->text()+"/json_rpc";
+    string dStr = rpc::daemonAddress.toStdString();
+    const char *dCh = dStr.c_str();
 
     curlDaemonCheck = curl_easy_init();
 
@@ -176,6 +275,7 @@ int MainWindow::checkDaemon()       /// Check connection to daemon
       curl_easy_setopt(curlDaemonCheck, CURLOPT_URL, dCh);
       curl_easy_setopt(curlDaemonCheck, CURLOPT_VERBOSE, 1L);
       curl_easy_setopt(curlDaemonCheck, CURLOPT_ERRORBUFFER, error);
+      curl_easy_setopt(curlDaemonCheck, CURLOPT_CONNECTTIMEOUT, 9L);
       /// curl_easy_setopt(curlDaemonCheck, CURLOPT_SSL_VERIFYPEER, 0);   *Remove comment for widnows SSL disable*
       curl_easy_setopt(curlDaemonCheck, CURLOPT_POSTFIELDS, postthis);
       curl_easy_setopt(curlDaemonCheck, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
@@ -194,6 +294,7 @@ int MainWindow::checkDaemon()       /// Check connection to daemon
       std::cout << readBuffer << std::endl;
 
       if(okCheck == "OK"){
+          rpc::daemonConnected = true;
           ui->daemonConnectedBox->setChecked(true);
           ui->textBrowser->setText("Daemon Connected");
           std::cout << "Daemon Connected" << std::endl;     /// Connected message
@@ -220,9 +321,8 @@ int MainWindow::searchHandData()   /// Search hands stored on SC
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
 
-    QString daemonAddress =  ui->daemonRPCinput->text()+"/json_rpc";
-    string dStr = daemonAddress.toStdString();
-    const char *dCh = dStr.c_str ();
+    string dStr = rpc::daemonAddress.toStdString();
+    const char *dCh = dStr.c_str();
 
     curlSearchHandData = curl_easy_init();
 
@@ -238,6 +338,7 @@ int MainWindow::searchHandData()   /// Search hands stored on SC
       curl_easy_setopt(curlSearchHandData, CURLOPT_URL, dCh);
       curl_easy_setopt(curlSearchHandData, CURLOPT_VERBOSE, 1L);
       curl_easy_setopt(curlSearchHandData, CURLOPT_ERRORBUFFER, error);
+      curl_easy_setopt(curlSearchHandData, CURLOPT_CONNECTTIMEOUT, 9L);
       curl_easy_setopt(curlSearchHandData, CURLOPT_POSTFIELDS, postthis);
       /// curl_easy_setopt(curlSearchHandData, CURLOPT_SSL_VERIFYPEER, 0);   *Remove comment for widnows SSL disable*
       curl_easy_setopt(curlSearchHandData, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
