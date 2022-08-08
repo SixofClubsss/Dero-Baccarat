@@ -152,3 +152,10 @@ Alternatively you can also build on any system using Qt Creator.
 ---
 
 ![baccMenu-v1 1 2](https://user-images.githubusercontent.com/84689659/177011509-c7636172-fbb6-4388-acd1-aa3ba4055ca5.png)
+
+---
+### Licensing
+
+dReam Tables Dero Baccarat is a free open source game.     
+The source code is published under the [GNU GPL V3 License.](https://github.com/SixofClubsss/Dero-Baccarat/blob/main/LICENSE)       
+Refer to the [copywrite.md](https://github.com/SixofClubsss/Dero-Baccarat/blob/main/Licenses/copyright.md) file for artwork licensing.
