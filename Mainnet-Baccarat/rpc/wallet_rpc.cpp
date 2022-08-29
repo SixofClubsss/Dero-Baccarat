@@ -25,7 +25,7 @@ https://dreamtables.net
 #include "dialog.h"
 #include "rpc.h"
 
-using std::string;
+///using std::string;
 string rpc::rpcLogin;
 QString readout::deroAmount;
 QString readout::chipAmount;

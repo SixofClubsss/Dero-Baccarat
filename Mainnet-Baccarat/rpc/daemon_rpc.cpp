@@ -410,7 +410,7 @@ int MainWindow::searchHandData()   /// Search hands stored on SC
             if(bankerTotal.toInt() == playerTotal.toInt()){
                 ui->textBrowser->append("\nTie");
                 ui->playerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: rgba(56, 47, 165, 210); background-color: rgba(28, 31, 43, 0); };");
-                ui->bankerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: rgba(56, 47, 165, 210); background-color: rgba28, 31, 43, 0); };");
+                ui->bankerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: rgba(56, 47, 165, 210); background-color: rgba(28, 31, 43, 0); };");
             }
         }
 

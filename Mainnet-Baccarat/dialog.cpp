@@ -32,7 +32,7 @@ Dialog::Dialog(QWidget *parent) :
     ui(new Ui::Dialog)
 {
     ui->setupUi(this);
-    setFonts();
+    setFonts(QSysInfo::productType());
 
     if(Dialog::whichBet == 1){
          playerConfirmText();
@@ -56,21 +56,31 @@ Dialog::~Dialog()
     delete ui;
 }
 
-void Dialog::setFonts()
-{
+void Dialog::setFonts(QString os)
+{  
+    int mcR;
+    int ubR;
+
+    if(os == "macos" || os == "osx"){
+        mcR = 18;
+        ubR = 12;
+    }else {
+        mcR = 14;
+        ubR = 10;
+    }
+
     int fontId = QFontDatabase::addApplicationFont(":/fonts/Macondo-Regular.ttf");
     QString fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
-    QFont macondoRegular12(fontFamily);
-    macondoRegular12.setPointSize(11);
-    macondoRegular12.setBold(true);
-    ui->dReamsLabel->setFont(macondoRegular12);
-    ui->confirmTextBrowser->setFont(macondoRegular12);
-    ui->confirmTextBrowser->setFontPointSize(14);
+    QFont macondoRegular(fontFamily);
+    macondoRegular.setPointSize(mcR);
+    macondoRegular.setBold(true);
+    ui->dReamsLabel->setFont(macondoRegular);
+    ui->confirmTextBrowser->setFont(macondoRegular);
 
     int fontId2 = QFontDatabase::addApplicationFont(":/fonts/Ubuntu-R.ttf");
     QString fontFamily2 = QFontDatabase::applicationFontFamilies(fontId2).at(0);
     QFont ubuntuRegular(fontFamily2);
-    ubuntuRegular.setPointSize(10);
+    ubuntuRegular.setPointSize(ubR);
     ui->buttonBox->setFont(ubuntuRegular);
 }
 

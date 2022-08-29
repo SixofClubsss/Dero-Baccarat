@@ -37,7 +37,7 @@ class Dialog : public QDialog
 public:
     explicit Dialog(QWidget *parent = nullptr);
     ~Dialog();
-    void setFonts();
+    void setFonts(QString);
     void playerConfirmText();
     void bankerConfirmText();
     void tieConfirmText();

@@ -38,7 +38,7 @@ QLineEdit {
 }
 
 QSpinBox{
-    background-color: rgb(85, 88, 93, 180);
+    background-color: rgba(85, 88, 93, 180);
     border-style: inset;
     border-width: 1px;
     border-radius: 6px;

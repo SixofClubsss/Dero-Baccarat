@@ -104,7 +104,7 @@ void MainWindow::setFonts(QString os)
     int mcR3;
     int ubR;
 
-    if(os == "macos"){
+    if(os == "macos" || os == "osx"){
         mcR1 = 21;
         mcR2 = 15;
         mcR3 = 17;
@@ -334,8 +334,8 @@ void MainWindow::on_tradeChipButton_clicked()
 void MainWindow::on_playerButton_clicked()
 {
     startUp = true;
-    ui->playerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: white; background-color: rgb(28, 31, 43, 0); };");
-    ui->bankerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: white; background-color: rgb(28, 31, 43, 0); };");
+    ui->playerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: white; background-color: rgba(28, 31, 43, 0); };");
+    ui->bankerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: white; background-color: rgba(28, 31, 43, 0); };");
     readoutConfirm();
     blankCards();
     ui->textBrowser->setText("Confirm your Bet");
@@ -363,8 +363,8 @@ void MainWindow::on_playerButton_clicked()
 void MainWindow::on_bankerButton_clicked()
 {
     startUp = true;
-    ui->playerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: white; background-color: rgb(28, 31, 43, 0); };");
-    ui->bankerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: white; background-color: rgb(28, 31, 43, 0); };");
+    ui->playerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: white; background-color: rgba(28, 31, 43, 0); };");
+    ui->bankerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: white; background-color: rgba(28, 31, 43, 0); };");
     readoutConfirm();
     blankCards();
     ui->textBrowser->setText("Confirm your Bet");
@@ -392,8 +392,8 @@ void MainWindow::on_bankerButton_clicked()
 void MainWindow::on_tieButton_clicked()
 {
     startUp = true;
-    ui->playerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: white; background-color: rgb(28, 31, 43, 0); };");
-    ui->bankerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: white; background-color: rgb(28, 31, 43, 0); };");
+    ui->playerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: white; background-color: rgba(28, 31, 43, 0); };");
+    ui->bankerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: white; background-color: rgba(28, 31, 43, 0); };");
     readoutConfirm();
     blankCards();
     ui->textBrowser->setText("Confirm your Bet");
@@ -421,7 +421,7 @@ void MainWindow::on_tieButton_clicked()
 void MainWindow::on_searchButton_clicked()
 {
     startUp = true;
-    ui->playerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: white; background-color: rgb(28, 31, 43, 0); };");
-    ui->bankerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: white; background-color: rgb(28, 31, 43, 0); };");
+    ui->playerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: white; background-color: rgba(28, 31, 43, 0); };");
+    ui->bankerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: white; background-color: rgba(28, 31, 43, 0); };");
     searchHandData();
 }

@@ -48,7 +48,7 @@ void Help::setFonts(QString os)
     int mcR;
     int ubR;
 
-    if(os == "macos"){
+    if(os == "macos" || os == "osx"){
         mcR = 18;
         ubR = 12;
     }else {
