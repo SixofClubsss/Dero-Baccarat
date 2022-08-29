@@ -27,7 +27,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="img.qrc">
-    <normaloff>:/Icon</normaloff>:/Icon</iconset>
+    <normaloff>:/images/dReamTablesIcon.png</normaloff>:/images/dReamTablesIcon.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog{

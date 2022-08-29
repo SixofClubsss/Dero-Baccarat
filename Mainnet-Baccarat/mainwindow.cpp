@@ -27,7 +27,6 @@ https://dreamtables.net
 #include "dialog.h"
 
 
-using std::string;
 int Dialog::whichBet;
 bool Dialog::betConfirmed;
 QString rpc::walletAddress;
@@ -105,9 +104,9 @@ void MainWindow::setFonts(QString os)
     int ubR;
 
     if(os == "macos" || os == "osx"){
-        mcR1 = 21;
+        mcR1 = 22;
         mcR2 = 15;
-        mcR3 = 17;
+        mcR3 = 18;
         ubR = 13;
 
     }else {

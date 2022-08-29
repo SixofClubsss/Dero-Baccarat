@@ -24,6 +24,7 @@ https://dreamtables.net
 #include "ui_help.h"
 #include "mainwindow.h"
 
+
 Help::Help(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Help)
