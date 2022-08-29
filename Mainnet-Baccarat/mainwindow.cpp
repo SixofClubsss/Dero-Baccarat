@@ -100,18 +100,21 @@ void MainWindow::setFonts(QString os)
 
     int mcR1;
     int mcR2;
+    int mcR2o;
     int mcR3;
     int ubR;
 
     if(os == "macos" || os == "osx"){
         mcR1 = 22;
-        mcR2 = 15;
+        mcR2 = 16;
+        mcR2o = 15;
         mcR3 = 18;
         ubR = 13;
 
     }else {
         mcR1 = 17;
         mcR2 = 11;
+        mcR2o = 11;
         mcR3 = 14;
         ubR = 10;
     }
@@ -126,9 +129,12 @@ void MainWindow::setFonts(QString os)
     QFont macondoRegular2(fontFamily);
     macondoRegular2.setPointSize(mcR2);
     macondoRegular2.setBold(true);
+    QFont macondoRegular2o(fontFamily);
+    macondoRegular2o.setPointSize(mcR2o);
+    macondoRegular2o.setBold(true);
 
-    ui->walletConnectedBox->setFont(macondoRegular2);
-    ui->daemonConnectedBox->setFont(macondoRegular2);
+    ui->walletConnectedBox->setFont(macondoRegular2o);
+    ui->daemonConnectedBox->setFont(macondoRegular2o);
     ui->minMaxLabel->setFont(macondoRegular2);
     ui->playerTotalSpinBox->setFont(macondoRegular2);
     ui->bankerTotalSpinBox->setFont(macondoRegular2);

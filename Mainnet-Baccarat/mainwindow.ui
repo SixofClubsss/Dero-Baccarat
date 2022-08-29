@@ -614,7 +614,7 @@ QFrame{
      <widget class="QDoubleSpinBox" name="deroBalanceDoubleSpinBox">
       <property name="minimumSize">
        <size>
-        <width>0</width>
+        <width>165</width>
         <height>20</height>
        </size>
       </property>
@@ -1793,7 +1793,7 @@ background-color: rgba(140, 140, 140, 222);</string>
      <widget class="QDoubleSpinBox" name="dReamBalanceDoubleSpinBox">
       <property name="minimumSize">
        <size>
-        <width>0</width>
+        <width>165</width>
         <height>20</height>
        </size>
       </property>
@@ -1833,7 +1833,7 @@ QDoubleSpinBox:!enabled
        <string>dReams: </string>
       </property>
       <property name="decimals">
-       <number>3</number>
+       <number>5</number>
       </property>
       <property name="maximum">
        <double>21000000.000000000000000</double>
@@ -7186,6 +7186,12 @@ QPushButton:!enabled
     </item>
     <item row="0" column="4">
      <widget class="QSpinBox" name="heightSpinBox">
+      <property name="minimumSize">
+       <size>
+        <width>150</width>
+        <height>21</height>
+       </size>
+      </property>
       <property name="maximumSize">
        <size>
         <width>150</width>
