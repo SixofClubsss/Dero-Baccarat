@@ -24,12 +24,12 @@ https://dreamtables.net
 #define MAINWINDOW_H
 
 #include "QMainWindow"
+#include "QDebug"
 #include "QSizePolicy"
 #include "QTimer"
 #include "QFont"
 #include "QFontDatabase"
 #include "iostream"
-#include "dialog.h"
 #include "dialog.h"
 
 
@@ -46,7 +46,7 @@ public:
     ~MainWindow();
     bool startUp;
     void offset();
-    void setFonts();
+    void setFonts(QString);
     void loginInfo();
     int searchHandData();
     int checkDaemon();
@@ -58,10 +58,8 @@ public:
     int tieBet();
     void blankCards();
     void readoutConfirm();
-    QPixmap displayPlayerCards(int);
-    QPixmap displayBankerCards(int);
-    QPixmap displayDrawPlayerCard(int);
-    QPixmap displayDrawBankerCard(int);
+    QPixmap displayCards(int);
+    QPixmap displayDrawCard(int);
 
 
 private slots:

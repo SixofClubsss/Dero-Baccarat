@@ -6960,6 +6960,9 @@ QPushButton:!enabled
         <height>20</height>
        </size>
       </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
       <property name="styleSheet">
        <string notr="true">color: rgb(0, 0, 0);
 border-color: rgb(79, 159, 239);
@@ -7622,6 +7625,24 @@ Max Bet is 150 dReams</string>
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>userpassInput</tabstop>
+  <tabstop>walletRPCinput</tabstop>
+  <tabstop>daemonRPCinput</tabstop>
+  <tabstop>daemonRPCbutton</tabstop>
+  <tabstop>walletRPCbutton</tabstop>
+  <tabstop>helpButton</tabstop>
+  <tabstop>tradeChipsAmount</tabstop>
+  <tabstop>getChipsAmount</tabstop>
+  <tabstop>tradeChipButton</tabstop>
+  <tabstop>bankerBetAmount</tabstop>
+  <tabstop>searchDoubleSpinBox</tabstop>
+  <tabstop>playerBetAmount</tabstop>
+  <tabstop>getChipButton</tabstop>
+  <tabstop>tieBetAmount</tabstop>
+  <tabstop>heightSpinBox</tabstop>
+  <tabstop>searchButton</tabstop>
+ </tabstops>
  <resources>
   <include location="img.qrc"/>
  </resources>

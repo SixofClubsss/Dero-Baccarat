@@ -33,7 +33,7 @@ https://dreamtables.net
 #include "QString"
 #include "QTime"
 #include "QThread"
-
+using std::string;
 
 static size_t
 WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)

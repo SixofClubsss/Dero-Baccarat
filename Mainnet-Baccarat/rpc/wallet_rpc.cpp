@@ -92,53 +92,47 @@ int MainWindow::checkWallet()  /// Echo blockchain to confirm wallet is connecte
     curlWalletCheck = curl_easy_init();
 
     if(curlWalletCheck) {
-      struct curl_slist *headers = NULL;
-      /// Add request headers
-      headers = curl_slist_append(headers, "Accept: application/json");
-      headers = curl_slist_append(headers, "Content-Type: application/json");
-      headers = curl_slist_append(headers, "charset: utf-8");
-      /// cUrl options
-      curl_easy_setopt(curlWalletCheck, CURLOPT_HTTPHEADER, headers);
-      curl_easy_setopt(curlWalletCheck, CURLOPT_URL, pCh);
-      curl_easy_setopt(curlWalletCheck, CURLOPT_VERBOSE, 1L);
-      curl_easy_setopt(curlWalletCheck, CURLOPT_ERRORBUFFER, error);
-      curl_easy_setopt(curlWalletCheck, CURLOPT_CONNECTTIMEOUT, 9L);
-      curl_easy_setopt(curlWalletCheck, CURLOPT_USERPWD, loginCh);
-      curl_easy_setopt(curlWalletCheck, CURLOPT_POSTFIELDS, postthis);
-      curl_easy_setopt(curlWalletCheck, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
-      curl_easy_setopt(curlWalletCheck, CURLOPT_WRITEFUNCTION, WriteCallback);
-      curl_easy_setopt(curlWalletCheck, CURLOPT_WRITEDATA, &readBuffer);
-      res = curl_easy_perform(curlWalletCheck);
-      curl_easy_cleanup(curlWalletCheck);           ///Preform cUrl and clean up
+        struct curl_slist *headers = NULL;
+        /// Add request headers
+        headers = curl_slist_append(headers, "Accept: application/json");
+        headers = curl_slist_append(headers, "Content-Type: application/json");
+        headers = curl_slist_append(headers, "charset: utf-8");
+        /// cUrl options
+        curl_easy_setopt(curlWalletCheck, CURLOPT_HTTPHEADER, headers);
+        curl_easy_setopt(curlWalletCheck, CURLOPT_URL, pCh);
+        curl_easy_setopt(curlWalletCheck, CURLOPT_VERBOSE, 0L);
+        curl_easy_setopt(curlWalletCheck, CURLOPT_ERRORBUFFER, error);
+        curl_easy_setopt(curlWalletCheck, CURLOPT_CONNECTTIMEOUT, 9L);
+        curl_easy_setopt(curlWalletCheck, CURLOPT_USERPWD, loginCh);
+        curl_easy_setopt(curlWalletCheck, CURLOPT_POSTFIELDS, postthis);
+        curl_easy_setopt(curlWalletCheck, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
+        curl_easy_setopt(curlWalletCheck, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curlWalletCheck, CURLOPT_WRITEDATA, &readBuffer);
+        res = curl_easy_perform(curlWalletCheck);
+        curl_easy_cleanup(curlWalletCheck);           ///Preform cUrl and clean up
 
-      QByteArray br = readBuffer.c_str();           /// Get cUrl results into QByteArray
-      QJsonDocument cbDoc = QJsonDocument::fromJson(br);
-      QJsonObject cbObj = cbDoc.object();
-      QJsonValue okCheck = cbObj["result"];
+        QByteArray br = readBuffer.c_str();           /// Get cUrl results into QByteArray
+        QJsonDocument cbDoc = QJsonDocument::fromJson(br);
+        QJsonObject cbObj = cbDoc.object();
+        QJsonValue okCheck = cbObj["result"];
 
-      std::cout << readBuffer << std::endl;
+        if(okCheck == "WALLET Hello World !"){
 
-      if(okCheck == "WALLET Hello World !"){
+            ui->walletConnectedBox->setChecked(true);      /// Wallet connected
+            ui->textBrowser->setText("Wallet Connected");
+            rpc::walletConnected = true;
+            buttonControl(true);
+        }else {
+            ui->walletConnectedBox->setChecked(false);
+            ui->textBrowser->setText("Wallet Not Connected");   /// Wallet NOT connected
+            rpc::walletAddress = "null";
 
-          ui->walletConnectedBox->setChecked(true);      /// Wallet connected
-          ui->textBrowser->setText("Wallet Connected");
-          std::cout << "Wallet Connected" << std::endl;
-          rpc::walletConnected = true;
-          buttonControl(true);
+            if(rpc::walletConnected == true){
+                rpc::walletConnected = false;
+                buttonControl(false);
+            }
 
-      }else {
-
-          ui->walletConnectedBox->setChecked(false);
-          ui->textBrowser->setText("Wallet Not Connected");
-          std::cout << "Wallet Not Connected" << std::endl;      /// Wallet NOT connected
-          rpc::walletAddress = "null";
-
-          if(rpc::walletConnected == true){
-              rpc::walletConnected = false;
-              buttonControl(false);
-          }
-
-       }
+        }
 
     }
     return 0;
@@ -165,40 +159,39 @@ int MainWindow::getChips()      /// Trade Dero for dReams token (Only dReams are
     curlGetChips = curl_easy_init();
 
     if(curlGetChips) {
-      struct curl_slist *headers = NULL;
+        struct curl_slist *headers = NULL;
 
-      /// Add request headers
-      headers = curl_slist_append(headers, "Accept: application/json");
-      headers = curl_slist_append(headers, "Content-Type: application/json");
-      headers = curl_slist_append(headers, "charset: utf-8");
-      /// cUrl options
-      curl_easy_setopt(curlGetChips, CURLOPT_HTTPHEADER, headers);
-      curl_easy_setopt(curlGetChips, CURLOPT_URL, gcCh);
-      curl_easy_setopt(curlGetChips, CURLOPT_VERBOSE, 1L);
-      curl_easy_setopt(curlGetChips, CURLOPT_ERRORBUFFER, error);
-      curl_easy_setopt(curlGetChips, CURLOPT_CONNECTTIMEOUT, 9L);
-      curl_easy_setopt(curlGetChips, CURLOPT_USERPWD, loginCh);
-      curl_easy_setopt(curlGetChips, CURLOPT_POSTFIELDS, postthis);
-      curl_easy_setopt(curlGetChips, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
-      curl_easy_setopt(curlGetChips, CURLOPT_WRITEFUNCTION, WriteCallback);
-      curl_easy_setopt(curlGetChips, CURLOPT_WRITEDATA, &getChipsReadBuffer);
+        /// Add request headers
+        headers = curl_slist_append(headers, "Accept: application/json");
+        headers = curl_slist_append(headers, "Content-Type: application/json");
+        headers = curl_slist_append(headers, "charset: utf-8");
+        /// cUrl options
+        curl_easy_setopt(curlGetChips, CURLOPT_HTTPHEADER, headers);
+        curl_easy_setopt(curlGetChips, CURLOPT_URL, gcCh);
+        curl_easy_setopt(curlGetChips, CURLOPT_VERBOSE, 0L);
+        curl_easy_setopt(curlGetChips, CURLOPT_ERRORBUFFER, error);
+        curl_easy_setopt(curlGetChips, CURLOPT_CONNECTTIMEOUT, 9L);
+        curl_easy_setopt(curlGetChips, CURLOPT_USERPWD, loginCh);
+        curl_easy_setopt(curlGetChips, CURLOPT_POSTFIELDS, postthis);
+        curl_easy_setopt(curlGetChips, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
+        curl_easy_setopt(curlGetChips, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curlGetChips, CURLOPT_WRITEDATA, &getChipsReadBuffer);
 
-      res = curl_easy_perform(curlGetChips);
-      curl_easy_cleanup(curlGetChips);
+        res = curl_easy_perform(curlGetChips);
+        curl_easy_cleanup(curlGetChips);
 
-      QByteArray br = getChipsReadBuffer.c_str();
-      QJsonDocument cbDoc = QJsonDocument::fromJson(br);
-      QJsonObject cbObj = cbDoc.object();
-      QJsonObject cbResults = cbObj["result"].toObject();
-      QJsonValue getChipsTxid = cbResults.value("txid");
+        QByteArray br = getChipsReadBuffer.c_str();
+        QJsonDocument cbDoc = QJsonDocument::fromJson(br);
+        QJsonObject cbObj = cbDoc.object();
+        QJsonObject cbResults = cbObj["result"].toObject();
+        QJsonValue getChipsTxid = cbResults.value("txid");
 
-      if(getChipsTxid.isString()){
-          ui->textBrowser->setText("Get dReams TXID: "+getChipsTxid.toString());  /// Displays TXID and adds TXID to session log
-          ui->logTextBrowser->append("TXID: "+getChipsTxid.toString()+"\n");
-
-      }else {
-          ui->textBrowser->setText("Error No Get dReams TXID");      /// No TXID was recieved
-      }
+        if(getChipsTxid.isString()){
+            ui->textBrowser->setText("Get dReams TXID: "+getChipsTxid.toString());  /// Displays TXID and adds TXID to session log
+            ui->logTextBrowser->append("TXID: "+getChipsTxid.toString()+"\n");
+        }else {
+            ui->textBrowser->setText("Error No Get dReams TXID");      /// No TXID was recieved
+        }
 
     }
     return 0;
@@ -225,40 +218,39 @@ int MainWindow::tradeChips()        /// Trade dReams for Dero
     curlTradeChips = curl_easy_init();
 
     if(curlTradeChips) {
-      struct curl_slist *headers = NULL;
+        struct curl_slist *headers = NULL;
 
-      /// Add request headers
-      headers = curl_slist_append(headers, "Accept: application/json");
-      headers = curl_slist_append(headers, "Content-Type: application/json");
-      headers = curl_slist_append(headers, "charset: utf-8");
-      /// cUrl options
-      curl_easy_setopt(curlTradeChips, CURLOPT_HTTPHEADER, headers);
-      curl_easy_setopt(curlTradeChips, CURLOPT_URL, tcCh);
-      curl_easy_setopt(curlTradeChips, CURLOPT_VERBOSE, 1L);
-      curl_easy_setopt(curlTradeChips, CURLOPT_ERRORBUFFER, error);
-      curl_easy_setopt(curlTradeChips, CURLOPT_CONNECTTIMEOUT, 9L);
-      curl_easy_setopt(curlTradeChips, CURLOPT_USERPWD, loginCh);
-      curl_easy_setopt(curlTradeChips, CURLOPT_POSTFIELDS, postthis);
-      curl_easy_setopt(curlTradeChips, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
-      curl_easy_setopt(curlTradeChips, CURLOPT_WRITEFUNCTION, WriteCallback);
-      curl_easy_setopt(curlTradeChips, CURLOPT_WRITEDATA, &tradeChipsReadBuffer);
+        /// Add request headers
+        headers = curl_slist_append(headers, "Accept: application/json");
+        headers = curl_slist_append(headers, "Content-Type: application/json");
+        headers = curl_slist_append(headers, "charset: utf-8");
+        /// cUrl options
+        curl_easy_setopt(curlTradeChips, CURLOPT_HTTPHEADER, headers);
+        curl_easy_setopt(curlTradeChips, CURLOPT_URL, tcCh);
+        curl_easy_setopt(curlTradeChips, CURLOPT_VERBOSE, 0L);
+        curl_easy_setopt(curlTradeChips, CURLOPT_ERRORBUFFER, error);
+        curl_easy_setopt(curlTradeChips, CURLOPT_CONNECTTIMEOUT, 9L);
+        curl_easy_setopt(curlTradeChips, CURLOPT_USERPWD, loginCh);
+        curl_easy_setopt(curlTradeChips, CURLOPT_POSTFIELDS, postthis);
+        curl_easy_setopt(curlTradeChips, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
+        curl_easy_setopt(curlTradeChips, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curlTradeChips, CURLOPT_WRITEDATA, &tradeChipsReadBuffer);
 
-      res = curl_easy_perform(curlTradeChips);
-      curl_easy_cleanup(curlTradeChips);
+        res = curl_easy_perform(curlTradeChips);
+        curl_easy_cleanup(curlTradeChips);
 
-      QByteArray br = tradeChipsReadBuffer.c_str();
-      QJsonDocument cbDoc = QJsonDocument::fromJson(br);
-      QJsonObject cbObj = cbDoc.object();
-      QJsonObject cbResults = cbObj["result"].toObject();
-      QJsonValue tradeChipsTxid = cbResults.value("txid");
+        QByteArray br = tradeChipsReadBuffer.c_str();
+        QJsonDocument cbDoc = QJsonDocument::fromJson(br);
+        QJsonObject cbObj = cbDoc.object();
+        QJsonObject cbResults = cbObj["result"].toObject();
+        QJsonValue tradeChipsTxid = cbResults.value("txid");
 
-      if(tradeChipsTxid.isString()){
-          ui->textBrowser->setText("Trade dReams TXID: "+tradeChipsTxid.toString());
-          ui->logTextBrowser->append("TXID: "+tradeChipsTxid.toString()+"\n");
-
-      }else {
-          ui->textBrowser->setText("Error No Trade dReams TXID");
-      }
+        if(tradeChipsTxid.isString()){
+            ui->textBrowser->setText("Trade dReams TXID: "+tradeChipsTxid.toString());
+            ui->logTextBrowser->append("TXID: "+tradeChipsTxid.toString()+"\n");
+        }else {
+            ui->textBrowser->setText("Error No Trade dReams TXID");
+        }
 
     }
     return 0;
@@ -285,32 +277,32 @@ int MainWindow::playerBet()     /// Bet on player
     curlPlayer = curl_easy_init();
 
     if(curlPlayer) {
-      struct curl_slist *headers = NULL;
+        struct curl_slist *headers = NULL;
 
-      /// Add request headers
-      headers = curl_slist_append(headers, "Accept: application/json");
-      headers = curl_slist_append(headers, "Content-Type: application/json");
-      headers = curl_slist_append(headers, "charset: utf-8");
-      /// cUrl options
-      curl_easy_setopt(curlPlayer, CURLOPT_HTTPHEADER, headers);
-      curl_easy_setopt(curlPlayer, CURLOPT_URL, pCh);
-      curl_easy_setopt(curlPlayer, CURLOPT_VERBOSE, 1L);
-      curl_easy_setopt(curlPlayer, CURLOPT_ERRORBUFFER, error);
-      curl_easy_setopt(curlPlayer, CURLOPT_CONNECTTIMEOUT, 9L);
-      curl_easy_setopt(curlPlayer, CURLOPT_USERPWD, loginCh);
-      curl_easy_setopt(curlPlayer, CURLOPT_POSTFIELDS, postthis);
-      curl_easy_setopt(curlPlayer, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
-      curl_easy_setopt(curlPlayer, CURLOPT_WRITEFUNCTION, WriteCallback);
-      curl_easy_setopt(curlPlayer, CURLOPT_WRITEDATA, &pReadBuffer);
+        /// Add request headers
+        headers = curl_slist_append(headers, "Accept: application/json");
+        headers = curl_slist_append(headers, "Content-Type: application/json");
+        headers = curl_slist_append(headers, "charset: utf-8");
+        /// cUrl options
+        curl_easy_setopt(curlPlayer, CURLOPT_HTTPHEADER, headers);
+        curl_easy_setopt(curlPlayer, CURLOPT_URL, pCh);
+        curl_easy_setopt(curlPlayer, CURLOPT_VERBOSE, 0L);
+        curl_easy_setopt(curlPlayer, CURLOPT_ERRORBUFFER, error);
+        curl_easy_setopt(curlPlayer, CURLOPT_CONNECTTIMEOUT, 9L);
+        curl_easy_setopt(curlPlayer, CURLOPT_USERPWD, loginCh);
+        curl_easy_setopt(curlPlayer, CURLOPT_POSTFIELDS, postthis);
+        curl_easy_setopt(curlPlayer, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
+        curl_easy_setopt(curlPlayer, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curlPlayer, CURLOPT_WRITEDATA, &pReadBuffer);
 
-      res = curl_easy_perform(curlPlayer);
-      curl_easy_cleanup(curlPlayer);
+        res = curl_easy_perform(curlPlayer);
+        curl_easy_cleanup(curlPlayer);
 
-      QByteArray br = pReadBuffer.c_str();
-      QJsonDocument cbDoc = QJsonDocument::fromJson(br);
-      QJsonObject cbObj = cbDoc.object();
-      QJsonObject cbResults = cbObj["result"].toObject();
-      QJsonValue txid = cbResults.value("txid");
+        QByteArray br = pReadBuffer.c_str();
+        QJsonDocument cbDoc = QJsonDocument::fromJson(br);
+        QJsonObject cbObj = cbDoc.object();
+        QJsonObject cbResults = cbObj["result"].toObject();
+        QJsonValue txid = cbResults.value("txid");
 
         if(txid.isString()){
             rpc::txidCheck = txid.toString();
@@ -318,7 +310,6 @@ int MainWindow::playerBet()     /// Bet on player
             ui->textBrowser->setText("Your Hand TXID: "+txid.toString());
             ui->textBrowser->append("\nWait for Block");
             ui->logTextBrowser->append("TXID: "+txid.toString()+"\n");
-
         }else {
             ui->textBrowser->setText("Error No Hand TXID");
         }
@@ -348,43 +339,42 @@ int MainWindow::bankerBet()     /// Bet on banker
     curlBanker = curl_easy_init();
 
     if(curlBanker) {
-      struct curl_slist *headers = NULL;
+        struct curl_slist *headers = NULL;
 
-      /// Add request headers
-      headers = curl_slist_append(headers, "Accept: application/json");
-      headers = curl_slist_append(headers, "Content-Type: application/json");
-      headers = curl_slist_append(headers, "charset: utf-8");
-      /// cUrl options
-      curl_easy_setopt(curlBanker, CURLOPT_HTTPHEADER, headers);
-      curl_easy_setopt(curlBanker, CURLOPT_URL, pCh);
-      curl_easy_setopt(curlBanker, CURLOPT_VERBOSE, 1L);
-      curl_easy_setopt(curlBanker, CURLOPT_ERRORBUFFER, error);
-      curl_easy_setopt(curlBanker, CURLOPT_CONNECTTIMEOUT, 9L);
-      curl_easy_setopt(curlBanker, CURLOPT_USERPWD, loginCh);
-      curl_easy_setopt(curlBanker, CURLOPT_POSTFIELDS, postthis);
-      curl_easy_setopt(curlBanker, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
-      curl_easy_setopt(curlBanker, CURLOPT_WRITEFUNCTION, WriteCallback);
-      curl_easy_setopt(curlBanker, CURLOPT_WRITEDATA, &bReadBuffer);
+        /// Add request headers
+        headers = curl_slist_append(headers, "Accept: application/json");
+        headers = curl_slist_append(headers, "Content-Type: application/json");
+        headers = curl_slist_append(headers, "charset: utf-8");
+        /// cUrl options
+        curl_easy_setopt(curlBanker, CURLOPT_HTTPHEADER, headers);
+        curl_easy_setopt(curlBanker, CURLOPT_URL, pCh);
+        curl_easy_setopt(curlBanker, CURLOPT_VERBOSE, 0L);
+        curl_easy_setopt(curlBanker, CURLOPT_ERRORBUFFER, error);
+        curl_easy_setopt(curlBanker, CURLOPT_CONNECTTIMEOUT, 9L);
+        curl_easy_setopt(curlBanker, CURLOPT_USERPWD, loginCh);
+        curl_easy_setopt(curlBanker, CURLOPT_POSTFIELDS, postthis);
+        curl_easy_setopt(curlBanker, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
+        curl_easy_setopt(curlBanker, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curlBanker, CURLOPT_WRITEDATA, &bReadBuffer);
 
-      res = curl_easy_perform(curlBanker);
-      curl_easy_cleanup(curlBanker);
+        res = curl_easy_perform(curlBanker);
+        curl_easy_cleanup(curlBanker);
 
-      QByteArray br = bReadBuffer.c_str();
-      QJsonDocument cbDoc = QJsonDocument::fromJson(br);
-      QJsonObject cbObj = cbDoc.object();
-      QJsonObject cbResults = cbObj["result"].toObject();
-      QJsonValue txid = cbResults.value("txid");
+        QByteArray br = bReadBuffer.c_str();
+        QJsonDocument cbDoc = QJsonDocument::fromJson(br);
+        QJsonObject cbObj = cbDoc.object();
+        QJsonObject cbResults = cbObj["result"].toObject();
+        QJsonValue txid = cbResults.value("txid");
 
-      if(txid.isString()){
-          rpc::txidCheck = txid.toString();
-          rpc::thisHand = ui->dsbTotalHandsPlayed->value();
-          ui->textBrowser->setText("Your Hand TXID: "+txid.toString());
-          ui->textBrowser->append("\nWait for Block");
-          ui->logTextBrowser->append("TXID: "+txid.toString()+"\n");
-
-      }else {
-          ui->textBrowser->setText("Error No Hand TXID");
-      }
+        if(txid.isString()){
+            rpc::txidCheck = txid.toString();
+            rpc::thisHand = ui->dsbTotalHandsPlayed->value();
+            ui->textBrowser->setText("Your Hand TXID: "+txid.toString());
+            ui->textBrowser->append("\nWait for Block");
+            ui->logTextBrowser->append("TXID: "+txid.toString()+"\n");
+        }else {
+            ui->textBrowser->setText("Error No Hand TXID");
+        }
 
     }
     return 0;
@@ -411,32 +401,32 @@ int MainWindow::tieBet()            /// Bet on tie
     curlTie = curl_easy_init();
 
     if(curlTie) {
-      struct curl_slist *headers = NULL;
+        struct curl_slist *headers = NULL;
 
-      /// Add request headers
-      headers = curl_slist_append(headers, "Accept: application/json");
-      headers = curl_slist_append(headers, "Content-Type: application/json");
-      headers = curl_slist_append(headers, "charset: utf-8");
-      /// cUrl options
-      curl_easy_setopt(curlTie, CURLOPT_HTTPHEADER, headers);
-      curl_easy_setopt(curlTie, CURLOPT_URL, tCh);
-      curl_easy_setopt(curlTie, CURLOPT_VERBOSE, 1L);
-      curl_easy_setopt(curlTie, CURLOPT_ERRORBUFFER, error);
-      curl_easy_setopt(curlTie, CURLOPT_CONNECTTIMEOUT, 9L);
-      curl_easy_setopt(curlTie, CURLOPT_USERPWD, loginCh);
-      curl_easy_setopt(curlTie, CURLOPT_POSTFIELDS, postthis);
-      curl_easy_setopt(curlTie, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
-      curl_easy_setopt(curlTie, CURLOPT_WRITEFUNCTION, WriteCallback);
-      curl_easy_setopt(curlTie, CURLOPT_WRITEDATA, &tReadBuffer);
+        /// Add request headers
+        headers = curl_slist_append(headers, "Accept: application/json");
+        headers = curl_slist_append(headers, "Content-Type: application/json");
+        headers = curl_slist_append(headers, "charset: utf-8");
+        /// cUrl options
+        curl_easy_setopt(curlTie, CURLOPT_HTTPHEADER, headers);
+        curl_easy_setopt(curlTie, CURLOPT_URL, tCh);
+        curl_easy_setopt(curlTie, CURLOPT_VERBOSE, 0L);
+        curl_easy_setopt(curlTie, CURLOPT_ERRORBUFFER, error);
+        curl_easy_setopt(curlTie, CURLOPT_CONNECTTIMEOUT, 9L);
+        curl_easy_setopt(curlTie, CURLOPT_USERPWD, loginCh);
+        curl_easy_setopt(curlTie, CURLOPT_POSTFIELDS, postthis);
+        curl_easy_setopt(curlTie, CURLOPT_POSTFIELDSIZE, (long)strlen(postthis));
+        curl_easy_setopt(curlTie, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curlTie, CURLOPT_WRITEDATA, &tReadBuffer);
 
-      res = curl_easy_perform(curlTie);
-      curl_easy_cleanup(curlTie);
+        res = curl_easy_perform(curlTie);
+        curl_easy_cleanup(curlTie);
 
-      QByteArray br = tReadBuffer.c_str();
-      QJsonDocument cbDoc = QJsonDocument::fromJson(br);
-      QJsonObject cbObj = cbDoc.object();
-      QJsonObject cbResults = cbObj["result"].toObject();
-      QJsonValue txid = cbResults.value("txid");
+        QByteArray br = tReadBuffer.c_str();
+        QJsonDocument cbDoc = QJsonDocument::fromJson(br);
+        QJsonObject cbObj = cbDoc.object();
+        QJsonObject cbResults = cbObj["result"].toObject();
+        QJsonValue txid = cbResults.value("txid");
 
         if(txid.isString()){
             rpc::txidCheck = txid.toString();
@@ -444,7 +434,6 @@ int MainWindow::tieBet()            /// Bet on tie
             ui->textBrowser->setText("Your Hand TXID: "+txid.toString());
             ui->textBrowser->append("\nWait for Block");
             ui->logTextBrowser->append("TXID: "+txid.toString()+"\n");
-
         }else {
             ui->textBrowser->setText("Error No Hand TXID");
         }

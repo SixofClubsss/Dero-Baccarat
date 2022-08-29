@@ -29,7 +29,13 @@ Help::Help(QWidget *parent) :
     ui(new Ui::Help)
 {
     ui->setupUi(this);
-    setFonts();
+    setFonts(QSysInfo::productType());
+
+    qInfo() << ("\033[36m♤♡♧♢♧♡♤♡♧♢♧♡♤♡♧♢♧♡♤♡♧♢♧♡♤♡♧♢♧♡♤\033[0m");
+    qInfo() << ("\033[36m    dReam Tables Baccarat\033[0m");
+    qInfo() << ("\033[36m   https://dreamtables.net\033[0m");
+    qInfo() << ("\033[36m     © 2022 dReam Tables\033[0m");
+    qInfo() << ("\033[36m♤♡♧♢♧♡♤♡♧♢♧♡♤♡♧♢♧♡♤♡♧♢♧♡♤♡♧♢♧♡♤\033[0m");
 }
 
 Help::~Help()
@@ -37,18 +43,30 @@ Help::~Help()
     delete ui;
 }
 
-void Help::setFonts()
+void Help::setFonts(QString os)
 {
+    int mcR;
+    int ubR;
+
+    if(os == "macos"){
+        mcR = 18;
+        ubR = 12;
+    }else {
+        mcR = 11;
+        ubR = 10;
+    }
+
     int fontId = QFontDatabase::addApplicationFont(":/fonts/Macondo-Regular.ttf");
     QString fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
-    QFont macondoRegular12(fontFamily);
-    macondoRegular12.setPointSize(11);
-    macondoRegular12.setBold(true);
-    ui->dReamsLabel->setFont(macondoRegular12);
+    QFont macondoRegular(fontFamily);
+    macondoRegular.setPointSize(mcR);
+    macondoRegular.setBold(true);
+    ui->dReamsLabel->setFont(macondoRegular);
 
     int fontId2 = QFontDatabase::addApplicationFont(":/fonts/Ubuntu-R.ttf");
     QString fontFamily2 = QFontDatabase::applicationFontFamilies(fontId2).at(0);
     QFont ubuntuRegular(fontFamily2);
-    ubuntuRegular.setPointSize(10);
+    ubuntuRegular.setPointSize(ubR);
     ui->buttonBox->setFont(ubuntuRegular);
+
 }

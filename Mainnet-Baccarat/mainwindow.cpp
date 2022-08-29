@@ -56,17 +56,12 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setFonts(QSysInfo::productType());
     startUp = true;
     rpc::walletConnected = false;
     rpc::daemonConnected = false;
     rpc::contractAddress = "8289c6109f41cbe1f6d5f27a419db537bf3bf30a25eff285241a36e1ae3e48a4";
     rpc::tokenAddress = "ad2e7b37c380cc1aed3a6b27224ddfc92a2d15962ca1f4d35e530dba0f9575a9";
-    ui->playerXCardLabel->setPixmap(QPixmap(":/CardBack"));
-    ui->playerYCardLabel->setPixmap(QPixmap(":/CardBack"));
-    ui->playerZCardLabel->setPixmap(QPixmap(":/CardBack"));
-    ui->bankerXCardLabel->setPixmap(QPixmap(":/CardBack"));
-    ui->bankerYCardLabel->setPixmap(QPixmap(":/CardBack"));
-    ui->bankerZCardLabel->setPixmap(QPixmap(":/CardBack"));
     ui->daemonConnectedBox->setAttribute(Qt::WA_TransparentForMouseEvents);
     ui->daemonConnectedBox->setFocusPolicy(Qt::NoFocus);
     ui->walletConnectedBox->setAttribute(Qt::WA_TransparentForMouseEvents);
@@ -84,7 +79,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->getChipsAmount->setEnabled(false);
     ui->tradeChipsAmount->setEnabled(false);
     ui->minMaxLabel->setEnabled(false);
-    setFonts();
     blankCards();
 
     connect(ui->daemonRPCinput, SIGNAL(textChanged(QString)),
@@ -102,41 +96,62 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::setFonts()
+void MainWindow::setFonts(QString os)
 {
+
+    int mcR1;
+    int mcR2;
+    int mcR3;
+    int ubR;
+
+    if(os == "macos"){
+        mcR1 = 21;
+        mcR2 = 15;
+        mcR3 = 17;
+        ubR = 13;
+
+    }else {
+        mcR1 = 17;
+        mcR2 = 11;
+        mcR3 = 14;
+        ubR = 10;
+    }
+
     int fontId = QFontDatabase::addApplicationFont(":/fonts/Macondo-Regular.ttf");
     QString fontFamily = QFontDatabase::applicationFontFamilies(fontId).at(0);
-    QFont macondoRegular17(fontFamily);
-    macondoRegular17.setPointSize(17);
-    macondoRegular17.setBold(true);
-    ui->textBrowser->setFont(macondoRegular17);
+    QFont macondoRegular1(fontFamily);
+    macondoRegular1.setPointSize(mcR1);
+    macondoRegular1.setBold(true);
+    ui->textBrowser->setFont(macondoRegular1);
     ui->textBrowser->setText("Welcome to dReam Tables Baccarat\n\nConnect Your Daemon & Wallet");
-    QFont macondoRegular12(fontFamily);
-    macondoRegular12.setPointSize(11);
-    macondoRegular12.setBold(true);
+    QFont macondoRegular2(fontFamily);
+    macondoRegular2.setPointSize(mcR2);
+    macondoRegular2.setBold(true);
 
-    ui->walletConnectedBox->setFont(macondoRegular12);
-    ui->daemonConnectedBox->setFont(macondoRegular12);
-    ui->minMaxLabel->setFont(macondoRegular12);
-    ui->playerTotalSpinBox->setFont(macondoRegular12);
-    ui->bankerTotalSpinBox->setFont(macondoRegular12);
-    ui->pWinsSpinBox->setFont(macondoRegular12);
-    ui->bWinsSpinBox->setFont(macondoRegular12);
-    ui->explorerLabel->setFont(macondoRegular12);
-    ui->tWinsSpinBox->setFont(macondoRegular12);
-    ui->dsbTotalHandsPlayed->setFont(macondoRegular12);
-    ui->heightSpinBox->setFont(macondoRegular12);
+    ui->walletConnectedBox->setFont(macondoRegular2);
+    ui->daemonConnectedBox->setFont(macondoRegular2);
+    ui->minMaxLabel->setFont(macondoRegular2);
+    ui->playerTotalSpinBox->setFont(macondoRegular2);
+    ui->bankerTotalSpinBox->setFont(macondoRegular2);
+    ui->pWinsSpinBox->setFont(macondoRegular2);
+    ui->bWinsSpinBox->setFont(macondoRegular2);
+    ui->explorerLabel->setFont(macondoRegular2);
+    ui->tWinsSpinBox->setFont(macondoRegular2);
+    ui->dsbTotalHandsPlayed->setFont(macondoRegular2);
+    ui->heightSpinBox->setFont(macondoRegular2);
 
-    QFont macondoRegular14(fontFamily);
-    macondoRegular14.setPointSize(14);
-    macondoRegular14.setBold(true);
-    ui->sessionsLabel->setFont(macondoRegular14);
-    ui->exchangeLable->setFont(macondoRegular14);
+    QFont macondoRegular3(fontFamily);
+    macondoRegular3.setPointSize(mcR3);
+    macondoRegular3.setBold(true);
+    ui->sessionsLabel->setFont(macondoRegular3);
+    ui->exchangeLable->setFont(macondoRegular3);
 
     int fontId2 = QFontDatabase::addApplicationFont(":/fonts/Ubuntu-R.ttf");
     QString fontFamily2 = QFontDatabase::applicationFontFamilies(fontId2).at(0);
     QFont ubuntuRegular(fontFamily2);
-    ubuntuRegular.setPointSize(10);
+    ubuntuRegular.setPointSize(ubR);
+    ui->deroBalanceDoubleSpinBox->setFont(ubuntuRegular);
+    ui->dReamBalanceDoubleSpinBox->setFont(ubuntuRegular);
     ui->playerButton->setFont(ubuntuRegular);
     ui->bankerButton->setFont(ubuntuRegular);
     ui->tieButton->setFont(ubuntuRegular);
@@ -224,34 +239,34 @@ void MainWindow::refresh()      /// Updates Ui display
     ui->dReamBalanceDoubleSpinBox->setValue(rpc::dReamBalance/100000);
 
     if(rpc::foundHand == true  && startUp == false){
-       ui->textBrowser->setText("Displaying hand TXID: "+rpc::foundHandTXID);
+        ui->textBrowser->setText("Displaying hand TXID: "+rpc::foundHandTXID);
 
-       ui->playerTotalSpinBox->setValue(rpc::foundPlayerTotal);
-       ui->playerXCardLabel->setPixmap(displayPlayerCards(rpc::foundPlayerX));
-       ui->playerYCardLabel->setPixmap(displayPlayerCards(rpc::foundPlayerY));
-       ui->playerZCardLabel->setPixmap(displayDrawPlayerCard(rpc::foundPlayerZ));
+        ui->playerTotalSpinBox->setValue(rpc::foundPlayerTotal);
+        ui->playerXCardLabel->setPixmap(displayCards(rpc::foundPlayerX));
+        ui->playerYCardLabel->setPixmap(displayCards(rpc::foundPlayerY));
+        ui->playerZCardLabel->setPixmap(displayDrawCard(rpc::foundPlayerZ));
 
-       ui->bankerTotalSpinBox->setValue(rpc::foundBankerTotal);
-       ui->bankerXCardLabel->setPixmap(displayBankerCards(rpc::foundBankerX));
-       ui->bankerYCardLabel->setPixmap(displayBankerCards(rpc::foundBankerY));
-       ui->bankerZCardLabel->setPixmap(displayDrawBankerCard(rpc::foundBankerZ));
+        ui->bankerTotalSpinBox->setValue(rpc::foundBankerTotal);
+        ui->bankerXCardLabel->setPixmap(displayCards(rpc::foundBankerX));
+        ui->bankerYCardLabel->setPixmap(displayCards(rpc::foundBankerY));
+        ui->bankerZCardLabel->setPixmap(displayDrawCard(rpc::foundBankerZ));
 
-       if(rpc::foundPlayerTotal > rpc::foundBankerTotal){
+        if(rpc::foundPlayerTotal > rpc::foundBankerTotal){
             ui->textBrowser->append("\nPlayer Wins");
-            ui->playerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: rgb(79, 186, 196, 210); background-color: rgb(79, 186, 196, 21); };");
-       }
+            ui->playerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: rgba(79, 186, 196, 210); background-color: rgba(79, 186, 196, 21); };");
+        }
 
-       if(rpc::foundBankerTotal > rpc::foundPlayerTotal){
+        if(rpc::foundBankerTotal > rpc::foundPlayerTotal){
             ui->textBrowser->append("\nBanker Wins");
-            ui->bankerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: rgb(79, 186, 196, 210); background-color: rgb(79, 186, 196, 21); };");
-       }
+            ui->bankerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: rgba(79, 186, 196, 210); background-color: rgba(79, 186, 196, 21); };");
+        }
 
-       if(rpc::foundBankerTotal == rpc::foundPlayerTotal){
+        if(rpc::foundBankerTotal == rpc::foundPlayerTotal){
             ui->textBrowser->append("\nTie");
-            ui->playerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: rgb(56, 47, 165, 210); background-color: rgb(28, 31, 43, 0); };");
-            ui->bankerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: rgb(56, 47, 165, 210); background-color: rgb(28, 31, 43, 0); };");
-       }
-       ui->searchButton->setEnabled(true);
+            ui->playerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: rgba(56, 47, 165, 210); background-color: rgba(28, 31, 43, 0); };");
+            ui->bankerTotalSpinBox->setStyleSheet("QDoubleSpinBox{ border-color: rgba(56, 47, 165, 210); background-color: rgba(28, 31, 43, 0); };");
+        }
+        ui->searchButton->setEnabled(true);
     }
 }
 

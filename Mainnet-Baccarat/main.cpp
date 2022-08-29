@@ -20,10 +20,10 @@ Always play responsibly.
 https://dreamtables.net
 */
 
+#include "QApplication"
 #include "mainwindow.h"
 #include "help.h"
 #include "rpc/rpc.h"
-#include "QApplication"
 
 QThread Worker::workThread;
 

@@ -37,7 +37,7 @@ class Help : public QDialog
 public:
     explicit Help(QWidget *parent = nullptr);
     ~Help();
-    void setFonts();
+    void setFonts(QString);
 
 private:
     Ui::Help *ui;
