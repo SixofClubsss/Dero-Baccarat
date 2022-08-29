@@ -90,6 +90,11 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+
+    qInfo() << ("\033[36m♤♡♧♢♧♡♤♡♧♢♧♡♤♡♧♢♧♡♤♡♧♢♧♡♤♡♧♢♧♡♤\033[0m");
+    qInfo() << ("\033[36m          Exiting...\033[0m");
+    qInfo() << ("\033[36m♤♡♧♢♧♡♤♡♧♢♧♡♤♡♧♢♧♡♤♡♧♢♧♡♤♡♧♢♧♡♤\033[0m");
+
     Worker::workThread.quit();
     delete ui;
 }
@@ -104,13 +109,18 @@ void MainWindow::setFonts(QString os)
     int mcR3;
     int ubR;
 
-    if(os == "macos" || os == "osx"){
+    if(os == "macos" || os == "osx" || os == "darwin"){
         mcR1 = 22;
         mcR2 = 16;
         mcR2o = 15;
         mcR3 = 18;
         ubR = 13;
-
+    }else if(os == "windows"){
+        mcR1 = 17;
+        mcR2 = 11;
+        mcR2o = 10;
+        mcR3 = 14;
+        ubR = 10;
     }else {
         mcR1 = 17;
         mcR2 = 11;
@@ -135,12 +145,12 @@ void MainWindow::setFonts(QString os)
 
     ui->walletConnectedBox->setFont(macondoRegular2o);
     ui->daemonConnectedBox->setFont(macondoRegular2o);
+    ui->explorerLabel->setFont(macondoRegular2o);
     ui->minMaxLabel->setFont(macondoRegular2);
     ui->playerTotalSpinBox->setFont(macondoRegular2);
     ui->bankerTotalSpinBox->setFont(macondoRegular2);
     ui->pWinsSpinBox->setFont(macondoRegular2);
     ui->bWinsSpinBox->setFont(macondoRegular2);
-    ui->explorerLabel->setFont(macondoRegular2);
     ui->tWinsSpinBox->setFont(macondoRegular2);
     ui->dsbTotalHandsPlayed->setFont(macondoRegular2);
     ui->heightSpinBox->setFont(macondoRegular2);
