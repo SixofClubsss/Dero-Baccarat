@@ -7505,6 +7505,7 @@ color: rgb(255, 255, 255);
       <property name="styleSheet">
        <string notr="true">QLabel{
 background-color: rgba(28, 31, 43, 0);
+color: rgb(255, 255, 255);
 }
 
 QLabel:!enabled
