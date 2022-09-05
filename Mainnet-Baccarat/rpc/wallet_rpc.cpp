@@ -146,7 +146,7 @@ int MainWindow::getChips()      /// Trade Dero for dReams token (Only dReams are
     string getChipsReadBuffer;
     char error[CURL_ERROR_SIZE];
 
-    QString dAmount = QString::number(ui->getChipsAmount->value()*100000);
+    QString dAmount = QString::number(ui->getChipsAmount->value()*100000, 'g', 10);
     QString parts = "{\"jsonrpc\":\"2.0\",\"id\":\"0\",\"method\":\"scinvoke\",\"params\":{\"scid\":\""+rpc::contractAddress+"\", \"sc_dero_deposit\":"+dAmount+", \"ringsize\":2 , \"sc_rpc\":[{\"name\":\"entrypoint\",\"datatype\":\"S\",\"value\":\"IssueChips\"}] }}";
     string addThis = parts.toStdString();
     const char *postthis = addThis.c_str();
